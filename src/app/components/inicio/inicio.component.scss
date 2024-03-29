@@ -2,18 +2,19 @@
 #bannerPrincipal{
     background-image: url(../../../assets/outros/banner1.png);
     background-size: cover;
-    overflow: auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    //overflow: auto;
+    //width: 100%;
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
     height: 780px;
 }
 #bannerApresentacao{
     width: 730px;
-    justify-content: center;
-    overflow: auto;
+    //justify-content: center;
+    //overflow: auto;
     height: 349px;
-    margin: 10%;
+    //margin: 10%;
     //margin-top: 15%;
     //margin-left: 10%;
     //margin-right: 10%;
@@ -22,28 +23,23 @@
     background-color: rgba(247, 248, 250, 0.8);;
 }
 #logoMini{
-    width: 60px;
-    height: 57px;
-    margin-top: 34px;
-    margin-left: 45%;
-    //margin-top: 34px;
-    //margin-left: 335px;
+    width: 80px;
 }
 #tituloMetalive{
-    width: 185px;
-    height: 50px;
-    margin-left: 272px;
+    //width: 185px;
+    //height: 50px;
+    //margin-left: 272px;
+    margin-top: 8px;
     font-family: Poppins;
     font-size: 40px;
     font-weight: 500;
     line-height: 60px;
     letter-spacing: 0em;
+    text-align: center;
 }
 #texto1{
     width: 537px;
-    height: 56px;
-    top: 165px;
-    margin-left: 96px;
+    margin-top: 5px;
     font-size: 18px;
     font-weight: 300;
     color: #1D252C;
@@ -53,10 +49,11 @@
 }
 #botaoDescubraQuemSomos{
     text-decoration: none; 
-    display: inline-block;
+    //display: inline-block;
     width: 361px;
+    margin-top: 15px;
     height: 47px;
-    margin-left: 184px;
+    //margin-left: 184px;
     border-radius: 10px;
     align-items: center;
     background-color: #303A6D;
@@ -70,7 +67,7 @@
     line-height: 26px;
     letter-spacing: 0px;
     text-align: center;
-}
+}/*
 @media screen and (max-width: 992px){       //tablet
     #bannerPrincipal{
         height: auto;
@@ -116,4 +113,4 @@
         height: 47px;
         margin-left: 0px;
     }
-}
+}*/

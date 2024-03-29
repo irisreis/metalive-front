@@ -5,18 +5,32 @@
         </div>
         <div class="col-4 mx-auto" id="bloco2">
             <p id="texto1">Sinta-se livre para nos contatar. Estamos à disposição para tirar todas as suas dúvidas.</p>
-            <img class="iconContato" src="../../../assets/icones/contatoTel.png" alt="">
-            <p id="nosLigue" class="textoContato">Nos ligue</p>
-            <p class="infoContato">(99) 99999-9999</p>
-            
-            <img class="iconContato" src="../../../assets/icones/contatoEmail.png" alt="">
-            <p class="textoContato">Email</p>
-            <p class="infoContato">admmetalive.com.br</p>
-            
-            <img class="iconContato" src="../../../assets/icones/contatoLocal.png" alt="">
-            <p class="textoContato">Localização</p>
-            <p class="infoContato">Rua Principal, 123 - Centro, Curitiba/PR</p>
+        
+            <div class="d-flex align-items-center mb-3"> <!-- Div de flexbox para o primeiro item de contato -->
+                <img class="iconContato mr-2" src="../../../assets/icones/contatoTel.png" alt="">
+                <div>
+                    <p id="nosLigue" class="textoContato mb-0">Nos ligue</p>
+                    <p class="infoContato mb-0">(99) 99999-9999</p>
+                </div>
+            </div>
+        
+            <div class="d-flex align-items-center mb-3"> <!-- Div de flexbox para o segundo item de contato -->
+                <img class="iconContato mr-2" src="../../../assets/icones/contatoEmail.png" alt="">
+                <div>
+                    <p class="textoContato mb-0">Email</p>
+                    <p class="infoContato mb-0">admmetalive.com.br</p>
+                </div>
+            </div>
+        
+            <div class="d-flex align-items-center"> <!-- Div de flexbox para o terceiro item de contato -->
+                <img class="iconContato mr-2" src="../../../assets/icones/contatoLocal.png" alt="">
+                <div>
+                    <p class="textoContato mb-0">Localização</p>
+                    <p class="infoContato mb-0">Rua Principal, 123 - Centro, Curitiba/PR</p>
+                </div>
+            </div>
         </div>
+        
         <div class="col-4 mx-auto" id="bloco3">
             <div id="blocoInput">
                 <input class="input1" id="inputNome" type="text" placeholder="Nome">
@@ -25,5 +39,6 @@
                 <input id="submit" type="submit" value="Enviar">
             </div>
         </div>
+        <div id="blocoAzul"></div>
     </div>
 </div>

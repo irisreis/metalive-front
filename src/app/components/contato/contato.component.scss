@@ -1,6 +1,7 @@
 #blocoContato{
     background: #F7F8FACC;
     width: 100%;
+    height: 830px;
     gap: 0px;
     opacity: 0px;
 }
@@ -30,8 +31,7 @@
 .iconContato{
     width: 35px;
     height: 35px;
-    top: 328px;
-    left: 165px;
+    margin-top: -35px;
     gap: 0px;
     opacity: 0px;
 }
@@ -40,19 +40,19 @@
     font-family: Poppins;
     font-size: 20px;
     font-weight: 500;
+    margin-top: 15px;
+    margin-left: 20px;
     line-height: 57.6px;
     letter-spacing: -0.8999999165534973px;
     text-align: left;
-}
-#nosLigue{
-    //margin-top: 325px;
-
 }
 .infoContato{
     color: #303A6D;
     font-family: Poppins;
     font-size: 17px;
     font-weight: 300;
+    margin-top: -15px;
+    margin-left: -38px;
     line-height: 57.6px;
     letter-spacing: -0.8999999165534973px;
     text-align: left;
@@ -63,7 +63,7 @@
     width: 534px;
     height: 555px;
     margin-top: 50px;
-    left: 740px;
+    position: absolute;
     gap: 0px;
     border-radius: 10px 0px 0px 0px;
     opacity: 0px;
@@ -106,8 +106,7 @@
 #blocoAzul{
     width: 100%;
     height: 150px;
-    top: 630px;
-    gap: 0px;
     opacity: 0px;
     background-color: #303A6D;
+    margin-top: 25px;
 }
