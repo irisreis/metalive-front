@@ -179,4 +179,18 @@
     width: 64px;
     height: 64px;
 }
+@media screen and (max-width: 576px) {
+    #tituloCombos{
+        font-size: 43px;
+        margin-top: 18px;
+    }
+    #textoCombos{
+        font-size: 16px;
+        margin-top: -22px;
+    }
+    .combo{
+        margin: 2%;
+    }
+    
+}
 

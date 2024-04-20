@@ -1,7 +1,6 @@
 #blocoBeneficios{
     background-color: #303A6D;
     width: 100%;
-    //height: 780px;
     border: 1;
 }
 #titulo1{
@@ -31,7 +30,7 @@
     height: 311px;
     margin-top: 100px;
     border-radius: 15px;
-    background-color: #FFFFFF ;   
+    background-color: #FFFFFF;   
 }
 .logo{
     display: inline-block;
@@ -93,4 +92,97 @@
     text-align: center;
     margin-top: 5px;
     font-size: 25px;
+}
+@media screen and (min-width:768px) and (max-width: 991px){
+    #titulo1{
+        font-size: 42px;
+        margin-top: 35px;
+    }
+    #texto1{
+        font-size: 20px;
+        height: 35px;
+    }
+    .blocoBranco{
+        width: 31%;
+        height: 290px;
+        margin-top: 40px;
+    }
+    #link1{
+        width: 313px;
+        height: 55px;
+        margin-top: 65px;
+    }
+    #textoBotao{
+        font-size: 27px;
+    }
+    .logo{
+        width: 470px;
+        height: 450px;
+    }
+    .icon{
+        width: 65px;
+        height: 70px;
+        margin-left: 105px;
+    }
+    .txt{
+        font-size: 24px;
+    }
+}
+@media screen and (min-width: 576px) and (max-width: 767px){
+    #titulo1{
+        font-size: 42px;
+        margin-top: 25px;
+    }
+    #texto1{
+        font-size: 22px;
+        height: 35px;
+        margin-top: -26px;
+    }
+    .blocoBranco{
+        width: 31%;
+        height: 275px;
+        margin-top: 38px;
+    }
+    #link1{
+        width: 313px;
+        height: 55px;
+        margin-top: 55px;
+    }
+    #textoBotao{
+        font-size: 27px;
+    }
+    .logo{
+        width: 440px;
+        height: 440px;
+    }
+    .icon{
+        width: 55px;
+        height: 65px;
+        margin-left: 90px;
+    }
+    .txt{
+        font-size: 22px;
+    }
+}
+@media screen and (max-width: 576px){
+    #titulo1{
+        font-size: 37px;
+        margin-top: 20px;
+    }
+    #texto1{
+        font-size: 18px;
+        height: 35px;
+        margin-top: -29px;
+    }
+    .blocoBranco{
+        margin-top: 28px;
+    }
+    #link1{
+        width: 313px;
+        height: 55px;
+        margin-top: 55px;
+    }
+    #textoBotao{
+        font-size: 27px;
+    }
 }
