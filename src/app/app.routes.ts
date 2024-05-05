@@ -12,3 +12,4 @@ export const routes: Routes = [
     { path: 'combos', component: ComboComponent },
     { path: 'perfil', component: PerfilComponent }
 ];
+
