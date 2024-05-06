@@ -7,8 +7,12 @@
 #logo{
     width: 180px;
     height: 27px;
-    margin-top: 27px;
+    margin-top: 0px;
     margin-left: 164px;
+}
+#logobs{
+    width: 180px;
+    height: 27px;
 }
 #links{
     position: absolute;
@@ -31,3 +35,12 @@
     letter-spacing: 0em;
     text-align: center;
 }
+@media screen and (max-width: 992px){
+    #logo{
+        margin-left: 10px;
+        margin-top: 0px;
+        height: 30px;
+        width: 189px;
+    }
+}
+
