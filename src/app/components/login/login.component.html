@@ -11,9 +11,10 @@
                         <img class="col-12 mx-auto" id="logoMetalive"
                             src="../../../assets/paginas/login/tituloMetalive.png" alt="">
                     <p class="col-12 mx-auto" id="testo2">Conexão, mente e corpo.</p>
-                    <input placeholder="   Username" id="username" class="col-12 mx-auto inputLogin" type="text">
-                    <input placeholder="   Password" id="password" class="col-12 mx-auto inputLogin" type="password">
-                    <button class="col-12 mx-auto" id="botaoEntrar">Entrar</button>
+                    <input placeholder="   Username" id="username" class="col-12 mx-auto inputLogin" type="text" [(ngModel)]="email">
+                    <input placeholder="   Password" id="password" class="col-12 mx-auto inputLogin" type="password" [(ngModel)]="password">
+                    <button class="col-12 mx-auto" id="botaoEntrar" (click)="login()">Entrar</button>
+                    <p class="col-12 mx-auto text-center text-primary cursor-pointer" (click)="resetPassword()">Esqueci minha senha.</p>
                     <p class="col-12 mx-auto texto3">
                         Não tem uma conta? <a id="linkCadastro" href="">Cadastre-se agora!</a>
                     </p>

@@ -11,10 +11,10 @@
                         <img class="col-12 mx-auto" id="logoMetalive"
                             src="../../../assets/paginas/login/tituloMetalive.png" alt="">
                     <p class="col-12 mx-auto" id="testo2">Conexão, mente e corpo.</p>
-                    <input placeholder="   Username" id="username" class="col-12 mx-auto inputLogin" type="text">
-                    <input placeholder="   Password" id="password" class="col-12 mx-auto inputLogin" type="password">
-                    <input placeholder="   Password" id="password2" class="col-12 mx-auto inputLogin" type="password">
-                    <button class="col-12 mx-auto" id="botaoEntrar">Entrar</button>
+                    <input placeholder="   Username" id="username" class="col-12 mx-auto inputLogin" type="text" [(ngModel)]="email">
+                    <input placeholder="   Password" id="password" class="col-12 mx-auto inputLogin" type="password" [(ngModel)]="password">
+                    <input placeholder="   Password" id="password2" class="col-12 mx-auto inputLogin" type="password" [(ngModel)]="repeatPassword">
+                    <button class="col-12 mx-auto" id="botaoEntrar" (click)="cadastrar()">Entrar</button>
                     <p class="col-12 mx-auto texto3">Continue com as redes sociais.</p>
                                         </div>
 
