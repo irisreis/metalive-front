@@ -1,87 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
-#bannerPrincipal{
-    background-image: url(../../../assets/outros/banner1.png);
-    background-size: cover;
-    height: 780px;
+.fundo{
+    background-color: rgba(245, 245, 245, 1);
+    height: 700px;
 }
-#bannerApresentacao{
-    height: 349px;
-    border-radius: 10px;
-    background-color: rgba(247, 248, 250, 0.8);;
-}
-#logoMini{
-    width: 80px;
-}
-#tituloMetalive{
-    margin-top: 8px;
+#txt1{
     font-family: Poppins;
     font-size: 40px;
-    font-weight: 500;
+    margin-top: 50px;
+    margin-left: 164px;
+    font-weight: 700;
     line-height: 60px;
-    letter-spacing: 0em;
-    text-align: center;
+    text-align: left;
+    color: rgba(48, 58, 109, 1);
 }
-#texto1{
-    margin-top: 5px;
-    font-size: 18px;
-    font-weight: 300;
-    color: #1D252C;
-    line-height: 26px;
-    letter-spacing: 0px;
-    text-align: center;
+#txt2{
+    font-family: Poppins;
+    font-size: 20px;
+    margin-left: 164px;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: left;
+    color: rgba(48, 58, 109, 1);
 }
-#botaoDescubraQuemSomos{
-    text-decoration: none; 
-    width: 361px;
-    margin-top: 15px;
-    height: 47px;
+.botoes{
+    margin-left: 160px;
+}
+.botaoCadastro{
+    display: block;
+    width: 250px;
+    height: 50px;
+    margin-top: 105px;
     border-radius: 10px;
-    align-items: center;
-    background-color: #303A6D;
+    background-color: rgba(48, 58, 109, 1);
+    text-decoration: none;
 }
-#textoBotao{
-    color: aliceblue;
-    margin-top: 10px;
+.txtBotao{
     font-family: Poppins;
     font-size: 20px;
     font-weight: 500;
-    line-height: 26px;
-    letter-spacing: 0px;
+    line-height: 57.6px;
+    letter-spacing: -0.8999999165534973px;
     text-align: center;
+    color: rgba(255, 255, 255, 1);
 }
-@media screen and (min-width: 767px) and (max-width: 992px){
-    #bannerPrincipal{
-        height: 550px;
-    }
+#bt2{
+    margin-left: -30px;
 }
-@media screen and (min-width: 576px) and (max-width: 766px){
-    #bannerPrincipal{
-        height: 480px;
-    }
-}
-@media screen and (max-width: 575px){
-    #bannerPrincipal{
-        height: 470px;
-    }
-    #logoMini{
-        width: 90px;
-        margin-top: 0px;
-    }
-    #tituloMetalive{
-        margin-top: 2px;
-        font-size: 40px; //talvez mude
-    }
-    #texto1{
-        margin-top: -10px;
-        font-size: 16px;
-    }
-    #botaoDescubraQuemSomos{
-        text-decoration: none; 
-        width: 280px;
-        margin-top: 30px;
-        height: 47px;
-    }
-    #textoBotao{
-        font-size: 18px;
-    }
+#imgInicio{
+    width: 908px;
+    height: 786px;
+    margin-top: -40px;
+    margin-left: -190px;
 }
