@@ -13,7 +13,6 @@
     line-height: 58px;
     text-align: center;
     color: #303A6D;
-    //width: 100%;
     height: 50px;
     margin-top: 25px;
 }
@@ -28,16 +27,11 @@
 #bloco2{
     background-color: #F7F8FA 80%;
 }
-#imagem1{//mulher yoga
-    margin-top: -180px;
-    height: 493px;
-    border-radius: 20px;   
-}
 .imgApresentacao{
+    z-index: -1;
     width: 350px;
     height: 338px;
     border-radius: 20px;
-    opacity: 0px;
 }
 .blocoInfo{
     display: inline-block;
