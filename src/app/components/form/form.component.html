@@ -1,35 +1,62 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-10">
+        <div class="col-10 mx-auto">
             <div class="row">
                 <h2 id="tituloForm">Formulário</h2>
                 <div class="blocoPessoal">
                     <div class="titulo1">
                         <h3>Pessoal</h3>
                     </div>
+                    <div class="row posicaoForm">
                     <p class="textoInput">Nome</p>
-                    <input type="text">
-                    <p class="textoInput">Número do documento de Identidade</p>
-                    <input type="text">
+                    <input class="col-11" type="text">
+                    <div class="col-4">
+                        <p class="textoInput">Número do documento de Identidade</p>
+                        <input type="text">
+                    </div>
+                    <div class="col-2">
                     <p class="textoInput">Órgão Emissor/UF</p>
                     <input type="text">
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-4">
                     <p class="textoInput">Número do CPF</p>
-                    <input type="text">
-                    <p class="textoInput">CEP</p>
-                    <input type="text">
-                    <p class="textoInput">Rua</p>
-                    <input type="text">
+                    <input type="number">
+                    </div>
+                    <div class="col-2">
+                        <p class="textoInput">CEP</p>
+                        <input type="text">
+                    </div>
+                    <div class="col-4">
+                        <p class="textoInput">Rua</p>
+                        <input type="text">
+                    </div>
+                    <div class="col-2">
                     <p class="textoInput">Múmero</p>
                     <input type="text">
-                    <p class="textoInput">Complemento</p>
-                    <input type="text">
-                    <p class="textoInput">Data de nascimento</p>
-                    <input type="text">
-                    <p class="textoInput">Sexo</p>
-                    <p class="textoInput">Feminino</p>
-                    <input type="checkbox">
-                    <p class="textoInput">Masculino</p>
-                    <input type="checkbox">
+                    </div>
+                    <div class="col-4">
+                        <p class="textoInput">Complemento</p>
+                        <input type="text">
+                    </div>
+                    <div class="col-5">
+                        <p class="textoInput">Data de nascimento</p>
+                        <input type="text">
+                    </div>
+                    <div class="col-5">
+                        <p class="textoInput">Sexo</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="textoInputCheck">Feminino</p>
+                                <input class="checkInput" type="checkbox">
+                            </div>
+                            <div class="col-6">
+                                <p class="textoInputCheck">Masculino</p>
+                                <input class="checkInput" type="checkbox">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
 
                 <div class="blocoPessoal">
@@ -38,6 +65,7 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
+                            <div class="row posicaoForm">
                             <p class="textoInput">Tem alguma restrição a prática de exercícios?</p>
                             <p class="textoInput">SIM</p>
                             <input type="checkbox">
@@ -59,6 +87,7 @@
                             <p class="textoInput">Diabetes</p>
                             <p class="textoInput">Explique:</p>
                             <input type="">
+                            </div>
                         </div>
                         <div class="col-6">
                             <p class="textoInput">Recentemente fez ou faz algum tratamento no seu dia a dia?</p>
