@@ -18,6 +18,7 @@
     text-align: left;
     color: rgba(48, 58, 109, 1);
     margin-top: 10px;
+    display: inline-block;
 }
 h2{
     text-align: center;
@@ -41,16 +42,52 @@ h3{
 input{
     border: 1px solid rgba(0, 0, 0, 1);
     border-radius: 10px;
-    margin-left: 12px;
     margin-top: -4px;
     height: 35px;
 }
 .posicaoForm{
     margin-left: 55px;
-}
+}/*
 .checkInput{
     height: 30px;
     width: 30px;
-    border: 1px solid rgba(0, 0, 0, 1);
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    margin-top: 15px;
+    border: 2px solid rgba(0, 0, 0, 1);
+    border-radius: 15px;
+    border: 1px solid rgb(115, 22, 22);
+    border-radius: 10px;
+}*/
+input[type="checkbox"] {
+    appearance: none; /* Remove o estilo padrão */
+    position: relative;
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid rgb(0, 0, 1);
     border-radius: 10px;
 }
+input[type="checkbox"]:checked::before {
+    content: '✔';
+    position: absolute;
+    top: 0;
+    left: 3px;
+    font-size: 16px;
+    color:  rgb(17, 28, 92);
+}/*
+.caixaInputL{
+    height: 150px;
+    width: 470px;
+}
+.caixaInputS{
+    height: 70px;
+    width: 470px;
+}
+.caixaInput{
+    height: 945px;
+    width: 470px;
+}*/
+
