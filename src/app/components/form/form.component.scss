@@ -90,4 +90,9 @@ input[type="checkbox"]:checked::before {
     height: 100px;
     //width: 470px;
 }
+@media (max-width: 576px){
+.posicaoForm{
+    margin-left: 20px;
+}
+}
 
