@@ -117,4 +117,13 @@
     #submit{
         font-size: 22px;
     }
+    #blocoAzul{
+        height: 80px;
+    }
+
+}
+@media (max-width: 576px){
+    #blocoAzul{
+        height: 40px;
+    }
 }
