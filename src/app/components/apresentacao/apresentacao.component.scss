@@ -32,14 +32,35 @@
     width: 350px;
     height: 338px;
     border-radius: 20px;
+    position: relative;
+}
+.imgApresentacao2{
+    z-index: -1;
+    width: 350px;
+    height: 338px;
+    margin-left: 620px;
+    border-radius: 20px;
+    position: relative;
 }
 .blocoInfo{
     display: inline-block;
     background-color: #F5F5F5;
     width: 662px;
+    position: absolute;
     height: 325px;
-    margin-left: -150px;
-    margin-top: 26px;
+    margin-left: -50px;
+    margin-top: 7px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;   
+}
+.blocoInfo2{
+    display: inline-block;
+    background-color: #F5F5F5;
+    width: 662px;
+    position: absolute;
+    height: 325px;
+    margin-left: 0px;
+    margin-top: 7px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.4);
     border-radius: 10px;   
 }
@@ -62,4 +83,5 @@
 }
 .posicaoBlocoInfo{
     overflow: hidden;
+    margin-top: 50px;
 }

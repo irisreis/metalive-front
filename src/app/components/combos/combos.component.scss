@@ -53,6 +53,16 @@
     letter-spacing: -0.8999999165534973px;
     text-align: center;
 }
+.obs{
+    color: rgba(48, 58, 109, 1);
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: -0.8999999165534973px;
+    text-align: left;
+}
 .blocoTitulo{
     width: 245px;
     height: 94px;
@@ -74,8 +84,6 @@
     height: 19px;
     margin-top: 10px;
     display: inline-block;
-    gap: 0px;
-    opacity: 0px;
 }
 .val2{
     font-family: Poppins;
