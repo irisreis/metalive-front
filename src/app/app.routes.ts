@@ -12,6 +12,6 @@ export const routes: Routes = [
     { path: 'cadastro', component: CadastroComponent },
     { path: 'combos', component: ComboComponent },
     { path: 'perfil', component: PerfilComponent },
-    { path: 'formulario', component: FormularioComponent}
+    { path: 'formulario', component: FormularioComponent},
 ];
 
