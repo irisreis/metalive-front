@@ -29,23 +29,24 @@
 }
 .imgApresentacao{
     z-index: -1;
-    width: 350px;
+    width: 330px;
     height: 338px;
     border-radius: 20px;
     position: relative;
 }
 .imgApresentacao2{
     z-index: -1;
-    width: 350px;
+    width: 315px;
     height: 338px;
-    margin-left: 620px;
+    //margin-left: 570px;
+    margin-left: 57%;
     border-radius: 20px;
     position: relative;
 }
 .blocoInfo{
     display: inline-block;
     background-color: #F5F5F5;
-    width: 662px;
+    //width: 662px;
     position: absolute;
     height: 325px;
     margin-left: -50px;
@@ -56,7 +57,7 @@
 .blocoInfo2{
     display: inline-block;
     background-color: #F5F5F5;
-    width: 662px;
+    //width: 662px;
     position: absolute;
     height: 325px;
     margin-left: 0px;
