@@ -47,19 +47,7 @@ input{
 }
 .posicaoForm{
     margin-left: 55px;
-}/*
-.checkInput{
-    height: 30px;
-    width: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    display: inline-block;
-    margin-top: 15px;
-    border: 2px solid rgba(0, 0, 0, 1);
-    border-radius: 15px;
-    border: 1px solid rgb(115, 22, 22);
-    border-radius: 10px;
-}*/
+}
 input[type="checkbox"] {
     appearance: none; /* Remove o estilo padrão */
     position: relative;
@@ -73,22 +61,18 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked::before {
     content: '✔';
     position: absolute;
-    top: 0;
     left: 3px;
     font-size: 16px;
     color:  rgb(17, 28, 92);
 }
 .caixaInputL{
     height: 150px;
-    //width: 470px;
 }
 .caixaInputS{
     height: 70px;
-    //width: 470px;
 }
 .caixaInputM{
     height: 100px;
-    //width: 470px;
 }
 @media (max-width: 576px){
 .posicaoForm{
