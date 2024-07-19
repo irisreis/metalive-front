@@ -75,7 +75,7 @@
         margin-top: 70px;
     }
 }
-@media (min-width: 7px) and (max-width: 1006px){
+@media (min-width: 780px) and (max-width: 1006px){
     #txt1{
         font-size: 37px;
         margin-left: 28px;
@@ -96,5 +96,41 @@
     }
     .botaoCadastro{
         margin-top: 30px;
+    }
+    .txtBotao{
+        font-size: 17px;
+    }
+    .fundo{
+        height: 500px;
+    }
+}
+@media (min-width: 0px) and (max-width: 780px){
+    #txt1{
+        margin-top: 15px;
+        font-size: 30px;
+        margin-left: 10px;
+        line-height: 45px;
+    }
+    #txt2{
+        font-size: 17px;
+        margin-left: 10px;
+    }
+    #imgInicio{
+        //width: 810px;
+        height: 604px;
+        margin-top: -40px;
+        margin-left: -190px;
+    }
+    .botoes{
+        margin-left: 20px;
+    }
+    .botaoCadastro{
+        margin-top: 30px;
+    }
+    .txtBotao{
+        font-size: 15px;
+    }
+    .fundo{
+        height: 520px;
     }
 }
