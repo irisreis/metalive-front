@@ -39,7 +39,7 @@
     width: 315px;
     height: 338px;
     //margin-left: 570px;
-    margin-left: 57%;
+    margin-left: 63%;
     border-radius: 20px;
     position: relative;
 }
@@ -57,7 +57,6 @@
 .blocoInfo2{
     display: inline-block;
     background-color: #F5F5F5;
-    //width: 662px;
     position: absolute;
     height: 325px;
     margin-left: 0px;
@@ -85,4 +84,51 @@
 .posicaoBlocoInfo{
     overflow: hidden;
     margin-top: 50px;
+}
+@media (max-width: 1200px){
+    .imgApresentacao2{
+        margin-left: 63%;
+    }
+}
+@media (max-width: 994px){
+    .imgApresentacao2{
+        margin-left: 57%;
+    }
+}
+@media (min-width: 501px) and (max-width: 774px){
+    .textoBloco{
+        font-size: 20px;
+        margin: 24px;
+    }
+    .tituloBloco{
+        font-size: 30px;
+        margin: 24px;
+    }
+    .blocoInfo{
+        margin-left: -10%;
+    }
+    .imgApresentacao, .imgApresentacao2{
+        width: 300px;
+        height: 343px;
+    }
+    .imgApresentacao2{
+        margin-left: 50%;
+    }
+}
+@media (max-width: 680px) {
+    .imgApresentacao, .imgApresentacao2{
+        width: 273px;
+        height: 325px;
+    }
+}
+@media (max-width: 500px){
+    .textoBloco{
+        font-size: 19px;
+        margin: 20px;
+        line-height: 25px;
+    }
+    .tituloBloco{
+        font-size: 23px;
+        margin: 20px;
+    }
 }
