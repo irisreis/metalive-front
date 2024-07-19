@@ -26,7 +26,7 @@
 }
 .botaoCadastro{
     display: block;
-    width: 250px;
+    //width: 250px;
     height: 50px;
     margin-top: 105px;
     border-radius: 10px;
@@ -42,12 +42,9 @@
     text-align: center;
     color: rgba(255, 255, 255, 1);
 }
-#bt2{
-    margin-left: -30px;
-}
 #imgInicio{
-    width: 908px;
-    height: 786px;
+    //width: 908px;
+    height: 766px;
     margin-top: -40px;
     margin-left: -190px;
 }
@@ -55,4 +52,49 @@
     border: 1px solid rgba(48, 58, 109, 1);
     margin-top: -50px;
     height: 1px;
+}
+@media (min-width: 1007px) and (max-width: 1283px){
+    #txt1{
+        font-size: 40px;
+        margin-left: 35px;
+    }
+    #txt2{
+        font-size: 20px;
+        margin-left: 35px;
+    }
+    #imgInicio{
+        width: 820px;
+        height: 714px;
+        margin-top: -40px;
+        margin-left: -190px;
+    }
+    .botoes{
+        margin-left: 20px;
+    }
+    .botaoCadastro{
+        margin-top: 70px;
+    }
+}
+@media (min-width: 7px) and (max-width: 1006px){
+    #txt1{
+        font-size: 37px;
+        margin-left: 28px;
+        line-height: 53px;
+    }
+    #txt2{
+        font-size: 19px;
+        margin-left: 28px;
+    }
+    #imgInicio{
+        //width: 810px;
+        height: 654px;
+        margin-top: -40px;
+        margin-left: -190px;
+    }
+    .botoes{
+        margin-left: 20px;
+    }
+    .botaoCadastro{
+        margin-top: 30px;
+    }
 }
