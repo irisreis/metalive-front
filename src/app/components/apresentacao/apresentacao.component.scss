@@ -1,19 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 #apresentacao{
     width: 100%;
-    //height: 780px;
-    //margin-top: 0px;
-    //overflow: auto;
-    //left: -1px;
     background-color: #F7F8FA 80%;
 }
 #bloco1{
     background-color: #F7F8FA 80%;
     width: 100%;
-    //height: 150px;
-    //margin-top: 59px;
-    //margin-left: 0px;
-    //padding: 25 0 26 0;
 }
 #titulo1{ //quem somos
     font-size: 40px;
@@ -21,7 +13,6 @@
     line-height: 58px;
     text-align: center;
     color: #303A6D;
-    //width: 100%;
     height: 50px;
     margin-top: 25px;
 }
@@ -36,23 +27,44 @@
 #bloco2{
     background-color: #F7F8FA 80%;
 }
-#imagem1{//mulher yoga
-    margin-top: -180px;
-    height: 493px;
-    border-radius: 20px;   
+.imgApresentacao{
+    z-index: -1;
+    width: 330px;
+    height: 338px;
+    border-radius: 20px;
+    position: relative;
 }
-#infos{
+.imgApresentacao2{
+    z-index: -1;
+    width: 315px;
+    height: 338px;
+    //margin-left: 570px;
+    margin-left: 63%;
+    border-radius: 20px;
+    position: relative;
+}
+.blocoInfo{
     display: inline-block;
-    //position: absolute;
     background-color: #F5F5F5;
-    width: 602px;
-    height: 425px;
-    //margin-bottom: 60px;
-    margin-left: -150px;
-    margin-top: 26px;
+    //width: 662px;
+    position: absolute;
+    height: 325px;
+    margin-left: -50px;
+    margin-top: 7px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.4);
     border-radius: 10px;   
 }
-#titulo2{
+.blocoInfo2{
+    display: inline-block;
+    background-color: #F5F5F5;
+    position: absolute;
+    height: 325px;
+    margin-left: 0px;
+    margin-top: 7px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;   
+}
+.tituloBloco{
     color: #303A6D;
     font-family: Poppins;
     margin: 35px;
@@ -61,11 +73,79 @@
     line-height: 30px;
     text-align: left;
 }
-#texto2{
+.textoBloco{
     font-size: 23px;
     font-weight: 500px;
     line-height: 30px;
     letter-spacing: -0.8999999165534973px;
     margin: 35px;
     color: #303A6D;
+}
+.posicaoBlocoInfo{
+    overflow: hidden;
+    margin-top: 50px;
+}
+@media (max-width: 1200px){
+    .imgApresentacao2{
+        margin-left: 63%;
+    }
+}
+@media (max-width: 994px){
+    .imgApresentacao2{
+        margin-left: 57%;
+    }
+}
+@media (min-width: 501px) and (max-width: 774px){
+    .textoBloco{
+        font-size: 20px;
+        margin: 24px;
+    }
+    .tituloBloco{
+        font-size: 30px;
+        margin: 24px;
+    }
+    .blocoInfo{
+        margin-left: -10%;
+    }
+    .imgApresentacao, .imgApresentacao2{
+        width: 300px;
+        height: 343px;
+    }
+    .imgApresentacao2{
+        margin-left: 45%;
+    }
+}
+@media (max-width: 680px) {
+    .imgApresentacao, .imgApresentacao2{
+        width: 273px;
+        height: 325px;
+        margin-top: 8px;
+    }
+    .textoBloco{
+        font-size: 15px;
+        margin: 20px;
+    }
+    .tituloBloco{
+        font-size: 25px;
+        margin: 20px;
+    }
+}
+@media (min-width:10px) and (max-width: 500px){
+    .textoBloco{
+        font-size: 15px;
+        margin: 13px;
+        line-height: 25px;
+    }
+    .tituloBloco{
+        font-size: 23px;
+        margin: 13px;
+    }
+    .imgApresentacao, .imgApresentacao2{
+        width: 260px;
+        height: 303px;
+        margin-top: 18px;
+    }
+    .imgApresentacao2{
+        margin-left: 41%;
+    }
 }

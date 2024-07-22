@@ -22,7 +22,7 @@
     margin-left: 83px;
 }
 .link{
-    margin-left: 100px;
+    margin-left: 50px;
     margin-top: 0px;
     text-decoration: none; 
     width: 126.16px;
@@ -41,6 +41,23 @@
         margin-top: 0px;
         height: 30px;
         width: 189px;
+    }
+}
+@media (max-width: 1376px){
+    #logo{
+        margin-left: 28px;
+        margin-top: 0px;
+        height: 30px;
+        width: 189px;
+    }
+    .link{
+        font-size: 15px;
+    }
+}
+@media (max-width: 1110px){
+    .link{
+        font-size: 13px;
+        margin-left: 35px;
     }
 }
 

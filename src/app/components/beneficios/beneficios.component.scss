@@ -41,7 +41,8 @@
     opacity: 30%;
 }
 .icon{
-    margin-top: -560px;
+    //margin-top: -560px;
+    margin-top: -650px;
     width: 80px;
     height: 80px;
     margin-left: 110px;
@@ -52,7 +53,7 @@
     text-align: center;
     letter-spacing: -0.9px;
     font-size: 28px;
-    margin-top: -230px;
+    margin-top: -290px;
     font-family: poppins;
 }
 #txt2{
@@ -69,7 +70,7 @@
     align-items: center;
     letter-spacing: -0.9px;
     font-size: 28px;
-    margin-top: -99px;
+    margin-top: -130px;
     margin-left: 760px;
     font-family: poppins;
 }
@@ -92,6 +93,15 @@
     text-align: center;
     margin-top: 5px;
     font-size: 25px;
+}
+.descricaoBeneficio{
+    font-family: Poppins;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: -0.8999999761581421px;
+    text-align: center;
+    color: rgba(48, 58, 109, 1);
 }
 @media screen and (min-width:768px) and (max-width: 991px){
     #titulo1{

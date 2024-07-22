@@ -1,8 +1,6 @@
 #blocoContato{
     background: #F7F8FACC;
     width: 100%;
-    gap: 0px;
-    opacity: 0px;
 }
 #bloco1{
     margin-top: 70px;
@@ -31,8 +29,6 @@
     width: 35px;
     height: 35px;
     margin-top: -35px;
-    gap: 0px;
-    opacity: 0px;
 }
 .textoContato{
     color: #303A6D;
@@ -61,9 +57,7 @@
     box-shadow: 0px 4px 4px 0px #000000CC;
     height: 555px;
     margin-top: 50px;
-    gap: 0px;
     border-radius: 10px;
-    opacity: 0px;
 }
 .input1{
     border: 1px solid #303A6DB2;
@@ -71,19 +65,15 @@
     width: 82%;
     height: 54px;
     margin-top: 50px;
-    gap: 0px;
     border-radius: 10px;
     border: 1px 0px 0px 0px;
-    opacity: 0px;
 }
 #inputMensagem{
     width: 82%;
     height: 199px;
     margin-top: 40px;
-    gap: 0px;
     border-radius: 10px;
     border: 1px 0px 0px 0px;
-    opacity: 0px;
     border: 1px solid #303A6DB2;
     background-color: #F7F8FACC;
 }
@@ -92,7 +82,6 @@
     width: 33%;
     height: 54px;
     margin-top: 30px;
-    gap: 0px;
     border-radius: 10px;
     color: white;;
     opacity: 0px;
@@ -100,7 +89,6 @@
 #blocoAzul{
     width: 100%;
     height: 150px;
-    opacity: 0px;
     background-color: #303A6D;
     margin-top: 25px;
 }
@@ -116,5 +104,14 @@
     }
     #submit{
         font-size: 22px;
+    }
+    #blocoAzul{
+        height: 80px;
+    }
+
+}
+@media (max-width: 576px){
+    #blocoAzul{
+        height: 40px;
     }
 }

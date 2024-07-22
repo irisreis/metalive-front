@@ -26,7 +26,7 @@
 #blocoPrincipal{
     width: 1093px;
     height: 585px;
-    margin-top: -350px;
+    margin-top: 30px;
     overflow: hidden; 
     border-radius: 15px;
     box-shadow: 0px 0px 30px 0px #00000040;
@@ -51,7 +51,7 @@
     margin-top: -15px;
     opacity: 0px;
 }
-#testo2{
+#texto2{
     font-family: Poppins;
     font-size: 17px;
     font-weight: 300;
@@ -116,9 +116,20 @@
     opacity: 50%;
     height: 770px;
     margin-right: -100px;
-    width: 760px;
+    //width: 760px;
     margin-top: -90px;
 }
 .cursor-pointer {
     cursor: pointer;
+}
+@media (max-width: 760px){
+    #logoGrande{
+        height: 0px;
+    }
+    #imgEsquerda{
+        display: none;
+    }
+    #imgDireito{
+        display: none;
+    }
 }

@@ -1,0 +1,82 @@
+.textoInputCheck{
+    display: inline;
+    font-family: Poppins;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 25px;
+    letter-spacing: -0.8999999165534973px;
+    text-align: left;
+    color: rgba(48, 58, 109, 1);
+    margin-top: 10px;
+}
+.textoInput{
+    font-family: Poppins;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 25px;
+    letter-spacing: -0.8999999165534973px;
+    text-align: left;
+    color: rgba(48, 58, 109, 1);
+    margin-top: 10px;
+    display: inline-block;
+}
+h2{
+    text-align: center;
+    margin-top: 80px;
+    color: rgba(48, 58, 109, 1);
+}
+h3{
+    color: rgba(247, 248, 250, 0.8);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 50px;
+    letter-spacing: -0.8999999165534973px;
+}
+.titulo1{
+    background-color: rgba(48, 58, 109, 1);
+    height: 50px;
+    margin-top: 33px;
+}
+input{
+    border: 1px solid rgba(0, 0, 0, 1);
+    border-radius: 10px;
+    margin-top: -4px;
+    height: 35px;
+}
+.posicaoForm{
+    margin-left: 55px;
+}
+input[type="checkbox"] {
+    appearance: none; /* Remove o estilo padrão */
+    position: relative;
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid rgb(0, 0, 1);
+    border-radius: 10px;
+}
+input[type="checkbox"]:checked::before {
+    content: '✔';
+    position: absolute;
+    left: 3px;
+    font-size: 16px;
+    color:  rgb(17, 28, 92);
+}
+.caixaInputL{
+    height: 150px;
+}
+.caixaInputS{
+    height: 70px;
+}
+.caixaInputM{
+    height: 100px;
+}
+@media (max-width: 576px){
+.posicaoForm{
+    margin-left: 20px;
+}
+}
+
