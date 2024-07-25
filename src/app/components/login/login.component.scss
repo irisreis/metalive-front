@@ -24,8 +24,7 @@
     z-index: -1;
 }
 #blocoPrincipal{
-    width: 1093px;
-    height: 585px;
+    height: 88vh;
     margin-top: 30px;
     overflow: hidden; 
     border-radius: 15px;
@@ -114,10 +113,10 @@
 }
 #logoGrande{
     opacity: 50%;
-    height: 770px;
+    height: 870px;
     margin-right: -100px;
     //width: 760px;
-    margin-top: -90px;
+    margin-top: -130px;
 }
 .cursor-pointer {
     cursor: pointer;
@@ -131,5 +130,11 @@
     }
     #imgDireito{
         display: none;
+    }
+}
+@media (max-width: 576px){
+    #blocoPrincipal{
+        margin-top: 0px;
+        height: 100vh;
     }
 }
