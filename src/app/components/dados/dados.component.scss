@@ -13,6 +13,9 @@ p{
     text-align: center;
     margin-top: 162px;
 }
+.pontos{
+    margin-top: 8px;
+}
 #iconCidade{
     width: 25px;
     height: 20px;
@@ -62,5 +65,26 @@ p{
     font-size: 15px;
     font-weight: 400;
     line-height: 18.15px;
+    padding-left: 8%;
+    padding-right: 8%;
     text-align: left;
+}
+@media (max-width: 767px){
+    .cidade{
+        margin-top: 165px;
+    }
+    .pontos{
+        margin-top: 145px;
+    }
+}
+@media (max-width: 465px){
+    .cidade{
+        margin-top: 135px;
+    }
+    .pontos{
+        margin-top: 115px;
+    }
+    #nome{
+        margin-top: 132px;
+    }
 }
