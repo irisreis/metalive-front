@@ -7,6 +7,10 @@
     background: -ms-linear-gradient(90deg, #FFFFFF 0%, #303A6D 100%);
     background: linear-gradient(90deg, #FFFFFF 0%, #303A6D 100%);
 }
+.row > * {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
 #fotoPerfil{
     border-radius: 50%;
     height: 200px;
@@ -17,9 +21,6 @@
     overflow: hidden;
     //width: 226px;
     width: 16%;
-}
-.row{
-    padding: 0%;
 }
 @media (max-width: 992px){
     #fotoPerfil{
@@ -38,5 +39,9 @@
         margin-left: 26%;
         width: 47%;
         height: 170px;
+        margin-top: 155px;
+    }
+    #capa{
+        height: 150px;
     }
 }

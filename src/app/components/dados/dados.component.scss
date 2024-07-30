@@ -26,7 +26,7 @@ p{
     font-weight: 400;
     margin-left: 5px;
     line-height: 21.78px;
-    display: inline;
+    display: inline-block;
 }
 #tituloPontos{
     font-family: Inter;
@@ -69,8 +69,8 @@ p{
     padding-right: 8%;
     text-align: left;
 }
-@media (max-width: 767px){
-    .cidade{
+@media (max-width: 767px) and (min-width: 466px){
+    #cidade{
         margin-top: 165px;
     }
     .pontos{
@@ -78,13 +78,25 @@ p{
     }
 }
 @media (max-width: 465px){
-    .cidade{
-        margin-top: 135px;
+    #cidade{
+        margin-top: 132px;
+        margin-left: -5px;
+        font-size: 15px;
+    }
+    #iconCidade{
+        width: 0px;
+        display: none;
+    }
+    #pontuacao{
+        margin-left: -3px;
+        font-size: 28px;
     }
     .pontos{
         margin-top: 115px;
+        font-size: 19px;
     }
     #nome{
         margin-top: 132px;
+        font-size: 19px;
     }
 }
