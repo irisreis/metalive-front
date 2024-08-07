@@ -49,6 +49,9 @@
     margin-top: -40px;
     margin-left: -190px;
 }
+#imgInicio2{
+    display: none;
+}
 #line{
     border: 1px solid rgba(48, 58, 109, 1);
     margin-top: -50px;
@@ -149,17 +152,28 @@
     }
     .botoes{
         margin-left: 20px;
+        margin-top: -20px;
     }
     .botaoCadastro{
         margin-top: 7px;
     }
     .txtBotao{
-        font-size: 15px;
+        margin-top: 17px;
+        font-size: 16px;
+        line-height: 20px;
     }
     #imgInicio{
         height: 0px;
         display: none;
     }   
+    #imgInicio2{
+        display: block;
+        margin-top: -70px;
+        align-items: center;
+        //margin-left: -27%;
+        height: 330px;
+        //height: 400px;
+    }
     #line{
         margin-top: 20px;
     }
