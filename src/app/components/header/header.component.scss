@@ -35,6 +35,9 @@
     letter-spacing: 0em;
     text-align: center;
 }
+.navbar .navbar-toggler:not(.collapsed) + .navbar-collapse {
+    background-color: #f8f9fa; 
+  }
 @media screen and (max-width: 992px){
     #logo{
         margin-left: 10px;
