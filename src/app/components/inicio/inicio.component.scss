@@ -1,6 +1,7 @@
 .fundo{
     background-color: rgba(245, 245, 245, 1);
-    height: 700px;
+    //height: 700px;
+    height: auto;
 }
 #txt1{
     font-family: Poppins;
@@ -48,6 +49,9 @@
     margin-top: -40px;
     margin-left: -190px;
 }
+#imgInicio2{
+    display: none;
+}
 #line{
     border: 1px solid rgba(48, 58, 109, 1);
     margin-top: -50px;
@@ -63,7 +67,7 @@
         margin-left: 35px;
     }
     #imgInicio{
-        width: 820px;
+        //width: 820px;
         height: 714px;
         margin-top: -40px;
         margin-left: -190px;
@@ -103,8 +107,11 @@
     .fundo{
         height: 500px;
     }
+    #line{
+        margin-top: -115px;
+    }
 }
-@media (min-width: 0px) and (max-width: 780px){
+@media (min-width: 579px) and (max-width: 780px){
     #txt1{
         margin-top: 15px;
         font-size: 30px;
@@ -132,5 +139,45 @@
     }
     .fundo{
         height: 520px;
+    }
+}
+@media (max-width: 578px){
+    #txt1{
+        margin-top: 15px;
+        font-size: 25px;
+        margin-left: 10px;
+        line-height: 30px;
+    }
+    #txt2{
+        font-size: 15px;
+        margin-left: 10px;
+        line-height: 22px;
+    }
+    .botoes{
+        margin-left: 20px;
+        margin-top: -20px;
+    }
+    .botaoCadastro{
+        margin-top: 7px;
+    }
+    .txtBotao{
+        margin-top: 17px;
+        font-size: 16px;
+        line-height: 20px;
+    }
+    #imgInicio{
+        height: 0px;
+        display: none;
+    }   
+    #imgInicio2{
+        display: block;
+        margin-top: -70px;
+        align-items: center;
+        //margin-left: -27%;
+        height: 330px;
+        //height: 400px;
+    }
+    #line{
+        margin-top: 20px;
     }
 }

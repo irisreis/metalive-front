@@ -113,7 +113,7 @@
         height: 35px;
     }
     .blocoBranco{
-        width: 31%;
+        width: 30%;
         height: 290px;
         margin-top: 40px;
     }
@@ -149,7 +149,7 @@
         margin-top: -26px;
     }
     .blocoBranco{
-        width: 31%;
+        width: 32%;
         height: 275px;
         margin-top: 38px;
     }
@@ -163,7 +163,7 @@
     }
     .logo{
         width: 440px;
-        height: 440px;
+        height: 445px;
     }
     .icon{
         width: 55px;
@@ -172,12 +172,16 @@
     }
     .txt{
         font-size: 22px;
+        line-height: 22px;
     }
 }
-@media screen and (max-width: 576px){
+@media screen and (max-width: 430px){
     #titulo1{
         font-size: 37px;
         margin-top: 20px;
+    }
+    .icon{
+        margin-left: 33%;
     }
     #texto1{
         font-size: 18px;
@@ -186,6 +190,14 @@
     }
     .blocoBranco{
         margin-top: 28px;
+        width: 79%;
+        height: 275px;
+    }
+    .logo{
+        width: 516px;
+        height: 440px;
+        margin-left: -94px;
+        margin-top: -83px;
     }
     #link1{
         width: 313px;
@@ -194,5 +206,8 @@
     }
     #textoBotao{
         font-size: 27px;
+    }
+    .txt{
+        line-height: 22px;
     }
 }

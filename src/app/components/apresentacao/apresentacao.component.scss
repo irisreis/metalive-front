@@ -94,15 +94,23 @@
     .imgApresentacao2{
         margin-left: 57%;
     }
+    .textoBloco{
+        font-size: 22px;
+        margin: 22px;
+    }
+    .tituloBloco{
+        font-size: 33px;
+        margin: 22px;
+    }
 }
 @media (min-width: 501px) and (max-width: 774px){
     .textoBloco{
         font-size: 20px;
-        margin: 24px;
+        margin: 22px;
     }
     .tituloBloco{
         font-size: 30px;
-        margin: 24px;
+        margin: 22px;
     }
     .blocoInfo{
         margin-left: -10%;
@@ -122,26 +130,27 @@
         margin-top: 8px;
     }
     .textoBloco{
-        font-size: 15px;
+        font-size: 21px;
         margin: 20px;
-    }
-    .tituloBloco{
-        font-size: 25px;
-        margin: 20px;
-    }
-}
-@media (min-width:10px) and (max-width: 500px){
-    .textoBloco{
-        font-size: 15px;
-        margin: 13px;
         line-height: 25px;
     }
     .tituloBloco{
-        font-size: 23px;
-        margin: 13px;
+        font-size: 28px;
+        margin: 20px;
+    }
+}
+@media (min-width:310px) and (max-width: 500px){
+    .textoBloco{
+        font-size: 14px;
+        margin: 12px;
+        line-height: 23px;
+    }
+    .tituloBloco{
+        font-size: 22px;
+        margin: 12px;
     }
     .imgApresentacao, .imgApresentacao2{
-        width: 260px;
+        width: 200px;
         height: 303px;
         margin-top: 18px;
     }
