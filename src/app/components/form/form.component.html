@@ -10,50 +10,50 @@
                     <div class="row posicaoForm">
                         <div class="col-xl-11 col-lg-10 col-md-10 col-xs-10 col-sm-10 col-10" >
                             <p class="textoInput">Nome:</p><br>
-                            <input class="col-12" type="text">
+                            <input class="col-12" type="text" [(ngModel)]="formData.nome">
                         </div>
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <p class="textoInput">Número do documento de Identidade:</p> <br>
-                        <input class="col-10" type="text">
+                        <input class="col-10" type="text" [(ngModel)]="formData.documentoIdentidade">
                     </div>
                     <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-xs-10 col-12">
                     <p class="textoInput">Órgão Emissor/UF:</p><br>
-                    <input class="col-10" type="text">
+                    <input class="col-10" type="text" [(ngModel)]="formData.orgaoEmissor">
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-10 col-12">
                     <p class="textoInput">Número do CPF:</p> <br>
-                    <input class="col-10" type="number">
+                    <input class="col-10" type="number" [(ngModel)]="formData.cpf">
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-2 col-sm-5 col-xs-10 col-12">
                         <p class="textoInput">CEP:</p><br>
-                        <input class="col-md-11 col-10" type="text">
+                        <input class="col-md-11 col-10" type="text" [(ngModel)]="formData.cep">
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6 col-xs-10 col-12">
                         <p class="textoInput">Rua:</p><br>
-                        <input class="col-md-9 col-10" type="text">
+                        <input class="col-md-9 col-10" type="text" [(ngModel)]="formData.rua">
                     </div>
                     <div class="col-xl-3 col-lg-2 col-md-6 col-sm-5 col-xs-10 col-12">
                     <p class="textoInput">Múmero:</p><br>
-                    <input class="col-8 col-md-7 col-10" type="text">
+                    <input class="col-8 col-md-7 col-10" type="text" [(ngModel)]="formData.numero">
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6 col-xs-10 col-12">
                         <p class="textoInput">Complemento:</p><br>
-                        <input class="col-10" type="text">
+                        <input class="col-10" type="text" [(ngModel)]="formData.complemento">
                     </div>
                     <div class="col-lg-5 col-sm-6 col-10">
                         <p class="textoInput">Data de nascimento:</p><br>
-                        <input class="col-12" type="text">
+                        <input class="col-12" type="text" [(ngModel)]="formData.dataNascimento">
                     </div>
                     <div class="col-5 col-md-6 col-sm-8 col-11">
                         <p class="textoInput">Sexo:</p>
                         <div class="row">
                             <div class="col-6">
                                 <p class="textoInputCheck">Feminino:</p>
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.sexoFeminino">
                             </div>
                             <div class="col-6">
                                 <p class="textoInputCheck">Masculino:</p>
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.sexoMasculino">
                             </div>
                         </div>
                     </div>
@@ -70,40 +70,40 @@
                                 <p class="textoInput">Tem alguma restrição a prática de exercícios?</p>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">SIM</p>
-                                    <input class="checkInput" type="checkbox">
+                                    <input class="checkInput" type="checkbox" [(ngModel)]="formData.restricaoExercicio">
                                 </div>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">NÃO</p>
-                                    <input class="checkInput" type="checkbox">
+                                    <input class="checkInput" type="checkbox" [(ngModel)]="formData.semRestricaoExercicio">
                                 </div>
                             <p class="textoInput">Pressão arterial:</p>
                             <div class="col-4">
                                 <p class="textoInput">Baixa</p>
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.pressaoBaixa">
                             </div>
                             <div class="col-4">
                                 <p class="textoInput">Média</p>
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.pressaoMedia">
                             </div>
                             <div class="col-4">
                                 <p class="textoInput">Alta</p>
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.pressaoAlta">
                             </div>
                             <p class="textoInput">Histórico familiar de doenças:</p>
                             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.hipertensao">
                                 <p class="textoInput">Hipertensão</p>
                             </div>
                             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.cardiopatia">
                                 <p class="textoInput">Cardiopatia</p>
                             </div>
                             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.diabetes">
                                 <p class="textoInput">Diabetes</p>
                             </div>
                             <p class="textoInput">Explique:</p>
-                            <input class="caixaInputL col-11" type="">
+                            <input class="caixaInputL col-11" type="" [(ngModel)]="formData.explicacao">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -112,46 +112,46 @@
                             <br>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                             <p class="textoInput">SIM</p>
-                            <input class="checkInput" type="checkbox">
+                            <input class="checkInput" type="checkbox" [(ngModel)]="formData.tratamentoSim">
                             </div>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                             <p class="textoInput">NÃO</p>
-                            <input class="checkInput" type="checkbox">
+                            <input class="checkInput" type="checkbox" [(ngModel)]="formData.tratamentoNao">
                             </div>
                             <br>
                             <p class="col-11 textoInput">Toma algum medicamento regularmente?</p>
                             <br>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                             <p class="textoInput">SIM</p>
-                            <input class="checkInput" type="checkbox">                                
+                            <input class="checkInput" type="checkbox" [(ngModel)]="formData.medicamentoSim">                                
                             </div>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                             <p class="textoInput">NÃO</p>
-                            <input class="checkInput" type="checkbox">   
+                            <input class="checkInput" type="checkbox" [(ngModel)]="formData.medicamentoNao">   
                             </div>
                             <br>
                             <p class="col-11 textoInput">Se SIM, quais?</p><br>
-                            <input class="col-11 caixaInputL" type="text">
+                            <input class="col-11 caixaInputL" type="text" [(ngModel)]="formData.quaisMedicamentos">
                             <p class="col-11 textoInput">Fez alguma cirurgia ou esteve internado recentemente?</p>
                             <br>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                             <p class="textoInput">SIM</p>
-                            <input class="checkInput" type="checkbox">   
+                            <input class="checkInput" type="checkbox" [(ngModel)]="formData.cirurgiaSim">   
                             </div>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6"> 
                             <p class="textoInput">NÃO</p>
-                            <input class="checkInput" type="checkbox">
+                            <input class="checkInput" type="checkbox" [(ngModel)]="formData.cirurgiaNao">
                             </div>
                             <br>
                             <p class="col-11 textoInput">Sente dor no seu dia a dia?</p>
                             <br>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                             <p class="textoInput">SIM</p>
-                            <input class="checkInput" type="checkbox">
+                            <input class="checkInput" type="checkbox" [(ngModel)]="formData.dorSim">
                             </div>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                             <p class="textoInput">NÃO</p>
-                            <input class="checkInput" type="checkbox">
+                            <input class="checkInput" type="checkbox" [(ngModel)]="formData.dorNao">
                             </div>    
                             </div>
                         </div>
@@ -168,61 +168,61 @@
                             <br>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                 <p class="textoInput">SIM</p>
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.atividadeFisica">
                             </div>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                 <p class="textoInput">NÃO</p>
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.semAtividadeFisica">
                             </div>
                             <p class="col-12 textoInput">Qual?</p><br>
-                            <input class="col-11 caixaInputS" type="text">
+                            <input class="col-11 caixaInputS" type="text" [(ngModel)]="formData.qualAtividade">
                             <br>
                             <p class="col-12 textoInput">Quais dias e horários?</p><br>
-                            <input class="col-11 caixaInputS" type="text">
+                            <input class="col-11 caixaInputS" type="text" [(ngModel)]="formData.diasHorarios">
                             <br>
                             <p class="col-12 textoInput">Consome bebidas alcoólicas?</p><br>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                 <p class="textoInput">SIM</p>
-                                <input class="col-11 checkInput" type="checkbox">
+                                <input class="col-11 checkInput" type="checkbox" [(ngModel)]="formData.bebidasSim">
                             </div>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                 <p class="textoInput">NÃO</p>
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.bebidasNao">
                             </div>
                             <p class="col-11 textoInput">Com qual frequência?</p><br>
-                            <input class="col-11 caixaInputS" type="text">
+                            <input class="col-11 caixaInputS" type="text" [(ngModel)]="formData.frequenciaBebidas">
                             <br>
                             <p class="col-11 textoInput">É tabagista?</p>
                             <br>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                 <p class="textoInput">SIM</p>
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.cigarroSim">
                             </div>
                             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                 <p class="textoInput">NÃO</p>
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.cigarroNao">
                             </div>
                             <br>
                             <p class="col-11 textoInput">Quantos litros de água consome por dia?</p>
                             <br>
                             <div class="col-12">
-                                <input class="checkInput" type="checkbox">
+                                <input class="checkInput" type="checkbox" [(ngModel)]="formData.aguaZero">
                                 <p class="textoInput">Zero</p><br>
                             </div>
                             <div class="col-12">
-                            <input class="checkInput" type="checkbox">
+                            <input class="checkInput" type="checkbox" [(ngModel)]="formData.agua1L">
                             <p class="textoInput">Até 1L</p><br>                                
                             </div>
                             <div class="col-12">
-                            <input class="checkInput" type="checkbox">
+                            <input class="checkInput" type="checkbox" [(ngModel)]="formData.agua1a2L">
                             <p class="textoInput">1L a 2l</p><br>
                             </div>
                             <div class="col-12">
-                            <input class="checkInput" type="checkbox">
+                            <input class="checkInput" type="checkbox" [(ngModel)]="formData.agua2a3L">
                             <p class="textoInput">2L a 3L</p><br>
                             </div>
                             <div class="col-12">
-                            <input class="checkInput" type="checkbox">
+                            <input class="checkInput" type="checkbox" [(ngModel)]="formData.aguaMais3L">
                             <p class="textoInput">Mais de 3l</p><br>   
                             </div>
                             </div>
@@ -230,25 +230,25 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="row posicaoForm">
                                 <p class="col-11 textoInput">Quais alimentos você não gosta de comer?</p><br>
-                                <input class="col-11 caixaInputM" type="text"><br>
+                                <input class="col-11 caixaInputM" type="text" [(ngModel)]="formData.alimentoNaoGosta"><br>
                                 <p class="col-11 textoInput">Quais são os alimentos indispensáveis, que você ama comer?</p><br>
-                                <input class="col-11 caixaInputM" type="text"><br>
+                                <input class="col-11 caixaInputM" type="text" [(ngModel)]="formData.alimentoGosta"><br>
                                 <p class="col-11 textoInput">Qual o horário de maior apetite?</p><br>
-                                <input class="col-11 caixaInputM" type="text"><br>
+                                <input class="col-11 caixaInputM" type="text" [(ngModel)]="formData.horarioApetite"><br>
                                 <p class="col-11 textoInput">Quantas refeições você faz no dia?</p><br>
-                                <input class="col-11 caixaInputM" type="text"><br>
+                                <input class="col-11 caixaInputM" type="text" [(ngModel)]="formData.refeicoesNoDia"><br>
                                 <p class="col-11 textoInput">Tem alguma alergia ou intolerância alimentar?</p><br>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">SIM</p>
-                                    <input class="checkInput" type="checkbox">
+                                    <input class="checkInput" type="checkbox" [(ngModel)]="formData.alergiaSim">
                                 </div>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">NÃO</p>
-                                    <input class="checkInput" type="checkbox">
+                                    <input class="checkInput" type="checkbox" [(ngModel)]="formData.alergiaNao">
                                 </div>
                             </div>
                         </div>
-                        <input style="margin-top: 20px;" class="col-3 mx-auto" type="submit">
+                        <button style="margin-top: 20px;" class="col-3 mx-auto" (click)="onSubmit()">Salvar Dados</button>
                         <div style="height: 50px;"></div>
                     </div>
                 </div>
@@ -256,3 +256,4 @@
         </div>
     </div>
 </div>
+<app-toast aria-live="polite" aria-atomic="true"></app-toast>

@@ -6,13 +6,14 @@ import { ComboComponent } from './pages/combo/combo.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { FormularioComponent } from './pages/formulario/formulario.component';
 import { userGuard } from './guards/user.guard';
+import { sessionGuard } from './guards/session.guard';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'cadastro', component: CadastroComponent },
+    { path: 'login', component: LoginComponent, canActivate: [sessionGuard] },
+    { path: 'cadastro', component: CadastroComponent, canActivate: [sessionGuard]},
     { path: 'combos', component: ComboComponent },
     { path: 'perfil', component: PerfilComponent, canActivate: [userGuard] },
-    { path: 'formulario', component: FormularioComponent},
+    { path: 'formulario', component: FormularioComponent, canActivate: [userGuard]},
 ];
 
