@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './combos.component.html',
-  styleUrl: './combos.component.scss'
+  styleUrls: ['./combos.component.scss']
 })
 export class CombosComponent {
 

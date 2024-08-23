@@ -1,4 +1,5 @@
-import { Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
@@ -14,3 +15,13 @@ export const routes: Routes = [
   { path: 'perfil', component: PerfilComponent },
   { path: 'formulario', component: FormularioComponent }
 ];
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes)  //Configura o RouterModule com as rotas definidas
+  ],
+  exports: [
+    RouterModule  //Exporta o RouterModule para que ele esteja disponível em todo o aplicativo
+  ]
+})
+export class AppRoutingModule { }
