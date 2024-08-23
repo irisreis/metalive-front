@@ -5,6 +5,7 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { ComboComponent } from './pages/combo/combo.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { FormularioComponent } from './pages/formulario/formulario.component';
+import { userGuard } from './guards/user.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
