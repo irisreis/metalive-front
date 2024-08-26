@@ -9,6 +9,7 @@ import { userGuard } from './guards/user.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: CadastroComponent },
   { path: 'combos', component: ComboComponent },
