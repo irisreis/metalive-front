@@ -12,5 +12,4 @@ import { HeaderComponent } from '../../components/header/header.component';
   styleUrl: './perfil.component.scss'
 })
 export class PerfilComponent {
-
 }

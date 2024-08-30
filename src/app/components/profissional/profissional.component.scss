@@ -10,8 +10,18 @@
     text-decoration: none;
     margin-left: 0px;
 }
+.link:hover{
+    color: #1472B0;
+}
+a {
+    cursor: pointer;
+  }
 #posicao1{
     margin-top: 50px;
+}
+#posicaoMeuDesempenho{
+    margin-top: 50px;
+    margin-left: 50px;
 }
 .titulo{
     font-family: Inter;
