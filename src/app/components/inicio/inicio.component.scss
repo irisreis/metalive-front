@@ -1,11 +1,10 @@
 .fundo{
     background-color: rgba(245, 245, 245, 1);
-    //height: 700px;
     height: auto;
 }
 #bannerPrincipal{
     margin: 0;
-    padding-top: 50px; 
+    padding-top: 75px; 
 }
 #txt1{
     font-family: Poppins;
@@ -147,7 +146,7 @@
 }
 @media (max-width: 578px){
     #txt1{
-        margin-top: 15px;
+        margin-top: 14px;
         font-size: 25px;
         margin-left: 10px;
         line-height: 30px;
