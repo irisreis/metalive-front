@@ -4,32 +4,7 @@
         <p id="textoCombos">Conheça nosso plano que vai de encontro com tudo que você precisa para ter uma vida saudável.</p>
         <div class="container">
             <div class="row">
-                <div class="combo mx-auto">
-                    <div class="blocoTitulo">
-                        <h3 class="tituloCombo">COMBO</h3>
-                        <p class="subTituloCombo"></p>
-                    </div>
-                    <div class="blocoValor">
-                        <p class="val1">Rs</p>
-                        <p class="val2">149</p>
-                        <p class="val3">99</p>
-                        <p class="mensal">Mensal</p>
-                    </div>
-                    <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="Icone de descrição">
-                    <p class="descricaoCombo">Acompanhamento nutricional</p>
-                    <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="Icone de descrição">
-                    <p class="descricaoCombo">Personal trainer</p>
-                    <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="Icone de descrição">
-                    <p class="descricaoCombo">Metodologia metalive</p>
-                    <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="Icone de descrição">
-                    <p class="descricaoCombo">Monitoria</p>
-                    <div class="row">
-                        <a href="/cadastro" class="linkAssineJa col-12 mx-auto" href="">
-                            <p class="textoLink">Assine já!</p>
-                        </a>
-                    </div>
-                </div>
-                <!-- Combo Starter
+                <!-- Combo Starter -->
                 <div class="col-lg-4 mx-auto combo">
                     <div class="blocoTitulo">
                         <h3 class="tituloCombo">Starter</h3>
@@ -54,7 +29,7 @@
                     </div>
                 </div>
 
-                 Combo Plano 
+                <!-- Combo Plano -->
                 <div class="col-lg-4 mx-auto combo">
                     <div class="blocoTitulo">
                         <h3 class="tituloCombo">Plano</h3>
@@ -72,12 +47,12 @@
                     <p class="descricaoCombo">Acompanhamento</p>
                     <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="Icone de descrição">
                     <p class="descricaoCombo">Alguma descrição</p>
-                    
+                    <!--
                     <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
                     <p class="descricaoCombo">Treinos desenvolvidos para o seu corpo</p>
                     <p class="obs">
                         Obs: Este plano inclui avaliação física, treino, nutricionista e acompanhamento em grupo de whatsapp
-                    </p>
+                    </p>-->
                     <div class="row">
                         <a href="/cadastro" class="linkAssineJa col-12 mx-auto" href="">
                             <p class="textoLink">Assine já!</p>
@@ -85,7 +60,7 @@
                     </div>
                 </div>
 
-                 Combo Premium 
+                <!-- Combo Premium -->
                 <div class="col-lg-4 mx-auto combo">
                     <div class="blocoTitulo">
                         <h3 class="tituloCombo">Premium</h3>
@@ -111,7 +86,7 @@
                 </div>
             </div>
 
-             Outros Planos -->
+            <!-- Outros Planos -->
             <div class="row">
                 <a id="linkPlanos" href="/combos" class="col-12 mx-auto">Conheça nossos planos</a>
             </div>
