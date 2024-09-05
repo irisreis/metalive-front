@@ -6,6 +6,7 @@ import { ComboComponent } from './pages/combo/combo.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { FormularioComponent } from './pages/formulario/formulario.component';
 import { userGuard } from './guards/user.guard';
+import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'cadastro', component: CadastroComponent },
   { path: 'combos', component: ComboComponent },
   { path: 'perfil', component: PerfilComponent },
-  { path: 'formulario', component: FormularioComponent }
+  { path: 'formulario', component: FormularioComponent },
+  { path: 'pagamento', component: PagamentoComponent }
 ];

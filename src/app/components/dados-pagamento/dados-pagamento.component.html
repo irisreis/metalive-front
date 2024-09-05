@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row">
+        <div id="topo">
+            <img id="logo" src="../../../assets/logo/logometalive1.png" alt="">
+        </div>
+        <div class="col-6">
+            <p id="tituloPagamento">Opções de pagamento:</p>
+            <div id="posicaoOpçoesPagamento">
+                <a class="opcoesPagamento" href="">Cartão de Crédito</a>
+                <a class="opcoesPagamento" href="">PIX</a>
+            </div>
+            <form>
+                <div>
+                  <label class="textoInput" for="cardName">Nome no Cartão:</label><br>
+                  <input type="text" id="cardName" name="cardName" placeholder="  Digite seu nome completo" required>
+                  <br>
+                
+                  <label class="textoInput" for="cardNumber">Número do Cartão:</label><br>
+                  <input type="text" id="cardNumber" name="cardNumber" placeholder="  Digite o número do seu cartão" required>
+                  <br>
+
+                  <label class="textoInput" for="expiryDate">Data de Validade:</label><br>
+                  <input type="text" id="expiryDate" name="expiryDate" placeholder="  MM/AA" required>
+                  <br>
+
+                  <label class="textoInput" for="cvv">CVV:</label><br>
+                  <input type="text" id="cvv" name="cvv" placeholder="  123" required>
+                  <br>
+                  <label class="textoInput" for="billingAddress">Endereço de Cobrança:</label><br>
+                  <input type="text" id="billingAddress" name="billingAddress" placeholder="  Rua, número, cidade" required>
+                  <br>
+                </div>
+                
+                <button id="botaoPagar" type="submit">Pagar</button>
+              </form>
+              
+        </div>
+        <div id="dadosPagamento" class="col-6">
+            <div id="posicaoDados">
+                <p class="tituloTextoDados">Plano <u>Metalive</u></p>
+                <p class="textoDados">Mensalidade:</p>
+                <p class="textoDadosValor">R$ 159,90</p>
+                <div class="linha"></div>
+                <p class="textoDados">Taxa de adesão:</p>
+                <p class="textoDadosValor">R$ 00,00</p>
+                <div class="linha"></div>
+                <p class="textoDados">Total:</p>
+                <p class="textoDadosValor">R$ 159,90</p>
+            </div>
+        </div>
+    </div>
+</div>
