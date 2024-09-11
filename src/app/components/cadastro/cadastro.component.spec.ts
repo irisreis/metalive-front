@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CadastroComponent } from './cadastro.component';
+import { CadastroComponent } from "./cadastro.component";
 
-describe('CadastroComponent', () => {
+describe("CadastroComponent", () => {
   let component: CadastroComponent;
   let fixture: ComponentFixture<CadastroComponent>;
 
@@ -17,7 +17,7 @@ describe('CadastroComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

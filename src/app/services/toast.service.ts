@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 export interface ToastInfo {
   header: string;
@@ -7,7 +7,7 @@ export interface ToastInfo {
   delay?: number;
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class AppToastService {
   toasts: ToastInfo[] = [];
 

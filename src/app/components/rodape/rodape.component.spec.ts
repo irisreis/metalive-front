@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { RodapeComponent } from './rodape.component';
+import { RodapeComponent } from "./rodape.component";
 
-describe('RodapeComponent', () => {
+describe("RodapeComponent", () => {
   let component: RodapeComponent;
   let fixture: ComponentFixture<RodapeComponent>;
 
@@ -17,7 +17,7 @@ describe('RodapeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

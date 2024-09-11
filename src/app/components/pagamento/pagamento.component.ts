@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-pagamento',
+  selector: "app-pagamento",
   standalone: true,
   imports: [],
-  templateUrl: './pagamento.component.html',
-  styleUrl: './pagamento.component.scss'
+  templateUrl: "./pagamento.component.html",
+  styleUrl: "./pagamento.component.scss"
 })
 export class PagamentoComponent {
 

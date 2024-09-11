@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DadosPagamentoComponent } from './dados-pagamento.component';
+import { DadosPagamentoComponent } from "./dados-pagamento.component";
 
-describe('DadosPagamentoComponent', () => {
+describe("DadosPagamentoComponent", () => {
   let component: DadosPagamentoComponent;
   let fixture: ComponentFixture<DadosPagamentoComponent>;
 
@@ -17,7 +17,7 @@ describe('DadosPagamentoComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

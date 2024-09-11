@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ComboInfosComponent } from './combo-infos.component';
+import { ComboInfosComponent } from "./combo-infos.component";
 
-describe('ComboInfosComponent', () => {
+describe("ComboInfosComponent", () => {
   let component: ComboInfosComponent;
   let fixture: ComponentFixture<ComboInfosComponent>;
 
@@ -17,7 +17,7 @@ describe('ComboInfosComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
