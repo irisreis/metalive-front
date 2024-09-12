@@ -1,0 +1,9 @@
+{
+    "/api": {
+      "target": "https://api.pagar.me/1",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  

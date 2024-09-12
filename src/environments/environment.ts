@@ -1,5 +1,6 @@
 export const environment = {
-    production: false,
+    production: false, //indica o ambiente de desenvolvimento (produção ou teste)
+    pagarmePublicKey: 'pk_test_R7AMzYpUYsdpZaGO', //chave publica
     firebaseConfig: {
       apiKey: "AIzaSyD7rLD2BbkgExlwd6hhABPqvl39SfcrtFo",
       authDomain: "metalive-8b9e7.firebaseapp.com",
