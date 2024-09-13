@@ -2,10 +2,17 @@ import { bootstrapApplication } from "@angular/platform-browser";
 import { AppComponent } from "./app/app.component";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { importProvidersFrom } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes'; 
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
+import { provideFirebaseApp, initializeApp as provideFirebaseAppInitialize } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; // Adicione esta linha se você também estiver usando `ngModel`
+
 
 // Configurações do Firebase
 const firebaseConfig = {
@@ -22,13 +29,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-// Configuração do Angular
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(
-      RouterModule.forRoot(routes),
-      HttpClientModule
-    )
+    provideRouter(routes),
+    provideFirebaseApp(() => provideFirebaseAppInitialize(firebaseConfig)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
+    provideHttpClient(),
+    CommonModule,
+    ReactiveFormsModule, // Adicione esta linha
+    FormsModule // Adicione esta linha se usar ngModel
   ]
 }).catch(err => {
   // Trate o erro aqui

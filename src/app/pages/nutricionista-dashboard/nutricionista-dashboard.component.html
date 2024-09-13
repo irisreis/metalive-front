@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row">
+        <div id="topoDaPagina">
+            <div id="topo">
+                <img id="logo" src="../../../assets/logo/logometalive1.png" alt="">
+            </div>
+            <div id="posicaoBotaoHome">
+                <a id="voltarParaHome" href="/home">Voltar para o home</a>
+            </div>
+        </div>
+        <div class="col-7 posicaoLinks mx-auto">
+            <br>
+            <a class="link" (click)="showContent('content1')">Visão geral</a>
+            <a class="link" (click)="showContent('content2')">Gerenciamento de pacientes</a>
+            <a class="link" (click)="showContent('content3')">Outros</a>
+            <br>
+        </div>
+          <div>
+            <div *ngIf="currentContent === 'content1'">
+                <div id="posicaoConteudoLink">
+                    <p class="txtInformacoesGerais">Número de pacientes: 0</p>
+                    <p class="txtInformacoesGerais">Número de consultas solicitadas: 0</p>
+                    <p class="txtInformacoesGerais">Número de consultas concluidas: 0</p>
+                    <p class="txtInformacoesGerais">Número de planos alimentares solicitados: 0</p>
+                    <p class="txtInformacoesGerais">Número de planos alimentares concluidos: 0</p>
+                </div>
+            </div>
+            <div *ngIf="currentContent === 'content2'">
+                <div id="posicaoConteudoLink">
+                    <div class="manage-diet">
+
+                        <form (ngSubmit)="updateDiet()" #dietForm="ngForm">
+                          <div class="form-group">
+                            <label id="txtSelecionarPaciente" for="patient">Selecionar Paciente:</label>
+                            <select id="patient" [(ngModel)]="selectedPatient" name="patient" required>
+                              <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.name }}</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label id="txtNovaDieta" for="diet">Nova Dieta:</label>
+                            <textarea id="diet" [(ngModel)]="newDiet" name="diet" rows="5" required
+                            [(ngModel)]="dietaEditada"
+                            name="dieta"
+                            rows="10"
+                            cols="50"
+                            required>
+                            </textarea>
+                          </div>
+                          <button type="submit">Atualizar</button>
+                        </form>
+
+                      </div>
+                    </div>
+                </div>
+            <div *ngIf="currentContent === 'content3'">
+                <div id="posicaoConteudoLink">
+                    <p class="txtInformacoesGerais">OUTROS</p>
+                </div>    
+    
+            </div>
+        </div>
+    </div>      
+</div>
+
+
+

@@ -7,6 +7,7 @@ import { provideAuth, getAuth } from "@angular/fire/auth";
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from "@angular/fire/analytics";
 import { provideFirestore, getFirestore } from "@angular/fire/firestore";
 import { provideStorage, getStorage } from "@angular/fire/storage";
+import { ReactiveFormsModule } from '@angular/forms';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +26,7 @@ export const appConfig: ApplicationConfig = {
     ScreenTrackingService,
     UserTrackingService,
     provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    ReactiveFormsModule 
   ]
 };

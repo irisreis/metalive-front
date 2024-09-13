@@ -1,0 +1,62 @@
+#topoDaPagina{
+    background-color: #aaaaaa24;
+    height: 90px;
+}
+#topo{
+    display: inline-block;
+}
+#logo{
+    width: 180px;
+    height: 27px;
+    margin-top: 35px;
+    margin-left: 164px;
+    display: inline-block;
+}
+#posicaoBotaoHome{
+    height: 30px;
+    width: 190px;
+    margin-left: 1100px;
+    margin-top: -30px;
+    border-radius: 30px;
+    border: solid;
+    border-color: rgba(0, 0, 0, 0.189);
+}
+#voltarParaHome{
+    text-decoration: none;
+    color: black;
+    margin-left: 19px;
+}
+.link{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    margin-left: 50px;
+    font-size: 18px;
+    font-family: Poppins;
+}
+.link:hover{
+    color:#303A6D;
+}
+#posicaoConteudoLink{
+    margin-top: 60px;
+    margin-left: 164px;
+}
+.txtInformacoesGerais{
+    color: black;
+}
+#txtSelecionarPaciente{
+    color: black;
+}
+#patient{
+    width: 200px;
+    margin-left: 15px;
+    border-radius: 10px;
+}
+#txtNovaDieta{
+    margin-top: 20px;
+    display: block;
+}
+#diet{//textarea
+    height: 400px;
+    margin-top: 10px;
+}
