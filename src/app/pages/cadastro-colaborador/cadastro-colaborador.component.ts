@@ -5,13 +5,13 @@ import { Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 
 @Component({
-  selector: "app-cadastro",
+  selector: "app-cadastro-colaborador",
   standalone: true,
   imports: [FormsModule],
-  templateUrl: "./cadastro.component.html",
-  styleUrls: ["./cadastro.component.scss"]
+  templateUrl: "./cadastro-colaborador.component.html",
+  styleUrls: ["./cadastro-colaborador.component.scss"]
 })
-export class CadastroComponent {
+export class CadastroColaboradorComponent {
   private auth: Auth = inject(Auth);
   private firestore: Firestore = inject(Firestore);
   private router: Router = inject(Router);
@@ -19,17 +19,9 @@ export class CadastroComponent {
   email = "";
   password = "";
   repeatPassword = "";
-  role: string = ''; // paciente, nutri ou personal
+  role: string = '';
   nome: string = '';
-  cpf: string = '';
-  dataNascimento: string = '';
-  sexo: string = '';
-  numeroCelular: string = '';
-  cep: string = '';
-  rua: string = '';
-  cidade: string = '';
-  estado: string = '';
-  complemento: string = '';
+  numeroTelefone: string = '';
 
   cadastrar() {
     if (this.password !== this.repeatPassword) {
@@ -47,17 +39,7 @@ export class CadastroComponent {
           email: this.email,
           role: this.role,
           nome: this.nome,
-          cpf: this.cpf,
-          dataNascimento: this.dataNascimento,
-          sexo: this.sexo,
-          numeroCelular: this.numeroCelular,
-          endereco: {
-            cep: this.cep,
-            rua: this.rua,
-            cidade: this.cidade,
-            estado: this.estado,
-            complemento: this.complemento
-          }
+          numeroTelefone: this.numeroTelefone,
         });
 
         // Redirecionamento após o cadastro
@@ -69,7 +51,7 @@ export class CadastroComponent {
             this.router.navigate(['/personal-dashboard']);
             break;
           default:
-            this.router.navigate(['/paciente-dashboard']);
+            this.router.navigate(['/perfil']);
         }
 
         alert("Cadastro efetuado com sucesso!");

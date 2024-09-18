@@ -5,12 +5,13 @@ import { getAuth } from 'firebase/auth';
 
 // Substitua estes valores pelos valores do seu projeto Firebase
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_AUTH_DOMAIN",
-  projectId: "SEU_PROJECT_ID",
-  storageBucket: "SEU_STORAGE_BUCKET",
-  messagingSenderId: "SEU_MESSAGING_SENDER_ID",
-  appId: "SEU_APP_ID"
+  apiKey: "AIzaSyD7rLD2BbkgExlwd6hhABPqvl39SfcrtFo",
+  authDomain: "metalive-8b9e7.firebaseapp.com",
+  projectId: "metalive-8b9e7",
+  storageBucket: "metalive-8b9e7.appspot.com",
+  messagingSenderId: "1052735217691",
+  appId: "1:1052735217691:web:53d5aaccbb01b2bad1d8be",
+  measurementId: "G-1GJLL3P14D"
 };
 
 // Inicialize o Firebase

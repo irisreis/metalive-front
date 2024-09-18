@@ -4,15 +4,14 @@
             <div class="col-xl-10 col-lg-10 col-md-11 col-sm-12 col-12 mx-auto">
                 <div class="row">
                     <h2 id="tituloForm">Formulário</h2>
-
-
+                    <!--
                     <div class="blocoPessoal">
                         <div class="titulo1">
                             <h3>PESSOAL</h3>
                         </div>
                         <div class="row posicaoForm">
                             <div class="col-xl-11 col-lg-10 col-md-10 col-xs-10 col-sm-10 col-10">
-                                <p class="textoInput">Nome:</p><br>
+                                <p class="textoInput">Nome:*</p><br>
                                 <input class="col-12" formControlName="nome" type="text">
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
@@ -62,7 +61,7 @@
                             </div>
                         </div>
                     </div>
-                
+                -->
                     <div class="blocoPessoal">
                         <div class="titulo1">
                             <h3>PERSONAL TRAINER</h3>
@@ -73,41 +72,41 @@
                                     <p class="textoInput">Tem alguma restrição a prática de exercícios?</p>
                                     <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                         <p class="textoInput">SIM</p>
-                                        <input class="checkInput" formControlName="restricaoExercicios" type="checkbox"
+                                        <input class="checkInput" formControlName="restricaoExerciciosSim" type="checkbox"
                                             [value]="1">
                                     </div>
                                     <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                         <p class="textoInput">NÃO</p>
-                                        <input class="checkInput" formControlName="restricaoExercicios" type="checkbox"
+                                        <input class="checkInput" formControlName="restricaoExerciciosNao" type="checkbox"
                                             [value]="2">
                                     </div>
                                     <p class="textoInput">Pressão arterial:</p>
                                     <div class="col-4">
                                         <p class="textoInput">Baixa</p>
-                                        <input class="checkInput" formControlName="pressaoArterial" type="checkbox"
+                                        <input class="checkInput" formControlName="pressaoArterialBaixa" type="checkbox"
                                             [value]="1">
                                     </div>
                                     <div class="col-4">
                                         <p class="textoInput">Média</p>
-                                        <input class="checkInput" formControlName="pressaoArterial" type="checkbox"
+                                        <input class="checkInput" formControlName="pressaoArterialMedia" type="checkbox"
                                             [value]="2">
                                     </div>
                                     <div class="col-4">
                                         <p class="textoInput">Alta</p>
-                                        <input class="checkInput" formControlName="pressaoArterial" type="checkbox"
+                                        <input class="checkInput" formControlName="pressaoArterialAlta" type="checkbox"
                                             [value]="3">
                                     </div>
                                 <p class="textoInput">Histórico familiar de doenças:</p>
                                 <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <input class="checkInput" formControlName="historicoDoencas" type="checkbox" name="group4" value="1">
+                                    <input class="checkInput" formControlName="historicoDoencasHipertensao" type="checkbox" name="group4" value="1">
                                     <p class="textoInput">Hipertensão</p>
                                 </div>
                                 <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <input class="checkInput" formControlName="historicoDoencas" type="checkbox" name="group4" value="2">
+                                    <input class="checkInput" formControlName="historicoDoencasCardiopatia" type="checkbox" name="group4" value="2">
                                     <p class="textoInput">Cardiopatia</p>
                                 </div>
                                 <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <input class="checkInput" formControlName="historicoDoencas" type="checkbox" name="group4" value="3">
+                                    <input class="checkInput" formControlName="historicoDoencasDiabetes" type="checkbox" name="group4" value="3">
                                     <p class="textoInput">Diabetes</p>
                                 </div>
                                 <p class="textoInput">Explique:</p>
@@ -116,12 +115,12 @@
                                 <br>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">SIM</p>
-                                    <input class="checkInput" formControlName="tratamentoDiaADia" type="checkbox" name="group5" value="1"
+                                    <input class="checkInput" formControlName="tratamentoDiaADiaSim" type="checkbox" name="group5" value="1"
                                         (click)="onlyOne($event.target, 'group5')">
                                 </div>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">NÃO</p>
-                                    <input class="checkInput" formControlName="tratamentoDiaADia" type="checkbox" name="group5" value="2"
+                                    <input class="checkInput" formControlName="tratamentoDiaADiaNao" type="checkbox" name="group5" value="2"
                                         (click)="onlyOne($event.target, 'group5')">
                                 </div>
                                 </div>
@@ -133,12 +132,12 @@
                                     <br>
                                     <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                         <p class="textoInput">SIM</p>
-                                        <input class="checkInput" formControlName="medicamentoRegular" type="checkbox" name="group6" value="1"
+                                        <input class="checkInput" formControlName="medicamentoRegularSim" type="checkbox" name="group6" value="1"
                                             (click)="onlyOne($event.target, 'group6')">
                                     </div>
                                     <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                         <p class="textoInput">NÃO</p>
-                                        <input class="checkInput" formControlName="medicamentoRegular" type="checkbox" name="group6" value="2"
+                                        <input class="checkInput" formControlName="medicamentoRegularNao" type="checkbox" name="group6" value="2"
                                             (click)="onlyOne($event.target, 'group6')">
                                     </div>
                                     <br>
@@ -149,12 +148,12 @@
                                     <br>
                                     <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                         <p class="textoInput">SIM</p>
-                                        <input class="checkInput" formControlName="cirurgiaInternamento" type="checkbox" name="group7" value="1"
+                                        <input class="checkInput" formControlName="cirurgiaRecenteSim" type="checkbox" name="group7" value="1"
                                             (click)="onlyOne($event.target, 'group7')">
                                     </div>
                                     <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                         <p class="textoInput">NÃO</p>
-                                        <input class="checkInput" formControlName="cirurgiaInternamento" type="checkbox" name="group7" value="2"
+                                        <input class="checkInput" formControlName="cirurgiaRecenteNao" type="checkbox" name="group7" value="2"
                                             (click)="onlyOne($event.target, 'group7')">
                                     </div>
                                     <br>
@@ -162,12 +161,12 @@
                                     <br>
                                     <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                         <p class="textoInput">SIM</p>
-                                        <input class="checkInput" formControlName="dorDiaADia" type="checkbox" name="group8" value="1"
+                                        <input class="checkInput" formControlName="dorDiaADiaSim" type="checkbox" name="group8" value="1"
                                             (click)="onlyOne($event.target, 'group8')">
                                     </div>
                                     <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                         <p class="textoInput">NÃO</p>
-                                        <input class="checkInput" formControlName="dorDiaADia" type="checkbox" name="group8" value="2"
+                                        <input class="checkInput" formControlName="dorDiaADiaNao" type="checkbox" name="group8" value="2"
                                             (click)="onlyOne($event.target, 'group8')">
                                     </div>
                                     <br>
@@ -189,12 +188,12 @@
                                 <br>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">SIM</p>
-                                    <input class="checkInput" formControlName="atividadeFisica" type="checkbox" name="group9" value="1"
+                                    <input class="checkInput" formControlName="atividadeFisicaSim" type="checkbox" name="group9" value="1"
                                         (click)="onlyOne($event.target, 'group9')">
                                 </div>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">NÃO</p>
-                                    <input class="checkInput" formControlName="atividadeFisica" type="checkbox" name="group9" value="2"
+                                    <input class="checkInput" formControlName="atividadeFisicaNao" type="checkbox" name="group9" value="2"
                                         (click)="onlyOne($event.target, 'group9')">
                                 </div>
                                 <p class="col-12 textoInput">Qual?</p><br>
@@ -206,12 +205,12 @@
                                 <p class="col-12 textoInput">Consome bebidas alcoólicas?</p><br>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">SIM</p>
-                                    <input class="col-11 checkInput" formControlName="consomeBebidasAlcoolicas" type="checkbox" name="group10" value="1"
+                                    <input class="col-11 checkInput" formControlName="consomeBebidasAlcoolicasSim" type="checkbox" name="group10" value="1"
                                         (click)="onlyOne($event.target, 'group10')">
                                 </div>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">NÃO</p>
-                                    <input class="checkInput" formControlName="consomeBebidasAlcoolicas" type="checkbox" name="group10" value="2"
+                                    <input class="checkInput" formControlName="consomeBebidasAlcoolicasNao" type="checkbox" name="group10" value="2"
                                         (click)="onlyOne($event.target, 'group10')">
                                 </div>
                                 <p class="col-11 textoInput">Com qual frequência?</p><br>
@@ -221,39 +220,39 @@
                                 <br>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">SIM</p>
-                                    <input class="checkInput" formControlName="tabagista" type="checkbox" name="group11" value="1"
+                                    <input class="checkInput" formControlName="tabagistaSim" type="checkbox" name="group11" value="1"
                                         (click)="onlyOne($event.target, 'group11')">
                                 </div>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">NÃO</p>
-                                    <input class="checkInput" formControlName="tabagista" type="checkbox" name="group11" value="2"
+                                    <input class="checkInput" formControlName="tabagistaNao" type="checkbox" name="group11" value="2"
                                         (click)="onlyOne($event.target, 'group11')">
                                 </div>
                                 <br>
                                 <p class="col-11 textoInput">Quantos litros de água consome por dia?</p>
                                 <br>
                                 <div class="col-12">
-                                    <input class="checkInput" formControlName="consumoAgua" type="checkbox" name="group12" value="1"
+                                    <input class="checkInput" formControlName="consumoAguaZero" type="checkbox" name="group12" value="1"
                                         (click)="onlyOne($event.target, 'group12')">
                                     <p class="textoInput">Zero</p><br>
                                 </div>
                                 <div class="col-12">
-                                    <input class="checkInput" formControlName="consumoAgua" type="checkbox" name="group12" value="2"
+                                    <input class="checkInput" formControlName="consumoAguaAte1l" type="checkbox" name="group12" value="2"
                                         (click)="onlyOne($event.target, 'group12')">
                                     <p class="textoInput">Até 1L</p><br>
                                 </div>
                                 <div class="col-12">
-                                    <input class="checkInput" formControlName="consumoAgua" type="checkbox" name="group12" value="3"
+                                    <input class="checkInput" formControlName="consumoAguaEntre1le2l" type="checkbox" name="group12" value="3"
                                         (click)="onlyOne($event.target, 'group12')">
                                     <p class="textoInput">1L a 2l</p><br>
                                 </div>
                                 <div class="col-12">
-                                    <input class="checkInput" formControlName="consumoAgua" type="checkbox" name="group12" value="4"
+                                    <input class="checkInput" formControlName="consumoAguaEntre2le3l" type="checkbox" name="group12" value="4"
                                         (click)="onlyOne($event.target, 'group12')">
                                     <p class="textoInput">2L a 3L</p><br>
                                 </div>
                                 <div class="col-12">
-                                    <input class="checkInput" formControlName="consumoAgua" type="checkbox" name="group12" value="5"
+                                    <input class="checkInput" formControlName="consumoAguaMais3l" type="checkbox" name="group12" value="5"
                                         (click)="onlyOne($event.target, 'group12')">
                                     <p class="textoInput">Mais de 3l</p><br>
                                 </div>
@@ -273,12 +272,12 @@
                                 <p class="col-11 textoInput">Tem alguma alergia ou intolerância alimentar?</p><br>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">SIM</p>
-                                    <input class="checkInput" formControlName="alergiaIntolerancia" type="checkbox" name="group13" value="1"
+                                    <input class="checkInput" formControlName="alergiaIntoleranciaSim" type="checkbox" name="group13" value="1"
                                         (click)="onlyOne($event.target, 'group13')">
                                 </div>
                                 <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
                                     <p class="textoInput">NÃO</p>
-                                    <input class="checkInput" formControlName="alergiaIntolerancia" type="checkbox" name="group13" value="2"
+                                    <input class="checkInput" formControlName="alergiaIntoleranciaNao" type="checkbox" name="group13" value="2"
                                         (click)="onlyOne($event.target, 'group13')">
                                 </div>
                                 <p class="col-12 textoInput">Se sim, qual?</p><br>
@@ -289,14 +288,14 @@
                         <input style="margin-top: 20px;" class="col-3 mx-auto" type="submit">
                         <div style="height: 50px;"></div>
                     </div>
-                </div>
+                </div><!--
                     <div class="blocoPessoal">
                         <div class="row">
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Enviar</button>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>

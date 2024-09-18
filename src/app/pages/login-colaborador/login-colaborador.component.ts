@@ -1,6 +1,6 @@
 import { Component, inject, TemplateRef } from "@angular/core";
 import { Auth, sendPasswordResetEmail, signInWithEmailAndPassword } from "@angular/fire/auth";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, NgModel } from "@angular/forms";
 import { Router } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastComponent } from "../../components/toast/toast.component";
@@ -9,17 +9,18 @@ import { AppToastService } from "../../services/toast.service";
 declare const bootstrap: any;
 
 @Component({
-  selector: "app-login",
+  selector: 'app-login-colaborador',
+  templateUrl: './login-colaborador.component.html',
+  styleUrls: ['./login-colaborador.component.scss'],
   standalone: true,
-  imports: [FormsModule, NgbModule, ToastComponent],
-  templateUrl: "./login.component.html",
-  styleUrl: "./login.component.scss"
+  imports: [FormsModule, ToastComponent]  
 })
-export class LoginComponent {
+export class LoginColaboradorComponent {
+
   private auth: Auth = inject(Auth);
-  email: string = "";
+  role: string = ''; // nutri ou personal
+  email = "";
   password = "";
-  role = "";
   showToast = false;
   toastService = inject(AppToastService);
 
@@ -40,7 +41,16 @@ export class LoginComponent {
       this.showSuccess("Sucesso!", "Login efetuado com sucesso!");
       localStorage.setItem("user", JSON.stringify(user));
       setTimeout(() => {
-        this.router.navigateByUrl("/perfil");
+        console.log(this.role);
+        if(this.role=="nutricionista"||this.role=="Nutricionista"){
+          this.router.navigateByUrl("/nutricionista");
+        }else{
+          if(this.role=="Personal Trainer"||this.role=="personal"){
+            this.router.navigateByUrl("/personal");
+          }else{
+            console.log("erro ao direcionar pagina");
+          }
+        }
       }, 2000);
     })
     .catch((error) => {
