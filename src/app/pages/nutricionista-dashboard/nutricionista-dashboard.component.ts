@@ -66,7 +66,7 @@ salvarDieta() {
   }
 
   async loadPatients() {
-    const patientsCollection = collection(this.firestore, 'patients');
+    const patientsCollection = collection(this.firestore, 'users');
     const patientSnapshot = await getDocs(patientsCollection);
     this.patients = patientSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   }

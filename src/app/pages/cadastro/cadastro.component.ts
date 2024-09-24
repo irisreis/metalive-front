@@ -34,14 +34,27 @@ export class CadastroComponent {
         const user = userCredential.user;
         const uid = user.uid;
 
-        // Salvando dados adicionais no Firestore
-        await setDoc(doc(this.firestore, 'users', uid), {
+        // Definindo a coleção com base na role
+        let collectionName = '';
+        switch (this.role) {
+          case 'cliente':
+            collectionName = 'clientes';
+            break;
+          default:
+            collectionName = 'clientes';
+        }
+
+        // Salvando dados adicionais no Firestore na coleção correta
+        await setDoc(doc(this.firestore, collectionName, uid), {
           role: this.role,
           email: this.email,
           nome: this.nome,
           numeroTelefone: this.numeroTelefone,
         });
+
         alert("Cadastro efetuado com sucesso!");
+        // Redirecionando após o cadastro
+        this.router.navigate(['/perfil']);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -51,6 +64,8 @@ export class CadastroComponent {
           alert("Este e-mail já está cadastrado.");
         } else if (errorCode === "auth/weak-password") {
           alert("A senha precisa ter 6 ou mais caracteres.");
+        } else {
+          alert("Erro ao cadastrar: " + errorMessage);
         }
       });
   }

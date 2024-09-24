@@ -28,12 +28,12 @@ export const routes: Routes = [
   { path: "nutricionista",
     component: NutricionistaDashboardComponent,
     canActivate: [RoleGuard],
-    data: { role: 'Nutricionista' } 
+    data: { role: 'nutricionista' } 
   },
   { path: "personal",
     component: PersonalDashboardComponent,
     canActivate: [RoleGuard],
-    data: { role: 'Personal Trainer' }
+    data: { role: 'personal trainer' }
   },
   { path: "cadastroColaborador", component: CadastroColaboradorComponent},
   { path: "loginColaborador", component: LoginColaboradorComponent},

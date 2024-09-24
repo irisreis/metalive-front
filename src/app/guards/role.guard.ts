@@ -1,31 +1,59 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from '../../app/auth.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
+import { SharedService } from '../../app/services/shared.service'; // Ajuste o caminho conforme necessário
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RoleGuard implements CanActivate {
-
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private sharedService: SharedService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    const expectedRole = route.data['role'];  // Obtém o papel esperado da rota
-    console.log('esperado: ' + expectedRole);
+    const expectedRole = route.data['role'];
+    console.log('Esperado: ' + expectedRole);
 
-    return this.authService.user$.pipe(  // Supondo que você tenha um observable `user$` no AuthService
-    map(user => {
-      console.log('Usuário encontrado:', user);  // Veja o que é retornado como user
-      if (user && user.role === expectedRole) {
-        console.log('é ' + user.role);
-        return true; // Permite o acesso
-      } else {
-        alert('Não autorizado.');
-        console.log('Role do usuário:', user?.role);
-        return false; // Bloqueia o acesso
-      }
+    if (expectedRole.toLowerCase() === 'cliente') {
+      this.sharedService.collectionAux = 'clientes';
+    } else if (expectedRole.toLowerCase() == 'nutricionista') {
+      this.sharedService.collectionAux = 'nutricionistas';
+    } else if (expectedRole.toLowerCase() == 'personal trainer') {
+      this.sharedService.collectionAux = 'personais';
+    } else {
+      console.log('Erro na coleção/expectedRole');
+      return of(false); // Retorna false se o expectedRole não corresponder a nenhum caso
+    }
+  
+    return this.authService.user$.pipe(
+      switchMap(user => {
+        console.log('Usuário no RoleGuard:', user);
+        if (user) {
+          console.log('Usuário autenticado:', user);
+          return this.authService.getUserData(user.uid, this.sharedService.collectionAux).pipe(
+            map(userData => {
+              if (userData) {
+                console.log('Dados do usuário retornados:', userData);
+                if (userData.role.toLowerCase() == expectedRole.toLowerCase()) {
+                  console.log('Usuário com a role correta: ' + userData.role);
+                  return true;
+                } else {
+                  console.log('Role diferente do esperado:', userData.role);
+                  alert('Não autorizado.');
+                  return false;
+                }
+              } else {
+                console.log('Nenhum dado do usuário encontrado.');
+                return false;
+              }
+            })
+          );
+        } else {
+          console.log('Nenhum usuário autenticado.');
+          alert('Não autorizado.');
+          return of(false);
+        }
       })
     );
   }
