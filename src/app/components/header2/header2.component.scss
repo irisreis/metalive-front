@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+#header{
+    background-color: #ffffff;
+    height: 76px;
+    width: 100%;
+    z-index: 1000; 
+    display: flex;
+    position: fixed;
+}
+#logo{
+    width: 180px;
+    height: 27px;
+    margin-top: 0px;
+    margin-left: 164px;
+}
+#loginIcon{
+    background-image: url(../../../assets/icones/contatoEmail.png);
+    height: 40px;
+}
+#logobs{
+    width: 180px;
+    height: 27px;
+}
+#links{
+    position: absolute;
+    width: 674px;
+    height: 25px;
+    margin-top: 28px;
+    margin-left: 83px;
+}
+.link{
+    margin-left: 50px;
+    margin-top: 0px;
+    text-decoration: none; 
+    width: 126.16px;
+    height: 25px;
+    color: #272727;
+    font-family: Poppins;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.link:hover{
+    color: #1472B0;
+}
+.navbar .navbar-toggler:not(.collapsed) + .navbar-collapse {
+    background-color: #f8f9fa; 
+  }
+@media screen and (max-width: 992px){
+    #logo{
+        margin-left: 10px;
+        margin-top: 0px;
+        height: 30px;
+        width: 189px;
+    }
+}
+@media (max-width: 1376px){
+    #logo{
+        margin-left: 28px;
+        margin-top: 0px;
+        height: 30px;
+        width: 189px;
+    }
+    .link{
+        font-size: 15px;
+    }
+}
+@media (max-width: 1110px){
+    .link{
+        font-size: 13px;
+        margin-left: 35px;
+    }
+}
+

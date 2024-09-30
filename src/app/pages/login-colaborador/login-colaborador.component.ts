@@ -43,10 +43,10 @@ export class LoginColaboradorComponent {
       setTimeout(() => {
         console.log(this.role);
         if(this.role=="nutricionista"||this.role=="Nutricionista"){
-          this.router.navigateByUrl("/nutricionista");
+          this.router.navigate([`/nutricionista`, user.uid]);
         }else{
           if(this.role=="Personal Trainer"||this.role=="personal"){
-            this.router.navigateByUrl("/personal");
+            this.router.navigate([`/personal`, user.uid]);
           }else{
             console.log("erro ao direcionar pagina");
           }

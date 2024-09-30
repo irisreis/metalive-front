@@ -4,6 +4,7 @@ import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Observable, of, from } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { SharedService } from '../app/services/shared.service'// Ajuste o caminho conforme necessário
 
 
@@ -57,6 +58,7 @@ export class AuthService {
   // Método para buscar o documento do usuário em uma coleção específica
   getUserData(uid: string, collection: string): Observable<any> {
     const userDocRef = doc(this.firestore, `${collection}/${uid}`);
+    console.log(`Tentando acessar o documento: ${userDocRef.path}`);
     return from(getDoc(userDocRef)).pipe(
       map(docSnap => {
         if (docSnap.exists()) {
@@ -64,12 +66,15 @@ export class AuthService {
           return docSnap.data();
         } else {
           console.log('Documento não encontrado na coleção:', collection);
-          return null;
+          return null; // Certifique-se de retornar null
         }
+      }),
+      catchError(error => {
+        console.error('Erro ao buscar dados do Firestore:', error);
+        return of(null); // Retorne null em caso de erro
       })
     );
   }
-
   // Método para obter a coleção correta com base no papel do usuário
   getCollectionByRole(role: string): string {
     switch (role.toLowerCase()) {
@@ -87,13 +92,43 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<void> {
     try {
-      await signInWithEmailAndPassword(this.auth, email, password);
-      console.log('Login bem-sucedido');
-      // Aqui, o user$ deve ser atualizado automaticamente
+      // Faz o login no Firebase Authentication
+      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      const user = userCredential.user;
+  
+      if (user) {
+        // Buscar o documento do usuário na coleção "users"
+        const userDocRef = doc(this.firestore, 'users', user.uid);
+        const userDocSnap = await getDoc(userDocRef);
+  
+        if (userDocSnap.exists()) {
+          const userData = userDocSnap.data();
+          const role = userData['role'];  // Obtém o papel do usuário
+  
+          console.log('Usuário logado com o papel:', role);
+  
+          // Redirecionar com base no papel
+          if (role.toLowerCase() === 'nutricionista') {
+            this.router.navigate(['/nutricionista', user.uid]);
+          } else if (role.toLowerCase() === 'cliente') {
+            this.router.navigate(['/perfil', user.uid]);
+          } else if (role.toLowerCase() === 'personal trainer') {
+            this.router.navigate(['/personal', user.uid]);
+          } else {
+            console.error('Papel de usuário não reconhecido:', role);
+            //this.router.navigate(['/not-found']);
+          }
+        } else {
+          console.error('Usuário não encontrado na coleção "users".');
+          //this.router.navigate(['/not-found']);
+        }
+      }
     } catch (error) {
       console.error("Erro ao fazer login:", error);
+      //this.router.navigate(['/not-found']);
     }
   }
+  
 
   async logout(): Promise<void> {
     try {
@@ -133,11 +168,11 @@ export class AuthService {
 
         // Redirecionar para o dashboard correto
         if (role.toLowerCase() === 'nutricionista') {
-          this.router.navigate(['/nutricionista']);
+          this.router.navigate(['/nutricionista', uid]);
         } else if (role.toLowerCase() === 'cliente') {
-          this.router.navigate(['/perfil']);
+          this.router.navigate(['/perfil',uid]);
         } else if (role.toLowerCase() === 'personal trainer') {
-          this.router.navigate(['/personal']);
+          this.router.navigate(['/personal',uid]);
         }
       }
     } catch (error) {

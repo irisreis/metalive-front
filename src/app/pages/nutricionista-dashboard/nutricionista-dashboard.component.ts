@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { CommonModule } from '@angular/common'; // Adicionar importação
-import { Firestore, collection, getDocs, updateDoc, doc } from '@angular/fire/firestore';
+import { Firestore, getDoc, collection, getDocs, updateDoc, doc } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms'; // Certifique-se de que FormsModule está importado
 
 @Component({
@@ -66,10 +66,13 @@ salvarDieta() {
   }
 
   async loadPatients() {
-    const patientsCollection = collection(this.firestore, 'users');
+    const patientsCollection = collection(this.firestore, 'clientes');
     const patientSnapshot = await getDocs(patientsCollection);
     this.patients = patientSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    console.log(this.patients); // Verifica se os dados estão sendo carregados corretamente
+
   }
+
 
   async updateDiet() {
     if (!this.selectedPatient || !this.newDiet) {
@@ -77,15 +80,17 @@ salvarDieta() {
       return;
     }
 
-    const patientDocRef = doc(this.firestore, 'patients', this.selectedPatient);
-    try {
+    const patientDocRef = doc(this.firestore, 'clientes', this.selectedPatient);
+    const docSnapshot = await getDoc(patientDocRef);
+    
+    if (docSnapshot.exists()) {
       await updateDoc(patientDocRef, { diet: this.newDiet });
       alert('Dieta atualizada com sucesso!');
-    } catch (error) {
-      console.error('Erro ao atualizar dieta:', error);
-      alert('Ocorreu um erro ao atualizar a dieta.');
+    } else {
+      console.error('Documento não encontrado');
+      alert('Erro: Documento não encontrado para atualização.');
     }
-  }
+  }    
 
   logout() {
     this.authService.logout();

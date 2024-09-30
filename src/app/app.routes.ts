@@ -11,6 +11,7 @@ import { PersonalDashboardComponent } from "./pages/personal-dashboard/personal-
 import { CadastroColaboradorComponent } from "./pages/cadastro-colaborador/cadastro-colaborador.component";
 import { LoginColaboradorComponent } from "./pages/login-colaborador/login-colaborador.component";
 import { RoleGuard } from './guards/role.guard';
+import { NotFoundComponent } from "./pages/not-found/not-found.component";
 
 export const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -18,27 +19,28 @@ export const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "cadastro", component: CadastroComponent },
   { path: "combos", component: ComboComponent },
-  { path: "perfil",
+  { path: "perfil/:id",
     component: PerfilComponent,
     canActivate: [RoleGuard],
     data: { role: 'cliente' } 
   },
   { path: "formulario", component: FormularioComponent },
   { path: "pagamento", component: PagamentoComponent },
-  { path: "nutricionista",
+  { path: "nutricionista/:uid",
     component: NutricionistaDashboardComponent,
     canActivate: [RoleGuard],
     data: { role: 'nutricionista' } 
   },
-  { path: "personal",
+  { path: "personal/:uid",
     component: PersonalDashboardComponent,
     canActivate: [RoleGuard],
     data: { role: 'personal trainer' }
   },
   { path: "cadastroColaborador", component: CadastroColaboradorComponent},
   { path: "loginColaborador", component: LoginColaboradorComponent},
+  { path: 'not-found', component: NotFoundComponent },
 
   // Wildcard para capturar todas as outras rotas
-  { path: '**', redirectTo: '/not-found' }
+  { path: '**', redirectTo: '/' }
 ];
 console.log('Routes Configured', routes);

@@ -70,10 +70,10 @@ export class CadastroColaboradorComponent {
         // Redirecionamento após o cadastro com base na role
         switch (this.role) {
           case 'nutricionista':
-            this.router.navigate(['/nutricionista-dashboard']);
+            this.router.navigate(['/nutricionista-dashboard/${user.uid}']);
             break;
           case 'personal':
-            this.router.navigate(['/personal-dashboard']);
+            this.router.navigate(['/personal-dashboard/${user.uid}']);
             break;
           default:
             this.router.navigate(['/']);

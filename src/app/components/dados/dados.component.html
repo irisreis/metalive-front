@@ -1,17 +1,20 @@
 <div class="container-fluid blocoDados">
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-4 col-3 mx-auto">
-            <p id="nome">Fulano da Silva</p>
+            <p id="nome">{{ clienteData?.nome || 'Nome do Cliente' }}</p> <!-- Nome do Cliente -->
         </div>
         <div class="col-lg-9 col-md-9 col-sm-4 col-3 mx-auto cidade">
             <img id="iconCidade" src="../../../assets/paginas/perfil/icondados.png" alt="">
-            <p id="cidade">Curitiba/PR</p>
+            <p id="cidade">{{ clienteData?.cidade || 'Cidade/Estado' }}</p> <!-- Cidade do Cliente -->
         </div>
         <div class="col-lg-9 col-md-9 col-sm-4 col-4 pontos mx-auto">
-            <p id="pontuacao">242</p>
+            <p id="pontuacao">{{ clienteData?.pontuacao || 0 }}</p> <!-- Pontuação do Cliente -->
             <p id="metaPoints">metaPoints</p>
         </div>
         <p id="Informacoes">Informações</p>
-        <p class="mx-auto" id="textoInfos">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        <p class="mx-auto" id="textoInfos">{{ clienteData?.informacoes || 'Informações não disponíveis.' }}</p> <!-- Informações do Cliente -->
+
+        <h3>Dieta:</h3>
+        <pre class="mx-auto" id="dieta">{{ clienteData?.diet || 'Nenhuma dieta disponível.' }}</pre> <!-- Dieta do Cliente -->
     </div>
 </div>

@@ -32,9 +32,16 @@
                         <form (ngSubmit)="updateDiet()" #dietForm="ngForm">
                           <div class="form-group">
                             <label id="txtSelecionarPaciente" for="patient">Selecionar Paciente:</label>
-                            <select id="patient" [(ngModel)]="selectedPatient" name="patient" required>
+                            <select id="patient" [(ngModel)]="selectedPatient" name="patient" required style="color: black; background-color: white; border: 1px solid #ccc; width: 200px;">
+                                <option *ngFor="let patient of patients" [value]="patient.id" style="color: black; background-color: white;">
+                                  {{ patient.nome }}
+                                </option>
+                              </select>
+                           <!-- <select id="patient" [(ngModel)]="selectedPatient" class="custom-select" name="patient" required>
+                                
                               <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.name }}</option>
-                            </select>
+                              
+                            </select>-->
                           </div>
                           <div class="form-group">
                             <label id="txtNovaDieta" for="diet">Nova Dieta:</label>
