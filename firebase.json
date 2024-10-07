@@ -28,6 +28,10 @@
     ],
     "rewrites": [
       {
+        "source": "/api/**",
+        "function": "gerarCardHash" 
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
@@ -39,6 +43,10 @@
     },
     "functions": {
       "port": 5001
+    },
+    "firestore": {
+      "port": 8080,
+      "memory": "4GB"
     },
     "ui": {
       "enabled": true

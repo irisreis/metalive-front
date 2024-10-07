@@ -7,7 +7,7 @@ import { provideAuth, getAuth } from "@angular/fire/auth";
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from "@angular/fire/analytics";
 import { provideFirestore, getFirestore } from "@angular/fire/firestore";
 import { provideStorage, getStorage } from "@angular/fire/storage";
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms'; // Importação correta para formulários
 
 // Configurações do Firebase
 const firebaseConfig = {
@@ -31,6 +31,6 @@ export const appConfig: ApplicationConfig = {
     UserTrackingService,
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    ReactiveFormsModule 
+    ReactiveFormsModule  // Habilitar formulários reativos
   ]
 };

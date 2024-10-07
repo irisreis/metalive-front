@@ -10,6 +10,12 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms'; 
+import './polyfills'; // Certifique-se de que o polyfills seja importado
+//import { Readable } from 'stream-browserify';
+//import { randomBytes, createHash } from 'crypto-browserify';
+
+//import * as crypto from 'crypto-browserify';
+//import * as stream from 'stream-browserify';
 
 // Configurações do Firebase
 const firebaseConfig = {

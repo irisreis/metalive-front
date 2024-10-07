@@ -15,17 +15,18 @@ export class RoleGuard implements CanActivate {
     const expectedRole = route.data['role'];
     console.log('Esperado: ' + expectedRole);
 
+    // Definindo a coleção de acordo com a role esperada
     if (expectedRole.toLowerCase() === 'cliente') {
       this.sharedService.collectionAux = 'clientes';
-    } else if (expectedRole.toLowerCase() == 'nutricionista') {
+    } else if (expectedRole.toLowerCase() === 'nutricionista') {
       this.sharedService.collectionAux = 'nutricionistas';
-    } else if (expectedRole.toLowerCase() == 'personal trainer') {
+    } else if (expectedRole.toLowerCase() === 'personal trainer') {
       this.sharedService.collectionAux = 'personais';
     } else {
       console.log('Erro na coleção/expectedRole');
       return of(false); // Retorna false se o expectedRole não corresponder a nenhum caso
     }
-  
+
     return this.authService.user$.pipe(
       switchMap(user => {
         console.log('Usuário no RoleGuard:', user);
@@ -35,24 +36,24 @@ export class RoleGuard implements CanActivate {
             map(userData => {
               if (userData) {
                 console.log('Dados do usuário retornados:', userData);
-                if (userData.role.toLowerCase() == expectedRole.toLowerCase()) {
+                if (userData.role.toLowerCase() === expectedRole.toLowerCase()) {
                   console.log('Usuário com a role correta: ' + userData.role);
-                  return true;
+                  return true; // Permite o acesso
                 } else {
                   console.log('Role diferente do esperado:', userData.role);
-                  alert('Não autorizado.');
-                  return false;
+                  alert('Não autorizado.'); // Alerta de não autorizado
+                  return false; // Bloqueia o acesso
                 }
               } else {
                 console.log('Nenhum dado do usuário encontrado.');
-                return false;
+                return false; // Bloqueia o acesso se não encontrar dados do usuário
               }
             })
           );
         } else {
           console.log('Nenhum usuário autenticado.');
-          alert('Não autorizado.');
-          return of(false);
+          alert('Não autorizado.'); // Alerta de não autorizado
+          return of(false); // Bloqueia o acesso se não houver usuário autenticado
         }
       })
     );

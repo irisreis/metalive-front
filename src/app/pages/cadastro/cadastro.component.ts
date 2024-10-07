@@ -1,20 +1,24 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { Auth, createUserWithEmailAndPassword } from "@angular/fire/auth";
 import { Firestore, doc, setDoc } from "@angular/fire/firestore";
 import { Router } from "@angular/router";
-import { FormsModule } from "@angular/forms";
+import { PaymentService } from "../../payment.service";
+import { FormsModule } from '@angular/forms';
+import { DadosPagamentoComponent } from "../../components/dados-pagamento/dados-pagamento.component";
+import { AuthService } from "../../auth.service"; // Importando AuthService
 
 @Component({
   selector: "app-cadastro",
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, DadosPagamentoComponent],
   templateUrl: "./cadastro.component.html",
   styleUrls: ["./cadastro.component.scss"]
 })
-export class CadastroComponent {
+export class CadastroComponent implements OnInit {
   private auth: Auth = inject(Auth);
   private firestore: Firestore = inject(Firestore);
   private router: Router = inject(Router);
+  private authService: AuthService = inject(AuthService); // Injeta AuthService
 
   email = "";
   password = "";
@@ -23,50 +27,32 @@ export class CadastroComponent {
   nome: string = '';
   numeroTelefone: string = '';
 
-  cadastrar() {
-    if (this.password !== this.repeatPassword) {
-      alert("As senhas precisam ser iguais.");
-      return;
-    }
+  // Dados do pagamento
+  paymentData = {
+    name: "",
+    card_number: "",
+    card_expiration_date: "",
+    card_cvv: "",
+    billingAddress: "", // Adicionando o campo de endereço de cobrança
+    amount: 15600 // valor em centavos (156 reais)
+  };
 
-    createUserWithEmailAndPassword(this.auth, this.email, this.password)
-      .then(async (userCredential) => {
-        const user = userCredential.user;
-        const uid = user.uid;
+  constructor(private paymentService: PaymentService) {}
 
-        // Definindo a coleção com base na role
-        let collectionName = '';
-        switch (this.role) {
-          case 'cliente':
-            collectionName = 'clientes';
-            break;
-          default:
-            collectionName = 'clientes';
-        }
+  ngOnInit(): void {
+    console.log('CadastroComponent Initialized');
+  }
 
-        // Salvando dados adicionais no Firestore na coleção correta
-        await setDoc(doc(this.firestore, collectionName, uid), {
-          role: this.role,
-          email: this.email,
-          nome: this.nome,
-          numeroTelefone: this.numeroTelefone,
-        });
-
-        alert("Cadastro efetuado com sucesso!");
-        // Redirecionando após o cadastro
+  // Método que será chamado ao submeter o formulário
+  onSubmit() {
+    this.authService.register(this.email, this.password, this.repeatPassword, this.role, this.paymentData)
+      .then(() => {
+        console.log('Cadastro e pagamento efetuados com sucesso!');
         this.router.navigate(['/perfil']);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-
-        if (errorCode === "auth/email-already-in-use") {
-          alert("Este e-mail já está cadastrado.");
-        } else if (errorCode === "auth/weak-password") {
-          alert("A senha precisa ter 6 ou mais caracteres.");
-        } else {
-          alert("Erro ao cadastrar: " + errorMessage);
-        }
+        console.error('Erro ao cadastrar e processar pagamento:', error);
+        alert(error.message); // Mostra a mensagem de erro para o usuário
       });
   }
 }
