@@ -3,7 +3,7 @@ import { Auth, createUserWithEmailAndPassword } from "@angular/fire/auth";
 import { Firestore, doc, setDoc } from "@angular/fire/firestore";
 import { Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
-
+import { AppToastService } from '../../services/toast.service'; // Ajuste o caminho conforme necessário
 @Component({
   selector: "app-cadastro",
   standalone: true,
@@ -30,6 +30,15 @@ export class CadastroComponent {
   cidade: string = '';
   estado: string = '';
   complemento: string = '';
+  constructor(private toastService: AppToastService) {}
+
+  showSuccess(title: string, message: string) {
+		this.toastService.show(title, message, 'bg-success text-light');
+	}
+
+	showDanger(title: string, message: string) {
+		this.toastService.show(title, message, 'bg-danger text-light');
+	}
 
   cadastrar() {
     if (this.password !== this.repeatPassword) {

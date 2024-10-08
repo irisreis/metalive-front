@@ -43,4 +43,3 @@ export const routes: Routes = [
   // Wildcard para capturar todas as outras rotas
   { path: '**', redirectTo: '/' }
 ];
-console.log('Routes Configured', routes);

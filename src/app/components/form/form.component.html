@@ -58,7 +58,6 @@
                                         <input class="checkInput" formControlName="sexo" type="checkbox" [value]="2">
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 -->
@@ -256,7 +255,6 @@
                                         (click)="onlyOne($event.target, 'group12')">
                                     <p class="textoInput">Mais de 3l</p><br>
                                 </div>
-                            </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="row posicaoForm">
@@ -285,7 +283,7 @@
                                 <br>
                             </div>
                         </div>
-                        <input style="margin-top: 20px;" class="col-3 mx-auto" type="submit">
+                        <button style="margin-top: 20px;" class="col-3 mx-auto" (click)="onSubmit()">Salvar Dados</button>
                         <div style="height: 50px;"></div>
                     </div>
                 </div><!--
