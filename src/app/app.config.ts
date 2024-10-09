@@ -1,6 +1,6 @@
 import { ApplicationConfig } from "@angular/core";
 import { provideRouter } from "@angular/router";
-import { routes } from "./app.routes";
+import { routes } from "./app.routes"; // Certifique-se de que está importando a variável correta
 import { provideHttpClient } from "@angular/common/http";
 import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
 import { provideAuth, getAuth } from "@angular/fire/auth";
@@ -9,6 +9,10 @@ import { provideFirestore, getFirestore } from "@angular/fire/firestore";
 import { provideStorage, getStorage } from "@angular/fire/storage";
 import { ReactiveFormsModule } from '@angular/forms'; // Importação correta para formulários
 
+/*export const pagarMeConfig = {
+  testUrl: "https://api.pagar.me/1/security/encode_card", // Endpoint de teste
+  prodUrl: "https://api.pagar.me/1/security/encode_card", // Endpoint de produção
+};*/
 // Configurações do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyD7rLD2BbkgExlwd6hhABPqvl39SfcrtFo",
@@ -22,7 +26,6 @@ const firebaseConfig = {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
     provideHttpClient(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
@@ -31,6 +34,9 @@ export const appConfig: ApplicationConfig = {
     UserTrackingService,
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    ReactiveFormsModule  // Habilitar formulários reativos
+    ReactiveFormsModule,  // Habilitar formulários reativos
+    provideRouter(routes), // Certifique-se de que está usando a variável correta
   ]
 };
+
+

@@ -8,7 +8,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "eslint src/**/*.{js,ts} --fix"
+    "lint": "eslint src/**/*.{js,ts} --fix",
+    "stop": "kill $(lsof -t -i:4200)"
   },
   "private": true,
   "dependencies": {

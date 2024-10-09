@@ -19,6 +19,7 @@ export class CadastroComponent implements OnInit {
   private firestore: Firestore = inject(Firestore);
   private router: Router = inject(Router);
   private authService: AuthService = inject(AuthService); // Injeta AuthService
+  private paymentService: PaymentService = inject(PaymentService); // Injeta PaymentService
 
   email = "";
   password = "";
@@ -37,7 +38,7 @@ export class CadastroComponent implements OnInit {
     amount: 15600 // valor em centavos (156 reais)
   };
 
-  constructor(private paymentService: PaymentService) {}
+  constructor() {}
 
   ngOnInit(): void {
     console.log('CadastroComponent Initialized');
@@ -45,10 +46,22 @@ export class CadastroComponent implements OnInit {
 
   // Método que será chamado ao submeter o formulário
   onSubmit() {
+    // Chama o método de registro do AuthService
     this.authService.register(this.email, this.password, this.repeatPassword, this.role, this.paymentData)
-      .then(() => {
-        console.log('Cadastro e pagamento efetuados com sucesso!');
-        this.router.navigate(['/perfil']);
+      .then(async () => {
+        console.log('Cadastro realizado com sucesso!');
+
+        // Processando o pagamento após o cadastro
+        try {
+          const paymentResponse = await this.paymentService.processPayment(this.paymentData).toPromise();
+          console.log('Pagamento processado com sucesso:', paymentResponse);
+
+          // Navegando para o perfil após o pagamento
+          this.router.navigate(['/perfil']);
+        } catch (error) {
+          console.error('Erro ao processar pagamento:', error);
+          alert("Cadastro efetuado, mas erro ao processar pagamento.");
+        }
       })
       .catch((error) => {
         console.error('Erro ao cadastrar e processar pagamento:', error);
