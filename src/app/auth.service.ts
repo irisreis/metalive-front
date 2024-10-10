@@ -63,10 +63,11 @@ export class AuthService {
       }),
       catchError(error => {
         console.error('Erro ao buscar dados do Firestore:', error);
-        return of(null); // Retorne null em caso de erro
+        return of(null); // Retorna um observable vazio em caso de erro
       })
     );
   }
+  
 
   getCollectionByRole(role: string): string {
     switch (role.toLowerCase()) {

@@ -3,17 +3,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { pagarMeConfig } from '../app/config/pagarme.config'; // Ajuste o caminho conforme necessário
 
+interface CardHashResponse {
+  card_hash: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class PaymentService {
   private apiUrl = '/api/transactions'; // Usando o proxy configurado
+    //private isProduction = false; // Mude para true quando estiver em produção
+  //private cardHashUrl = this.isProduction ? pagarMeConfig.prodUrl : pagarMeConfig.testUrl;
   private cardHashUrl = pagarMeConfig.testUrl; // Endpoint para gerar o card_hash do Pagar.me
 
   constructor(private http: HttpClient) { }
 
   // Método para processar o pagamento
-  
   processPayment(paymentData: any): Observable<any> {
     const token = localStorage.getItem('token'); // Obtenha o token de onde você armazenou
     const headers = new HttpHeaders({
@@ -25,17 +31,21 @@ export class PaymentService {
   }
 
   // Método para gerar o card_hash no backend
-  gerarCardHash(paymentData: any): Observable<string> {
+  gerarCardHash(paymentData: any): Observable<CardHashResponse> {
     console.log("Dentro do método gerar card hash do PaymentService");
+    console.log('Dados do pagamento:', paymentData); // Adicione este log
+
     const token = localStorage.getItem('token'); // Obtenha o token de onde você armazenou
     console.log('Token:', token); // Verifica se o token está correto
+    
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}` // Adiciona o token ao cabeçalho
     });
+    
     console.log("Header:", headers);
 
-    return this.http.post<string>(this.cardHashUrl, paymentData, { headers }).pipe(
+    return this.http.post<CardHashResponse>(this.cardHashUrl, paymentData, { headers }).pipe(
       catchError((error) => {
         console.error('Erro ao gerar card_hash:', error);
         return throwError(() => new Error('Erro ao gerar card_hash'));
