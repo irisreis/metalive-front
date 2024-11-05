@@ -25,7 +25,7 @@ export const routes: Routes = [
     canActivate: [RoleGuard],
     data: { role: 'cliente' } 
   },
-  { path: "formulario", component: FormularioComponent },
+  { path: "formulario/:uid", component: FormularioComponent },
   { path: "pagamento", component: PagamentoComponent },
   { path: "nutricionista/:uid",
     component: NutricionistaDashboardComponent,

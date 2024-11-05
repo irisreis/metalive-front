@@ -1,4 +1,23 @@
+const webpack = require('webpack');
+
 module.exports = {
-    // Nenhuma configuração especial se você estiver usando apenas a API REST
-  };
-  
+  resolve: {
+    fallback: {
+      "constants": require.resolve("constants-browserify"),
+      "fs": false,
+      "path": false,
+      "os": false,
+      "http": false,
+      "https": false,
+      "zlib": false,
+      "stream": false,
+      "crypto": require.resolve("crypto-browserify")
+    }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+      Buffer: ['buffer', 'Buffer']
+    })
+  ]
+};

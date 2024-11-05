@@ -1,1 +1,96 @@
-<p>personal-dashboard works!</p>
+<div class="container-fluid">
+    <div class="row">
+      <div id="topoDaPagina">
+        <div class="col-10" id="topo">
+          <img id="logo" src="../../../assets/logo/logometalive1.png" alt="Logo">
+        </div>
+        <div class="col-2" id="botaoSair">
+          <a (click)="onLogout()" class="link-logout" href="#">Sair</a> <!-- Link de logout -->
+      </div>
+      </div>
+  
+      <div class="col-7 posicaoLinks mx-auto">
+        <br>
+        <a class="link" (click)="showContent('content1')">Visão geral</a>
+        <a class="link" (click)="showContent('content2')">Gerenciamento de pacientes</a>
+        <a class="link" (click)="showContent('content3')">Outros</a>
+        <br>
+      </div>
+  
+      <div>
+        <!-- Content 1 -->
+        <div *ngIf="currentContent === 'content1'">
+          <div id="posicaoConteudoLink">
+            <p class="txtInformacoesGerais">Número de pacientes: {{patients.length}}</p>
+            <p class="txtInformacoesGerais">Número de consultas solicitadas: 0</p>
+            <p class="txtInformacoesGerais">Número de consultas concluidas: 0</p>
+            <p class="txtInformacoesGerais">Número de planos alimentares solicitados: 0</p>
+            <p class="txtInformacoesGerais">Número de planos alimentares concluidos: 0</p>
+          </div>
+        </div>
+  
+        <!-- Content 2 - Gerenciamento de Pacientes -->
+        <div *ngIf="currentContent === 'content2'">
+          <div id="posicaoConteudoLink">
+            <div class="manage-diet">
+              <form (ngSubmit)="updateDiet()" #dietForm="ngForm">
+                <div class="form-group">
+                  <label id="txtSelecionarPaciente" for="patient">Selecionar Paciente:</label>
+                  <select id="patient" [(ngModel)]="selectedPatient" name="patient" required
+                    style="color: black; background-color: white; border: 1px solid #ccc; width: 200px;">
+                    <option *ngFor="let patient of patients" [value]="patient.id"
+                      style="color: black; background-color: white;">
+                      {{ patient.nome }}
+                    </option>
+                  </select>
+                  <!-- <select id="patient" [(ngModel)]="selectedPatient" class="custom-select" name="patient" required>
+                                  
+                                <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.name }}</option>
+                                
+                              </select>-->
+                </div>
+                <div class="form-group">
+                  <label id="txtNovaDieta" for="diet">Nova Dieta:</label>
+                  <textarea id="diet" [(ngModel)]="newTreino" name="diet" rows="5" required [(ngModel)]="treinoEditado"
+                    name="dieta" rows="10" cols="50" required>
+                              </textarea>
+                </div>
+                <input type="file" (change)="onFileSelected($event)" accept=".pdf" required />
+                <button type="submit" [disabled]="!selectedFile">Enviar PDF</button>
+                <button type="submit">Atualizar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+  <div>
+        <!-- Content 3 - Iniciar Chat -->
+          <div *ngIf="currentContent === 'content3'">
+            <!--
+            <div id="posicaoConteudoLink">
+            <h2>Selecione um Cliente:</h2>
+            <form (ngSubmit)="iniciarChat()" #clienteForm="ngForm">
+              <div class="form-group">
+                <label for="cliente">Cliente:</label>
+                <select id="cliente" [(ngModel)]="clienteSelecionado" name="cliente" required
+                  style="color: black; background-color: white; border: 1px solid #ccc; width: 200px;">
+                  <option *ngFor="let cliente of clientes" [value]="cliente.id" 
+                    style="color: black; background-color: white;">
+                    {{ cliente.nome }}
+                  </option>
+                </select>
+              </div>
+              <button type="submit" [disabled]="!clienteSelecionado">Iniciar Chat</button>
+            </form>
+        
+            Chat Component 
+            <app-chat *ngIf="clienteSelecionado" 
+              [senderId]="nutricionistaId ? nutricionistaId : 'default-id'" 
+              [receiverId]="clienteSelecionado">
+            </app-chat>-->
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  

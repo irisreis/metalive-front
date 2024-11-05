@@ -1,68 +1,43 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
-import { pagarMeConfig } from '../app/config/pagarme.config'; // Ajuste o caminho conforme necessário
-
-interface CardHashResponse {
-  card_hash: string;
-}
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import pagarMe from 'pagarme';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class PaymentService {
-  private apiUrl = '/api/transactions'; // Usando o proxy configurado
-    //private isProduction = false; // Mude para true quando estiver em produção
-  //private cardHashUrl = this.isProduction ? pagarMeConfig.prodUrl : pagarMeConfig.testUrl;
-  private cardHashUrl = pagarMeConfig.testUrl; // Endpoint para gerar o card_hash do Pagar.me
+  private readonly pagarMePublicKey = 'pk_test_R7AMzYpUYsdpZaGO';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  // Método para processar o pagamento
-  processPayment(paymentData: any): Observable<any> {
-    const token = localStorage.getItem('token'); // Obtenha o token de onde você armazenou
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}` // Adiciona o token ao cabeçalho
-    });
-
-    return this.http.post<any>(this.apiUrl, paymentData, { headers });
+  createCardHash(cardData: any): Promise<any> {
+    return pagarMe.client.connect({ api_key: this.pagarMePublicKey })
+      .then((client: { cards: { create: (arg0: any) => any; }; }) => client.cards.create(cardData))
+      .catch((error: any) => {
+        console.error('Erro ao gerar card hash:', error);
+        throw error;
+      });
   }
 
-  // Método para gerar o card_hash no backend
-  gerarCardHash(paymentData: any): Observable<CardHashResponse> {
-    console.log("Dentro do método gerar card hash do PaymentService");
-    console.log('Dados do pagamento:', paymentData); // Adicione este log
-
-    const token = localStorage.getItem('token'); // Obtenha o token de onde você armazenou
-    console.log('Token:', token); // Verifica se o token está correto
-    
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}` // Adiciona o token ao cabeçalho
+  gerarCardHash(cardData: any): Observable<any> {
+    return new Observable(observer => {
+      this.createCardHash(cardData)
+        .then(cardHash => {
+          observer.next({ card_hash: cardHash });
+          observer.complete();
+        })
+        .catch(error => observer.error(error));
     });
-    
-    console.log("Header:", headers);
+  }
 
-    return this.http.post<CardHashResponse>(this.cardHashUrl, paymentData, { headers }).pipe(
-      catchError((error) => {
-        console.error('Erro ao gerar card_hash:', error);
-        return throwError(() => new Error('Erro ao gerar card_hash'));
+  processPayment(paymentData: any): Observable<any> {
+    return this.http.post<any>('https://processpayment-sjlgvpsoea-uc.a.run.app', paymentData).pipe(
+      catchError(error => {
+        console.error('Erro ao processar pagamento:', error);
+        return throwError(() => new Error('Erro ao processar pagamento'));
       })
     );
-  }
-
-  // Método para gerar bytes aleatórios
-  generateRandomBytes(size: number): Uint8Array {
-    const array = new Uint8Array(size);
-    window.crypto.getRandomValues(array);
-    return array;
-  }
-
-  // Método para testar e logar bytes aleatórios
-  logRandomBytes(): void {
-    const randomData = this.generateRandomBytes(16);
-    console.log(randomData);
   }
 }

@@ -27,12 +27,15 @@
       "src/@types"
     ],
     "types": [
-      "jest" // Inclua o tipo 'estree' se necessário
+      "jest",
+      "node", 
+     // "joi"
     ]
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.html"
+    "src/**/*.html",
+    
   ],
   "exclude": [
     "node_modules",

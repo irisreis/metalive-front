@@ -1,7 +1,15 @@
 // app-routing.module.ts
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { routes } from "./app.routes"; // Importe as rotas definidas
+import { HomeComponent } from '../app/pages/home/home.component'; // Certifique-se de importar o HomeComponent
+import { FormularioComponent } from './pages/formulario/formulario.component'; // Certifique-se de importar o FormularioComponent
+
+// Importe as rotas definidas
+export const routes: Routes = [
+  { path: '', component: HomeComponent }, // Rota para a página inicial
+  { path: 'formulario/:clienteId', component: FormularioComponent }, // Rota para o formulário
+  // Outras rotas aqui...
+];
 
 @NgModule({
   imports: [

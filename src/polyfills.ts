@@ -9,3 +9,6 @@
 //import 'constants-browserify'; 
 //import 'crypto-browserify'; 
 //import 'zone.js';
+import '@angular/localize/init';
+import { Buffer } from 'buffer';
+(window as any).Buffer = Buffer;

@@ -111,12 +111,13 @@
     letter-spacing: -0.8999999165534973px;
     text-align: center;
 }
-.mensal{
+.mensal{ // "a partir de"
     color: rgba(150, 151, 158, 1);
     font-family: Poppins;
     font-size: 15px;
     font-weight: 300;
     height: 0px;
+    //margin-top: 8px;
     line-height: 30px;
     letter-spacing: -0.8999999165534973px;
     text-align: center;
@@ -137,15 +138,16 @@
     height: 22px;
     margin-top: 22px;
     margin-left: 14px;
-    gap: 0px;
-    opacity: 0px;
+}
+.posicaoDescricao{
+    margin-top: 70px;
 }
 .linkAssineJa {
     background-color: rgba(48, 58, 109, 1);
     color: rgba(255, 255, 255, 1); 
     text-decoration: none;
     width: 155px;
-    margin-top: 20px;
+    margin-top: 40px;
     height: 30px;
     display: inline-block;
     border-radius: 10px;

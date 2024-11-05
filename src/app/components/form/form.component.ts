@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'; // Importando ReactiveFormsModule
 import { CommonModule } from '@angular/common'; // Importando CommonModule para suporte a tags padrão
@@ -12,22 +12,22 @@ import { FormService } from '../../services/form.service';
   styleUrls: ["./form.component.scss"]
 })
 export class FormComponent implements OnInit {
+  @Input() clienteId!: string; // Recebendo o clienteId como entrada
   form!: FormGroup;
 
   constructor(private fb: FormBuilder, private formService: FormService) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      /*nome: ['', Validators.required],
-      documentoIdentidade: ['', Validators.required],
-      orgaoEmissor: ['', Validators.required],
-      cpf: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      cep: ['', Validators.required],
-      rua: ['', Validators.required],
-      numero: ['', Validators.required],
-      complemento: [''],
+      uid: [this.clienteId],
+      nome: ['', Validators.required],
+      email: ['', Validators.required],
       dataNascimento: ['', Validators.required],
-      sexo: ['', Validators.required],*/
+      genero: ['', Validators.required],
+      altura: ['', Validators.required],
+      peso: ['', Validators.required],
+      objetivo: ['', Validators.required],
+      consultaDiaEHora: ['', Validators.required],
       restricaoExerciciosSim: [''],
       restricaoExerciciosNao: [''],
       pressaoArterialBaixa: [''],
@@ -72,17 +72,25 @@ export class FormComponent implements OnInit {
   }
   onSubmit() {
     if (this.form.valid) {
-      this.formService.salvarFormulario(this.form.value).then(() => {
-        console.log('Formulário salvo com sucesso!');
-        alert('Formulário enviado com sucesso!');
-      }).catch(error => {
-        console.error('Erro ao salvar o formulário: ', error);
-      });
+        // Combine os dados do formulário com o clienteId
+        const formData = { ...this.form.value, clienteId: this.clienteId };
+
+        // Verifique se clienteId está definido
+        console.log('clienteId:', this.clienteId); // Adicione esta linha para depuração
+
+        this.formService.salvarFormulario(formData).then(() => {
+            console.log('Formulário salvo com sucesso!');
+            alert('Formulário enviado com sucesso!');
+        }).catch(error => {
+            console.error('Erro ao salvar o formulário: ', error);
+        });
     } else {
-      console.log('Formulário inválido');
-      alert('Preencha os campos obrigatórios');
+        console.log('Formulário inválido');
+        alert('Preencha os campos obrigatórios');
     }
-  }
+}
+
+
   onlyOne(eventTarget: EventTarget | null, groupName: string): void {
     const checkbox = eventTarget as HTMLInputElement;
     if (!checkbox) {

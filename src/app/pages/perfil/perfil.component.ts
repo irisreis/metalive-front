@@ -18,7 +18,7 @@ export class PerfilComponent implements OnInit{
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params: { [x: string]: string; }) => {
       this.clienteId = params['id']; // Obtém o ID do cliente da rota
       // Aqui você pode chamar um método para carregar os dados do cliente, se necessário.
     });

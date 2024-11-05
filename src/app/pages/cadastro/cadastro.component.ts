@@ -1,25 +1,29 @@
-import { Component, inject, OnInit } from "@angular/core";
-import { Auth, createUserWithEmailAndPassword } from "@angular/fire/auth";
-import { Firestore, doc, setDoc } from "@angular/fire/firestore";
+import { Component, inject, OnInit, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+import { Auth } from "@angular/fire/auth";
+import { Firestore } from "@angular/fire/firestore";
 import { Router } from "@angular/router";
 import { PaymentService } from "../../payment.service";
 import { FormsModule } from '@angular/forms';
-import { DadosPagamentoComponent } from "../../components/dados-pagamento/dados-pagamento.component";
-import { AuthService } from "../../auth.service"; // Importando AuthService
+import { AuthService } from "../../auth.service"; 
+import { ScrollService } from "../../scroll.service";
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: "app-cadastro",
   standalone: true,
-  imports: [FormsModule, DadosPagamentoComponent],
+  imports: [FormsModule],
   templateUrl: "./cadastro.component.html",
   styleUrls: ["./cadastro.component.scss"]
 })
-export class CadastroComponent implements OnInit {
+export class CadastroComponent implements OnInit, AfterViewInit {
+  @ViewChild("destinoDetalhePagamento") destinoDetalhePagamento!: ElementRef;
+  
   private auth: Auth = inject(Auth);
   private firestore: Firestore = inject(Firestore);
   private router: Router = inject(Router);
-  private authService: AuthService = inject(AuthService); // Injeta AuthService
-  private paymentService: PaymentService = inject(PaymentService); // Injeta PaymentService
+  private authService: AuthService = inject(AuthService); 
+  private paymentService: PaymentService = inject(PaymentService);
+  private scrollService: ScrollService = inject(ScrollService);
 
   email = "";
   password = "";
@@ -27,45 +31,104 @@ export class CadastroComponent implements OnInit {
   role: string = 'cliente';
   nome: string = '';
   numeroTelefone: string = '';
+  card_number: string = '4111111111111111'; // Exemplo de cartão
+  card_expiration_date: string = '12/25';
+  card_cvv: string = '123';
+  billingAddress: string = '';
 
-  // Dados do pagamento
   paymentData = {
-    name: "",
-    card_number: "",
-    card_expiration_date: "",
-    card_cvv: "",
-    billingAddress: "", // Adicionando o campo de endereço de cobrança
-    amount: 15600 // valor em centavos (156 reais)
+    amount: 15600, // valor em centavos
+    currency: "BRL",
+    paymentMethod: "credit_card",
+    card: {
+      name: "",
+      card_number: "",
+      card_expiration_date: "",
+      card_cvv: "",
+      billingAddress: "",
+      card_hash: "",
+    },
   };
+  
+  aceito: boolean = false;
 
-  constructor() {}
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    console.log('CadastroComponent Initialized');
+  async onSubmit() {
+    if (this.aceito) {
+      try {
+        this.paymentData.card = {
+          name: this.nome,
+          card_number: this.card_number,
+          card_expiration_date: this.card_expiration_date,
+          card_cvv: this.card_cvv,
+          billingAddress: this.billingAddress,
+          card_hash: "", 
+        };
+  
+        // Gerando o card_hash com o SDK do Pagar.me
+        const cardHashResponse = await firstValueFrom(this.paymentService.gerarCardHash(this.paymentData.card));
+  
+        if (cardHashResponse?.card_hash) {
+          this.paymentData.card.card_hash = cardHashResponse.card_hash;
+        } else {
+          throw new Error("Falha ao gerar o card_hash.");
+        }
+  
+        // Registrando o usuário
+        await this.authService.register(this.nome, this.numeroTelefone, this.email, this.password, this.repeatPassword, this.role, this.paymentData);
+        console.log('Cadastro realizado com sucesso!');
+  
+        // Processando o pagamento com o card_hash
+        await this.processPayment();
+        
+      } catch (error) {
+        console.error('Erro ao cadastrar:', error);
+        alert((error as Error).message);
+      }
+    } else {
+      alert("Para cadastrar precisa aceitar os termos de uso e privacidade.");
+    }
+  }
+  
+  private async processPayment() {
+    try {
+      const paymentResponse = await firstValueFrom(this.paymentService.processPayment(this.paymentData));
+      console.log('Pagamento processado com sucesso:', paymentResponse);
+      this.router.navigate(['/perfil']);
+    } catch (error) {
+      console.error('Erro ao processar pagamento:', error);
+      alert((error as Error).message);
+    }
+  }
+  
+
+  async onLogout() {
+    try {
+      await this.authService.logout();
+      console.log('Usuário foi deslogado e redirecionado');
+    } catch (error) {
+      console.error('Erro ao deslogar:', error);
+    }
   }
 
-  // Método que será chamado ao submeter o formulário
-  onSubmit() {
-    // Chama o método de registro do AuthService
-    this.authService.register(this.email, this.password, this.repeatPassword, this.role, this.paymentData)
-      .then(async () => {
-        console.log('Cadastro realizado com sucesso!');
+  rolarParaDestino(event: Event, idElemento: string) {
+    event.preventDefault();
+    this.scrollService.emitirRolagem(idElemento);
+  }
 
-        // Processando o pagamento após o cadastro
-        try {
-          const paymentResponse = await this.paymentService.processPayment(this.paymentData).toPromise();
-          console.log('Pagamento processado com sucesso:', paymentResponse);
-
-          // Navegando para o perfil após o pagamento
-          this.router.navigate(['/perfil']);
-        } catch (error) {
-          console.error('Erro ao processar pagamento:', error);
-          alert("Cadastro efetuado, mas erro ao processar pagamento.");
+  ngAfterViewInit() {
+    this.scrollService.getRolagemObservable().subscribe((idElemento: any) => {
+      console.log("Recebido pedido de rolagem para:", idElemento);
+      if (this.destinoDetalhePagamento?.nativeElement) {
+        if (this.destinoDetalhePagamento.nativeElement.id === idElemento) {
+          this.destinoDetalhePagamento.nativeElement.scrollIntoView({ behavior: "smooth" });
+        } else {
+          console.log("IDs não coincidem. Verifique se o ID está correto.");
         }
-      })
-      .catch((error) => {
-        console.error('Erro ao cadastrar e processar pagamento:', error);
-        alert(error.message); // Mostra a mensagem de erro para o usuário
-      });
+      } else {
+        console.log("Elemento de destino não encontrado ou não inicializado.");
+      }
+    });
   }
 }

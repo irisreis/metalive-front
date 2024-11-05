@@ -2,19 +2,16 @@
     background-color: #aaaaaa24;
     height: 90px;
 }
-
 #topo{
     display: inline-block;
 }
-
 #logo{
     width: 180px;
     height: 27px;
-    margin-top: 35px;
+   // margin-top: 35px;
     margin-left: 164px;
     display: inline-block;
 }
-
 #posicaoBotaoHome{
     height: 30px;
     width: 190px;
@@ -80,7 +77,22 @@ select#patient {
     color: black !important; /* Cor do texto do select */
     background-color: white !important; /* Fundo do select */
 }
-
+#botaoSair{
+    border: 1px solid #303A6D; /* Define a cor e espessura da borda */
+    border-radius: 5px; /* Define o arredondamento dos cantos */
+    padding: 10px 15px; /* Adiciona espaçamento interno */
+    color: #303A6D; /* Cor do texto */
+    text-decoration: none; /* Remove sublinhado */
+    cursor: pointer; 
+    display: inline-block;
+    height: 45px;
+    width: 60px;
+    //margin-left: 908px;
+    margin-top: 20px;
+}
+.link-logout{
+    text-decoration: none;
+}
 select#patient option {
     color: black !important; /* Cor das opções */
     background-color: white !important; /* Fundo das opções */

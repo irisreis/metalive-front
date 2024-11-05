@@ -1,83 +1,49 @@
 import { onRequest } from "firebase-functions/v2/https";
-import * as logger from "firebase-functions/logger";
 import axios from "axios";
-import cors from 'cors';
+import * as cors from 'cors';
 
-// Habilitar CORS
-const corsHandler = cors({ origin: true });
-
-// Definir uma interface para a resposta esperada
-interface PagarMeResponse {
-  card_hash: string; // A propriedade card_hash esperada
-}
-
-export const gerarCardHash = onRequest(async (request, response) => {
-  corsHandler(request, response, async () => {
-    try {
-      const { card_number, card_holder_name, card_expiration_date, card_cvv } = request.body;
-      console.log("Dados do cartão recebidos:", { card_number, card_holder_name, card_expiration_date, card_cvv });
-
-      // Conectar ao Pagar.me
-      const pagarMeUrl = "https://api.pagar.me/1/security/encode_card"; // Endpoint correto para gerar o card_hash
-
-      // Chave de encriptação pública do Pagar.me
-      const encryptionKey = process.env.PAGARME_ENCRYPTION_KEY; // Certifique-se de definir essa variável de ambiente
-      console.log("Chave de encriptação:", encryptionKey);
-
-      // Formatar os dados do cartão para envio
-      const cardData = {
-        card_number,
-        card_holder_name,
-        card_expiration_date,
-        card_cvv
-      };
-
-      // Fazer a requisição para o Pagar.me para gerar o card_hash
-      const pagarMeResponse = await axios.post<PagarMeResponse>(pagarMeUrl, cardData, {
-        headers: {
-          //Comentar a linha abaixo para desabilitar o token
-           "Authorization": `Bearer ${encryptionKey}`,
-          "Content-Type": "application/json",
-        },
-      });
-      console.log("Resposta do Pagar.me:", pagarMeResponse.data);
-
-      // Agora TypeScript sabe que pagarMeResponse.data tem a propriedade card_hash
-      const { card_hash } = pagarMeResponse.data;
-
-      // Retornar o card_hash gerado pelo Pagar.me
-      response.status(200).send({ card_hash });
-
-    } catch (error) {
-      console.error("Erro ao gerar card hash:", error);
-      response.status(500).send({ error: "Error generating card hash" });
-    }
-  });
+// Configurar CORS
+const corsHandler = cors({ 
+  origin: 'http://localhost:4200',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 });
 
 // Função para processar o pagamento
 export const processPayment = onRequest(async (request, response) => {
   corsHandler(request, response, async () => {
+    console.log("Executando CORS Handler");
+
+    if (request.method === 'OPTIONS') {
+      return response.status(204).send(''); // Responde ao pré-vôo CORS
+    }
+
     try {
-      const paymentData = request.body;
+      const paymentData = request.body; // Receber os dados do pagamento do frontend
 
-      // URL do endpoint do Pagar.me para processar pagamento
-      const pagarMeUrl = "https://api.pagar.me/1/transactions";
+      const pagarMeUrl = "https://api.pagar.me/core/v5/orders"; // URL da API Pagar.me
+      const pagarMeApiKey = 'sk_test_2e5e6caadb384a6997370ad5bb6a1ee4'; // Chave de API
+      console.log("Chave de API Pagar.me:", pagarMeApiKey); // Logando a chave
 
-      // Obtenha a chave API das variáveis de ambiente
-      const pagarMeApiKey = process.env.PAGARME_KEY;
+      const basicAuthKey = Buffer.from(`${pagarMeApiKey}:`).toString('base64');
 
       const pagarMeResponse = await axios.post(pagarMeUrl, paymentData, {
         headers: {
-          "Authorization": `Bearer ${pagarMeApiKey}`,
+          "Authorization": `Basic ${basicAuthKey}`,
           "Content-Type": "application/json",
         },
       });
 
-      response.status(200).send(pagarMeResponse.data);
+      return response.status(200).send(pagarMeResponse.data);
+
     } catch (error) {
-      logger.error("Error processing payment", error);
-      response.status(500).send("Error processing payment");
+      if (axios.isAxiosError(error)) {
+        return response.status(500).send({ error: "Erro ao processar o pagamento", details: error.response?.data || error.message });
+      } else if (error instanceof Error) {
+        return response.status(500).send({ error: "Erro ao processar o pagamento", details: error.message });
+      } else {
+        return response.status(500).send({ error: "Erro desconhecido ao processar o pagamento" });
+      }
     }
   });
 });

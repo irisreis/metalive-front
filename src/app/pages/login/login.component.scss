@@ -47,14 +47,15 @@
 .logoMetalive{
     width: 200px;
     height: 30.17px;
-    margin-top: -15px;
-    opacity: 0px;
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
 }
 #texto2{
     font-family: Poppins;
     font-size: 17px;
     font-weight: 300;
-    margin-top: 2px;
+    margin-top: -17px;
     line-height: 57.6px;
     letter-spacing: -0.8999999165534973px;
     text-align: center;
@@ -91,11 +92,11 @@
     text-align: center;
     width: 308px;
     height: 31px;
-    margin-top: -30px;
+    margin-top: -20px;
     color: #000000;
 }
 .texto4{
-    margin-top: -8px;
+    margin-top: 0px;
 }
 #linkCadastro{
     font-family: Poppins;

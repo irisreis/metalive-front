@@ -44,23 +44,27 @@
 .logoMetalive{
     width: 200px;
     height: 30.17px;
-    margin-top: -15px;
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
 }
 #testo2{
     font-family: Poppins;
     font-size: 17px;
     font-weight: 300;
-    margin-top: -10px;
+    margin-top: -14px;
     line-height: 57.6px;
     letter-spacing: -0.8999999165534973px;
     text-align: center;
     color: #000000;
 }
 .inputLogin{
-    width: 310px;
+    //width: 310px;
+    width: 94%;
     height: 50px;
     margin-top: 17px;
     border-radius: 15px;
+    padding: 5px;
     border: 0.5px;
     box-shadow: 0px 0px 10px 0px #00000040;
     background-color: #F7F8FACC;
@@ -80,11 +84,11 @@
 .texto3{
     font-family: Poppins;
     font-size: 15px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 57.6px;
     letter-spacing: -0.8999999165534973px;
     text-align: center;
-    width: 308px;
+    width: 80%;
     height: 31px;
     margin-top: -22px;
     color: #000000;
@@ -115,6 +119,122 @@
     //margin-top: -130px;
     margin-top: -110px;
 }
+.resumoPlanoPagamento {
+    height: 80px;
+    margin-bottom: 30px;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.1); /* Corrigido para definir corretamente a sombra */
+    border-bottom: 2px solid #303A6D; /* Definido o border-bottom corretamente */
+    //border: 1px solid #303A6D; /* Corrigido para aplicar borda ao redor do elemento */
+}
+.linkDetalhesPagamento{
+    margin-left: 24px;
+    text-decoration: none;
+}
+.tituloTextoDados{
+    margin-left: 24px;
+}
+/* Estilos básicos do botão */
+button.cadastro-btn {
+    background-color:#303A6D; /* Cor de fundo verde */
+    border: none; /* Remove bordas */
+    color: white; /* Texto branco */
+    padding: 15px 32px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto */
+    text-decoration: none; /* Remove sublinhado */
+    align-items: center;
+    //display: inline-block;
+    margin-top: 5px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px; /* Bordas arredondadas */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transições suaves */
+    cursor: pointer; /* Cursor de mão */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  /* Efeito ao passar o mouse */
+  button.cadastro-btn:hover {
+    background-color:#303A6D; /* Muda a cor de fundo no hover */
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Aumenta a sombra */
+  }
+  
+  /* Efeito ao pressionar o botão */
+  button.cadastro-btn:active {
+    transform: scale(0.98); /* Ligeira redução no tamanho ao clicar */
+    background-color:#232c56; /* Cor de fundo mais escura */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra mais suave */
+  }
+  .textoInput{
+    margin-bottom: -6px;
+    margin-top: 18px;
+  }
+  .detalhesPagamento{
+    background-color: #F4F4F4;
+    margin-top: 40px;
+  }
+.textoDados{
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 400;
+    width: 160px;
+    line-height: 25px;
+    margin-left: 5%;
+    letter-spacing: -0.8999999165534973px;
+    color: rgb(148, 147, 147);
+    display: inline-block;
+}
+.tituloDetalhesPagamento{
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    margin-left: 5%;
+}
+.textoDadosValor{
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 400;
+    margin-left: 64%;
+    line-height: 25px;
+    letter-spacing: -0.8999999165534973px;
+    color:  rgb(148, 147, 147);
+    display: inline-block;
+}
+.textoDadosValor2{
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: -0.8999999165534973px;
+    color:  rgb(148, 147, 147);
+    display: inline-block;
+}
+.linha{
+    background-color:  rgb(148, 147, 147);
+    height: 1px;
+    width: 98%;
+    margin-bottom: 15px;
+}
+#textoTermos{
+    display: block;
+    margin-left: 6px;
+}
+#linkTermos{
+    text-decoration: none;
+}
+#posicaoTermos{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+#inputTermos{
+    display: inline-block;
+    height: 25px;
+}
 @media (max-width: 760px){
     #logoGrande{
         height: 0px;
@@ -130,5 +250,13 @@
     #blocoPrincipal{
         margin-top: 0px;
         //height: 100vh;
+    }
+    .linkDetalhesPagamento, .tituloTextoDados{
+        margin-left: 2px;
+        font-size: 15px;
+    }
+    .textoDadosValor2, .textoDados{
+        font-size: 15px;
+
     }
 }

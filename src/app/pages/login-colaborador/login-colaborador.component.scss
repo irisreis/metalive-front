@@ -2,29 +2,8 @@
     overflow: hidden;
     height: 700px;
 }
-#imgEsquerda{
-    width: 511px;
-    height: 512px;
-    margin-top: -133px;
-    margin-left: -275px;
-    transform: rotate(22deg);
-}
-#logoEsquerda{
-    z-index: -1;
-}
-#imgDireita{
-    width: 511px;
-    height: 512px;
-    transform: rotate(22deg);
-    margin-top: -210px;
-    margin-left: 1050px;
-    z-index: -1;
-}
-#logoDireita{
-    z-index: -1;
-}
 #blocoPrincipal{
-    height: 88vh;
+    height: 90vh;
     margin-top: 30px;
     overflow: hidden; 
     border-radius: 15px;
@@ -44,6 +23,10 @@
     text-align: center;
     color: #000000;
 }
+.textoInput{
+    margin-top: 10px;
+    margin-left: 5%;
+}
 .logoMetalive{
     width: 200px;
     height: 30.17px;
@@ -54,7 +37,7 @@
     font-family: Poppins;
     font-size: 17px;
     font-weight: 300;
-    margin-top: 2px;
+    margin-top: -10px;
     line-height: 57.6px;
     letter-spacing: -0.8999999165534973px;
     text-align: center;
@@ -63,7 +46,7 @@
 .inputLogin{
     width: 310px;
     height: 50px;
-    margin-top: 25px;
+    margin-top: -4px;
     border-radius: 15px;
     border: 0.5px;
     opacity: 0px;
@@ -95,7 +78,7 @@
     color: #000000;
 }
 .texto4{
-    margin-top: -8px;
+    margin-top: 8px;
 }
 #linkCadastro{
     font-family: Poppins;
@@ -134,10 +117,16 @@
     #imgDireito{
         display: none;
     }
+    .textoInput{
+        margin-left: 25%;
+    }
 }
 @media (max-width: 576px){
     #blocoPrincipal{
         margin-top: 0px;
         height: 100vh;
+    }
+    .textoInput{
+        margin-left: 14%;
     }
 }

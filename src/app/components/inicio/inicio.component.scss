@@ -2,6 +2,9 @@
     background-color: rgba(245, 245, 245, 1);
     height: auto;
 }
+body{
+    overflow-x: hidden;
+}
 #bannerPrincipal{
     margin: 0;
     padding-top: 75px; 
@@ -49,6 +52,7 @@
 #imgInicio{
     //width: 908px;
     height: 766px;
+    overflow-x: hidden;
     margin-top: -40px;
     margin-left: -190px;
 }

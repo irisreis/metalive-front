@@ -2,44 +2,97 @@
   <div class="row">
     <div class="col-xl-9 col-lg-10 col-md-11 col-sm-11 col-12 mx-auto" id="blocoPrincipal">
       <div class="row">
-        <div class="col-xl-4 col-lg-4 col-md-4 mx-auto" id="entrar">
+        <div class="col-xl-9 col-lg-9 col-md-11 col-12 mx-auto" id="entrar">
           <div class="row">
-            <p class="col-12 mx-auto" id="texto1">Welcome to</p>
+            <p class="col-12 mx-auto" id="texto1">Cadastre-se</p>
             <a href="/" class="logoMetalive mx-auto">
-              <img class="logoMetalive" src="../../../assets/paginas/login/tituloMetalive.png" alt="">
+              <img class="logoMetalive mx-auto" src="../../../assets/paginas/login/tituloMetalive.png" alt="">
             </a>
             <p class="col-12 mx-auto" id="testo2">Conexão, mente e corpo.</p>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-11 col-11 mx-auto resumoPlanoPagamento">
+              <div class="row">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9 col-8">
+                  <p class="tituloTextoDados">Plano <u>Metalive</u></p>
+                  <a (click)="rolarParaDestino($event, 'destinoDetalhePagamento')" class="linkDetalhesPagamento" href="/">Detalhes de pagamento ></a>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4">
+                  <p class="textoDados">Total:</p>
+                  <p class="textoDadosValor2">R$ 159,90</p>
+                </div>
+              </div>
+            </div>
             <form (ngSubmit)="onSubmit()">
-            <!-- Formulário Único -->
-
-            <input type="text" placeholder="Nome Completo" [(ngModel)]="nome" name="nome" required>
-            <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required>
-            <input type="password" placeholder="Senha" [(ngModel)]="password" name="password" required>
-            <input type="password" placeholder="Repita a senha" [(ngModel)]="repeatPassword" name="repeatPassword" required>
-            <input type="text" placeholder="Telefone" [(ngModel)]="numeroTelefone" name="numeroTelefone" required>
-          
-            <!-- Campos de pagamento -->
-            <input type="text" placeholder="Nome no Cartão" [(ngModel)]="paymentData.name" name="name" required>
-            <input type="text" placeholder="Número do Cartão" [(ngModel)]="paymentData.card_number" name="card_number" required>
-            <input type="text" placeholder="Data de Expiração" [(ngModel)]="paymentData.card_expiration_date" name="card_expiration_date" required>
-            <input type="text" placeholder="CVV" [(ngModel)]="paymentData.card_cvv" name="card_cvv" required>
-            <input type="text" id="billingAddress" name="billingAddress" placeholder="Rua, número, cidade" [(ngModel)]="paymentData.billingAddress" required>
-          
-            <button type="submit">Cadastrar e Processar Pagamento</button>
-          </form>
-
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 mx-auto">
+                  <!-- Formulário Único -->
+                  <p class="textoInput">Nome completo:</p>
+                  <input class="inputLogin" type="text" placeholder="" [(ngModel)]="nome" name="nome" required>
+                  <p class="textoInput">E-mail:</p>
+                  <input class="inputLogin" type="email" placeholder="" [(ngModel)]="email" name="email" required>
+                  <p class="textoInput">Senha:</p>
+                  <input class="inputLogin" type="password" placeholder="Senha" [(ngModel)]="password" name="password" required>
+                  <p class="textoInput">Confirme a senha:</p>
+                  <input class="inputLogin" type="password" placeholder="Repita a senha" [(ngModel)]="repeatPassword" name="repeatPassword"
+                    required>
+                    <p class="textoInput">Número de celular:</p>
+                  <input class="inputLogin" type="text" placeholder="00 000000000" [(ngModel)]="numeroTelefone" name="numeroTelefone" required>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 mx-auto">
+                  <!-- Campos de pagamento -->
+                  
+                  <p class="textoInput">Nome do cartao:</p>
+                  <input class="inputLogin" type="text" placeholder="" [(ngModel)]="paymentData.card.name" name="name"
+                    required>
+                    <p class="textoInput">Número do cartão:</p>
+                  <input class="inputLogin" type="text" placeholder="" [(ngModel)]="paymentData.card.card_number"
+                    name="card_number" required>
+                    <p class="textoInput">Data de Expiração:</p>
+                  <input class="inputLogin" type="text" placeholder="MM/AA" [(ngModel)]="paymentData.card.card_expiration_date"
+                    name="card_expiration_date" required>
+                    <p class="textoInput">Data de expedição:</p>
+                  <input class="inputLogin" type="text" placeholder="123" [(ngModel)]="paymentData.card.card_cvv" name="card_cvv" required>
+                  <p class="textoInput">Endereço:</p>
+                  <input class="inputLogin" type="text" id="billingAddress" name="billingAddress" placeholder="Rua, número, cidade"
+                    [(ngModel)]="paymentData.card.billingAddress" required>
+                </div>
+              </div>
+              <div id="posicaoTermos">
+                <input id="inputTermos" type="checkbox"> <p id="textoTermos">Eu aceito os <a id="linkTermos" target="_blank" rel="noopener noreferrer" href="../../../assets/Termo_de_Uso_e_Politica_de_Privacidade__METALIVE_Cliente_1729101885102222.pdf">termos de uso e politica de privacidade</a>.</p>
+              </div>
+              <button class="cadastro-btn mx-auto" type="submit">COMEÇAR</button>
+            </form>
+            <!--
             <p class="col-12 mx-auto texto3">Continue com as redes sociais.</p>
           </div>
           <div class="row">
             <div class="col-3 mx-auto"></div>
-            <a class="col-1 mx-auto redesSociais" href=""><img src="../../../assets/paginas/login/google.png" alt=""></a>
-            <a class="col-1 mx-auto redesSociais" href=""><img src="../../../assets/paginas/login/iconFacebook.png" alt=""></a>
+            <a class="col-1 mx-auto redesSociais" href=""><img src="../../../assets/paginas/login/google.png"
+                alt=""></a>
+            <a class="col-1 mx-auto redesSociais" href=""><img src="../../../assets/paginas/login/iconFacebook.png"
+                alt=""></a>
             <div class="col-4 mx-auto"></div>
-          </div>
-          <p style="margin-top: 5px;" class="texto3 mx-auto">É um colaborador? Faça seu cadastro <a href="/cadastroColaborador">aqui</a></p>
+          </div>-->
         </div>
-        <img class="col-xl-8 col-lg-8 col-md-8 d-none d-md-block" id="logoGrande" src="../../../assets/paginas/login/logo1.png" alt="">
+       <!-- <button (click)="onLogout()">Logout</button>tirar-->
+        <!--<img class="col-xl-8 col-lg-8 col-md-8 d-none d-md-block" id="logoGrande" src="../../../assets/paginas/login/logo1.png" alt="">-->
       </div>
     </div>
+    <div #destinoDetalhePagamento id="destinoDetalhePagamento" class="col-12 detalhesPagamento">
+      <P class="tituloDetalhesPagamento">Plano <u>METALIVE</u>- Básico</P>
+      <p class="textoDados">Custo de serviços:</p>
+      <p class="textoDadosValor">R$ 125,00</p>
+      <div class="linha"></div>
+      <p class="textoDados">Custo de operação:</p>
+      <p class="textoDadosValor">R$ 34,90</p>
+      <div class="linha"></div>
+      <p class="textoDados">Taxa de adesão:</p>
+      <p class="textoDadosValor">R$ 00,00</p>
+      <div class="linha"></div>
+      <p class="textoDados">Total:</p>
+      <p class="textoDadosValor">R$ 159,90</p>
+    </div>
+    <p style="margin-top: 5px;" class="texto3 mx-auto">É um colaborador? Faça seu cadastro <a
+      href="/cadastroColaborador">aqui</a>. É cliente? faça o login <a href="/login">aqui</a>.</p>
   </div>
+</div>
 </div>

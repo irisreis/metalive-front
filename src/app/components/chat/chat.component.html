@@ -1,0 +1,217 @@
+<!--<div class="chat-container">
+    <div *ngFor="let msg of messages"></div>
+      <div>
+        <strong>{{ msg.senderId }}:</strong> {{ msg.message }}
+      </div>
+    <input [(ngModel)]="message" placeholder="Digite sua mensagem" />
+    <button (click)="sendMessage('clientId', 'nutricionistaId')">Enviar</button>
+
+
+
+    
+    import { onRequest } from "firebase-functions/v2/https";
+//import * as logger from "firebase-functions/logger";
+import axios from "axios";
+import * as cors from 'cors';
+//import { Buffer } from "buffer";
+
+
+// Configurar CORS
+const corsHandler = cors({ 
+  origin: 'http://localhost:4200',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+});
+
+
+// Função para validar os dados do cartão
+/*const validateCardData = (cardData: { card_number: any; }) => {
+  const { card_number } = cardData;
+  if (!card_number || card_number.length !== 16) {
+    throw new Error("Número do cartão inválido");
+  }
+};*/
+
+// Função para chamar a API Pagar.me
+/*const callPagarMeApi = async (cardData: { card_number: any; card_holder_name: any; card_expiration_date: any; card_cvv: any; }, encryptionKey: string | undefined) => {
+  const pagarMeUrl = "https://api.pagar.me/1/security/encode_card"; // URL da API Pagar.me
+  const basicAuthKey = Buffer.from(`${encryptionKey}:`).toString('base64');
+
+  return await axios.post(pagarMeUrl, cardData, {
+    headers: {
+      "Authorization": `Basic ${basicAuthKey}`,
+      "Content-Type": "application/json",
+    },
+  });
+};*/
+
+// Função para gerar o hash do cartão
+export const gerarCardHash = onRequest(async (request, response) => {
+  corsHandler(request, response, async () => {
+    console.log("Executando CORS Handler");
+    response.send("OK OK!!");
+    console.log("Antes do send");
+    /*if (request.method === 'OPTIONS') {
+      response.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+      response.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+      response.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      return response.status(204).send('');
+    }
+
+    try {
+      const { card_number, card_holder_name, card_expiration_date, card_cvv } = request.body;
+
+      // Validação dos dados do cartão
+      validateCardData({ card_number });
+
+      const encryptionKey = process.env.PAGARME_ENCRYPTION_KEY;
+
+      const cardData = {
+        card_number,
+        card_holder_name,
+        card_expiration_date,
+        card_cvv
+      };
+
+      const pagarMeResponse = await callPagarMeApi(cardData, encryptionKey);
+      const { card_hash } = pagarMeResponse.data;
+
+      return response.status(200).send({ card_hash });
+
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        logger.error("Erro ao gerar card hash:", error.response?.data || error.message);
+        return response.status(500).send({ error: "Erro ao gerar o hash do cartão", details: error.response?.data || error.message });
+      } else if (error instanceof Error) {
+        logger.error("Erro ao gerar card hash:", error.message);
+        return response.status(500).send({ error: "Erro ao gerar o hash do cartão", details: error.message });
+      } else {
+        logger.error("Erro desconhecido ao gerar card hash");
+        return response.status(500).send({ error: "Erro desconhecido ao gerar o hash do cartão" });
+      }
+    }*/
+  });
+});
+
+// Função para processar o pagamento
+export const processPayment = onRequest(async (request, response) => {
+  console.log("Executando CORS Handler");
+  corsHandler(request, response, async () => {
+    console.log("Antes do send");
+    response.send("OK OK!!!!!");
+    /*
+    if (request.method === 'OPTIONS') {
+      response.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+      response.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+      response.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      return response.status(204).send('');
+    }
+
+    try {
+      const paymentData = {
+        closed: true,
+        code: "pedido_12345", // Código do pedido
+        amount: 11500, // Valor total em centavos
+        customer: {
+          name: "João Silva",
+          email: "joao.silva@email.com",
+          document: "12345678909",
+          type: "individual",
+          gender: "male",
+          address: {
+            line_1: "Rua das Flores, 123",
+            line_2: "Apto 101",
+            zip_code: "01001000",
+            city: "São Paulo",
+            state: "SP",
+            country: "BR"
+          },
+          phones: {
+            mobile_phone: {
+              country_code: "55",
+              area_code: "11",
+              number: "987654321"
+            }
+          },
+          birthdate: "1985-05-10"
+        },
+        items: [
+          {
+            id: "produto_001",
+            description: "Camisa Personalizada",
+            amount: 10000,
+            quantity: 1,
+            status: "active"
+          }
+        ],
+        shipping: {
+          amount: 1500,
+          description: "Envio Expresso",
+          recipient_name: "João Silva",
+          address: {
+            line_1: "Rua das Flores, 123",
+            zip_code: "01001000",
+            city: "São Paulo",
+            state: "SP",
+            country: "BR"
+          },
+          max_delivery_date: "2024-11-05",
+          estimated_delivery_date: "2024-11-01"
+        },
+        payments: [
+          {
+            payment_method: "credit_card",
+            credit_card: {
+              operation_type: "auth_and_capture",
+              installments: 1,
+              statement_descriptor: "MINHA LOJA",
+              card: {
+                number: "4111111111111111",
+                holder_name: "João Silva",
+                exp_month: 12,
+                exp_year: 2025,
+                cvv: "123",
+                billing_address: {
+                  line_1: "Rua das Flores, 123",
+                  zip_code: "01001000",
+                  city: "São Paulo",
+                  state: "SP",
+                  country: "BR"
+                }
+              }
+            }
+          }
+        ],
+        ip: "192.168.0.1",
+        session_id: "abc123xyz456"
+      };
+
+      const pagarMeUrl = "https://api.pagar.me/core/v5/orders"; // URL da API Pagar.me
+      const pagarMeApiKey = process.env.PAGARME_KEY;
+
+      const basicAuthKey = Buffer.from(`${pagarMeApiKey}:`).toString('base64');
+
+      const pagarMeResponse = await axios.post(pagarMeUrl, paymentData, {
+        headers: {
+          "Authorization": `Basic ${basicAuthKey}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      return response.status(200).send(pagarMeResponse.data);
+
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        logger.error("Erro ao processar pagamento:", error.response?.data || error.message);
+        return response.status(500).send({ error: "Erro ao processar o pagamento", details: error.response?.data || error.message });
+      } else if (error instanceof Error) {
+        logger.error("Erro ao processar pagamento:", error.message);
+        return response.status(500).send({ error: "Erro ao processar o pagamento", details: error.message });
+      } else {
+        logger.error("Erro desconhecido ao processar pagamento");
+        return response.status(500).send({ error: "Erro desconhecido ao processar o pagamento" });
+      }
+    }
+  */});
+});
+-->
