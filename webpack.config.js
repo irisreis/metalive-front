@@ -11,7 +11,8 @@ module.exports = {
       "https": false,
       "zlib": false,
       "stream": false,
-      "crypto": require.resolve("crypto-browserify")
+      "crypto": require.resolve("crypto-browserify"), 
+      "constants": require.resolve("constants-browserify")
     }
   },
   plugins: [

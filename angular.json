@@ -27,6 +27,13 @@
               "src/polyfills.ts",
               "zone.js"
             ],
+            "webpackConfig": {
+              "resolve": {
+                "fallback": {
+                  "constants": "constants-browserify"
+                }
+              }
+            },
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
