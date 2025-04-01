@@ -15,11 +15,8 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
-            "customWebpackConfig": {
-              "path": "./webpack.config.js"
-            },
             "outputPath": "dist/metalive-front",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,13 +24,7 @@
               "src/polyfills.ts",
               "zone.js"
             ],
-            "webpackConfig": {
-              "resolve": {
-                "fallback": {
-                  "constants": "constants-browserify"
-                }
-              }
-            },
+
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [

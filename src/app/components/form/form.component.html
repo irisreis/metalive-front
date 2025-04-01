@@ -4,118 +4,49 @@
             <div class="col-xl-10 col-lg-10 col-md-11 col-sm-12 col-12 mx-auto">
                 <div class="row">
                     <h2 id="tituloForm">Formulário</h2>
-
                     <div class="blocoPessoal">
                         <div class="titulo1">
                             <h3>PESSOAL</h3>
                         </div>        
                         <div class="row posicaoForm">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="col-lg-5 col-sm-6 col-10">
-                                    <p class="textoInput">Nome:</p><br>
-                                    <input style="height: 40px;" class="caixaInputL col-11" formControlName="nome"
-                                    type="text">
-                                </div>
-                                <div class="col-lg-5 col-sm-6 col-10">
-                                    <p class="textoInput">E-mail:</p><br>
-                                    <input style="height: 40px;" class="caixaInputL col-11" formControlName="email"
-                                    type="text">
-                                </div>
-                                <div class="col-lg-5 col-sm-6 col-10">
-                                    <p class="textoInput">Gênero:</p><br>
-                                    <select class="col-12" formControlName="genero">
-                                        <option value="" disabled>Selecione o gênero</option>
-                                        <option value="masculino">Masculino</option>
-                                        <option value="feminino">Feminino</option>
-                                        <option value="outro">Outro</option>
-                                    </select>
-                                    
-                                </div>
+                                <p class="textoInput">Nome:</p><br>
+                                <input style="height: 40px;" class="caixaInputL col-11" formControlName="nome"
+                                type="text"><br>
+                                <p class="textoInput">E-mail:</p><br>
+                                <input style="height: 40px;" class="caixaInputL col-11" formControlName="email"
+                                type="text"><br>
+                                <p class="textoInput">Gênero:</p><br>
+                                <select class="col-11" formControlName="genero">
+                                    <option value="" disabled>Selecione o gênero</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="feminino">Feminino</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                                <p class="textoInput">Data de nascimento:</p><br>
+                                <input class="col-11" formControlName="dataNascimento" type="date"><br>
                                 
-                                <div class="col-lg-5 col-sm-6 col-10">
-                                    <p class="textoInput">Data de nascimento:</p><br>
-                                    <input class="col-12" formControlName="dataNascimento" type="date">
-                                </div>
-                                
-                                <div class="col-lg-5 col-sm-6 col-10">
-                                    <p class="textoInput">Altura:</p><br>
-                                    <input class="col-12" formControlName="altura" type="number" min="0">
-                                </div>
+                                <p class="textoInput">Altura:</p><br>
+                                <input class="col-11" formControlName="altura" type="number" min="0">
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                 
-                            <div class="col-lg-5 col-sm-6 col-10">
                                 <p class="textoInput">Peso:</p><br>
-                                <input class="col-12" formControlName="peso" type="number" min="0">
-                            </div>
+                                <input class="col-11" formControlName="peso" type="number" min="0">
                             
-                            <div class="col-lg-5 col-sm-6 col-10">
                                 <p class="textoInput">Objetivo:</p><br>
-                                <select class="col-12" formControlName="objetivo">
+                                <select class="col-11" formControlName="objetivo">
                                     <option value="" disabled selected>Selecione o seu objetivo:</option>
                                     <option value="ganharMassa">Ganhar massa</option>
                                     <option value="perderGordura">Perder gordura</option>
                                     <option value="manterPeso">Manter peso</option>
                                     <option value="outro">Outro</option>
                                 </select>
-                            </div>
-                            <div class="col-lg-5 col-sm-6 col-10">
                                 <p class="textoInput">Deixe aqui os melhores diase horários para agendar uma consulta::</p><br>
                                 <input style="height: 80px;" class="caixaInputL col-11" formControlName="consultaDiaEHora"
                                 type="text">
                             </div>
-                            </div>
-
-                            
                         </div>
-                        <!--
-                        <div class="row posicaoForm">
-                            <div class="col-xl-11 col-lg-10 col-md-10 col-xs-10 col-sm-10 col-10">
-                                <p class="textoInput">Nome:*</p><br>
-                                <input class="col-12" formControlName="nome" type="text">
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                                <p class="textoInput">Número do documento de Identidade:</p> <br>
-                                <input class="col-10" formControlName="documentoIdentidade" type="text">
-                            </div>
-                            <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-xs-10 col-12">
-                                <p class="textoInput">Órgão Emissor/UF:</p><br>
-                                <input class="col-10" formControlName="orgaoEmissor" type="text">
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-10 col-12">
-                                <p class="textoInput">Número do CPF:</p> <br>
-                                <input class="col-10" formControlName="cpf" type="number">
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-5 col-xs-10 col-12">
-                                <p class="textoInput">CEP:</p><br>
-                                <input class="col-md-11 col-10" formControlName="cep" type="text">
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6 col-xs-10 col-12">
-                                <p class="textoInput">Rua:</p><br>
-                                <input class="col-md-9 col-10" formControlName="rua" type="text">
-                            </div>
-                            <div class="col-xl-3 col-lg-2 col-md-6 col-sm-5 col-xs-10 col-12">
-                                <p class="textoInput">Número:</p><br>
-                                <input class="col-8 col-md-7 col-10" formControlName="numero" type="text">
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6 col-xs-10 col-12">
-                                <p class="textoInput">Complemento:</p><br>
-                                <input class="col-10" formControlName="complemento" type="text">
-                            </div>
-
-                            <div class="col-5 col-md-6 col-sm-8 col-11">
-                                <p class="textoInput">Sexo:</p>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <p class="textoInputCheck">Feminino:</p>
-                                        <input class="checkInput" formControlName="sexo" type="checkbox" [value]="1">
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="textoInputCheck">Masculino:</p>
-                                        <input class="checkInput" formControlName="sexo" type="checkbox" [value]="2">
-                                    </div>
-                                </div>
-                        </div>                       -->
 
                     </div>
                     <div class="blocoPessoal">

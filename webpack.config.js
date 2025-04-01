@@ -4,6 +4,7 @@ module.exports = {
   resolve: {
     fallback: {
       "constants": require.resolve("constants-browserify"),
+      "path": require.resolve("path-browserify"),
       "fs": false,
       "path": false,
       "os": false,

@@ -16,5 +16,18 @@
     "pathRewrite": {
       "^/api/processPayment": ""
     }
+  },
+  "/firebase-api/": {
+    "target": "https://identitytoolkit.googleapis.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/firebase-api": "/"
+    }
+  },
+  "/sendEmail": {
+    "target": "https://us-central1-metalive-8b9e7.cloudfunctions.net",
+    "secure": false
   }
 }

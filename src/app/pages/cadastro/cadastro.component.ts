@@ -2,7 +2,7 @@ import { Component, inject, OnInit, ViewChild, ElementRef, AfterViewInit } from 
 import { Auth } from "@angular/fire/auth";
 import { Firestore } from "@angular/fire/firestore";
 import { Router } from "@angular/router";
-import { PaymentService } from "../../payment.service";
+//import { PaymentService } from "../../payment.service";
 import { FormsModule } from '@angular/forms';
 import { AuthService } from "../../auth.service"; 
 import { ScrollService } from "../../scroll.service";
@@ -22,7 +22,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   private firestore: Firestore = inject(Firestore);
   private router: Router = inject(Router);
   private authService: AuthService = inject(AuthService); 
-  private paymentService: PaymentService = inject(PaymentService);
+  //private paymentService: PaymentService = inject(PaymentService);
   private scrollService: ScrollService = inject(ScrollService);
 
   email = "";
@@ -67,13 +67,14 @@ export class CadastroComponent implements OnInit, AfterViewInit {
         };
   
         // Gerando o card_hash com o SDK do Pagar.me
+        /*
         const cardHashResponse = await firstValueFrom(this.paymentService.gerarCardHash(this.paymentData.card));
   
         if (cardHashResponse?.card_hash) {
           this.paymentData.card.card_hash = cardHashResponse.card_hash;
         } else {
           throw new Error("Falha ao gerar o card_hash.");
-        }
+        }*/
   
         // Registrando o usuário
         await this.authService.register(this.nome, this.numeroTelefone, this.email, this.password, this.repeatPassword, this.role, this.paymentData);
@@ -93,8 +94,8 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   
   private async processPayment() {
     try {
-      const paymentResponse = await firstValueFrom(this.paymentService.processPayment(this.paymentData));
-      console.log('Pagamento processado com sucesso:', paymentResponse);
+      //const paymentResponse = await firstValueFrom(this.paymentService.processPayment(this.paymentData));
+      //console.log('Pagamento processado com sucesso:', paymentResponse);
       this.router.navigate(['/perfil']);
     } catch (error) {
       console.error('Erro ao processar pagamento:', error);

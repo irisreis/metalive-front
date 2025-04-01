@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 import { Observable, of, from } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { SharedService } from '../app/services/shared.service';
-import { PaymentService } from './payment.service';
+//import { PaymentService } from './payment.service';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +30,7 @@ export class AuthService {
     private firestore: Firestore,
     private router: Router,
     private sharedService: SharedService,
-    private paymentService: PaymentService
+    //private paymentService: PaymentService
   ) {
     this.user$ = authState(this.auth).pipe(
       switchMap((user: User | null) => {
@@ -39,17 +39,20 @@ export class AuthService {
             switchMap((userData: any) => {
               if (userData) {
                 const userWithRole = { uid: user.uid, email: user.email, ...userData };
-                return of(userWithRole);
+                return of(userWithRole);  // Emite o usuário com os dados
               } else {
-                return of(null);
+                console.log('Nenhum dado de usuário encontrado no Firestore.');
+                return of(null);  // Se não houver dados, emite null
               }
             })
           );
         } else {
-          return of(null);
+          console.log('Usuário não autenticado.');
+          return of(null);  // Retorna null se não houver usuário
         }
       })
     );
+    
   }
 
   getUserId(): string | null {
@@ -120,7 +123,7 @@ export class AuthService {
         await setDoc(doc(this.firestore, collectionName, uid), { nome, numeroTelefone, email, role });
         await setDoc(doc(this.firestore, 'users', uid), { nome, numeroTelefone, email, role });
 
-        await this.processPayment(paymentData, uid);
+        //await this.processPayment(paymentData, uid);
         this.redirectUserByRole(role, uid);
       }
     } catch (error) {
@@ -128,7 +131,7 @@ export class AuthService {
     }
   }
 
-  private processPayment(paymentData: any, uid: string): Promise<void> {
+ /* private processPayment(paymentData: any, uid: string): Promise<void> {
     return new Promise((resolve, reject) => {
       this.paymentService.createCardHash(paymentData).then(cardHash => {
         this.paymentService.processPayment({ ...paymentData, cardHash }).subscribe({
@@ -137,7 +140,7 @@ export class AuthService {
         });
       }).catch(error => reject(error));
     });
-  }
+  }*/
 
   private redirectUserByRole(role: string, uid: string): void {
     switch (role.toLowerCase()) {

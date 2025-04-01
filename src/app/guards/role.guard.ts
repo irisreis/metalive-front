@@ -9,7 +9,11 @@ import { SharedService } from '../../app/services/shared.service'; // Ajuste o c
   providedIn: 'root',
 })
 export class RoleGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router, private sharedService: SharedService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private sharedService: SharedService
+  ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const expectedRole = route.data['role'];
@@ -24,6 +28,7 @@ export class RoleGuard implements CanActivate {
       this.sharedService.collectionAux = 'personais';
     } else {
       console.log('Erro na coleção/expectedRole');
+      this.router.navigate(['/login']); // Redireciona caso o role não seja encontrado
       return of(false); // Retorna false se o expectedRole não corresponder a nenhum caso
     }
 
@@ -41,18 +46,19 @@ export class RoleGuard implements CanActivate {
                   return true; // Permite o acesso
                 } else {
                   console.log('Role diferente do esperado:', userData.role);
-                  alert('Não autorizado.'); // Alerta de não autorizado
+                  this.router.navigate(['/login']); // Redireciona se a role for diferente
                   return false; // Bloqueia o acesso
                 }
               } else {
                 console.log('Nenhum dado do usuário encontrado.');
+                this.router.navigate(['/login']); // Redireciona se não houver dados do usuário
                 return false; // Bloqueia o acesso se não encontrar dados do usuário
               }
             })
           );
         } else {
           console.log('Nenhum usuário autenticado.');
-          alert('Não autorizado.'); // Alerta de não autorizado
+          this.router.navigate(['/login']); // Redireciona se não houver usuário autenticado
           return of(false); // Bloqueia o acesso se não houver usuário autenticado
         }
       })

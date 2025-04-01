@@ -9,27 +9,29 @@
                 <img class="logoMetalive" src="../../../assets/paginas/login/tituloMetalive.png" alt="">
               </a>
               <p class="col-12 mx-auto" id="texto2">Conexão, mente e corpo.</p>
-              <form (ngSubmit)="login()">
-                <input 
-                  placeholder="   Username" 
-                  id="username" 
-                  class="col-12 mx-auto inputLogin" 
-                  type="text" 
-                  [(ngModel)]="email" 
-                  name="username" 
-                  required>
-                <div class="col-12"></div>
-                <input 
-                  placeholder="   Password" 
-                  id="password" 
-                  class="col-12 mx-auto inputLogin" 
-                  type="password" 
-                  [(ngModel)]="password" 
-                  name="password" 
-                  required>
-                <div class="col-12"></div>
-                <button class="col-12 mx-auto" id="botaoEntrar" type="submit">Entrar</button>
-              </form>
+              <div id="posicaoInput">
+                <form (ngSubmit)="login()">
+                  <input 
+                    placeholder="   Username" 
+                    id="username" 
+                    class="col-12 mx-auto inputLogin" 
+                    type="text" 
+                    [(ngModel)]="email" 
+                    name="username" 
+                    required>
+                  <div class="col-12"></div>
+                  <input 
+                    placeholder="   Password" 
+                    id="password" 
+                    class="col-12 mx-auto inputLogin" 
+                    type="password" 
+                    [(ngModel)]="password" 
+                    name="password" 
+                    required>
+                  <div class="col-12"></div>
+                  <button class="col-12 mx-auto" id="botaoEntrar" type="submit">Entrar</button>
+                </form>
+              </div>
   
               <p class="col-12 mx-auto text-center text-primary cursor-pointer texto4" (click)="resetPassword()">Esqueci minha senha.</p>
               <p class="col-12 mx-auto texto3">

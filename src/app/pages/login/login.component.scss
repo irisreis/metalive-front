@@ -9,18 +9,12 @@
     margin-left: -275px;
     transform: rotate(22deg);
 }
-#logoEsquerda{
-    z-index: -1;
-}
 #imgDireita{
     width: 511px;
     height: 512px;
     transform: rotate(22deg);
     margin-top: -210px;
     margin-left: 1050px;
-    z-index: -1;
-}
-#logoDireita{
     z-index: -1;
 }
 #blocoPrincipal{
@@ -125,14 +119,19 @@
 .cursor-pointer {
     cursor: pointer;
 }
+#posicaoInput{
+    display: flex;
+    justify-content: center;
+}
 @media (max-width: 760px){
     #logoGrande{
         height: 0px;
+        display: none;
     }
     #imgEsquerda{
         display: none;
     }
-    #imgDireito{
+    #imgDireita{
         display: none;
     }
 }
