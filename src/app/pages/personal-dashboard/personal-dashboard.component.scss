@@ -1,0 +1,99 @@
+#topoDaPagina{
+    background-color: #aaaaaa24;
+    height: 90px;
+}
+#topo{
+    display: inline-block;
+}
+#logo{
+    width: 180px;
+    height: 27px;
+   // margin-top: 35px;
+    margin-left: 164px;
+    display: inline-block;
+}
+#posicaoBotaoHome{
+    height: 30px;
+    width: 190px;
+    margin-left: 1100px;
+    margin-top: -30px;
+    border-radius: 30px;
+    border: solid;
+    border-color: rgba(0, 0, 0, 0.189);
+}
+
+#voltarParaHome{
+    text-decoration: none;
+    color: black;
+    margin-left: 19px;
+}
+
+.link{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    margin-left: 50px;
+    font-size: 18px;
+    font-family: Poppins;
+}
+
+.link:hover{
+    color: #303A6D;
+}
+
+#posicaoConteudoLink{
+    margin-top: 60px;
+    margin-left: 164px;
+}
+
+.txtInformacoesGerais{
+    color: black;
+}
+
+#txtSelecionarPaciente{
+    color: black;
+}
+
+#patient{
+    width: 200px;
+    margin-left: 15px;
+    border-radius: 10px;
+}
+
+/* Estilo para o label da nova dieta */
+#txtNovaDieta{
+    margin-top: 20px;
+    display: block;
+}
+
+/* Estilo para o textarea */
+#diet {
+    height: 400px;
+    margin-top: 10px;
+}
+
+/* Estilo para o select e as opções */
+select#patient {
+    color: black !important; /* Cor do texto do select */
+    background-color: white !important; /* Fundo do select */
+}
+#botaoSair{
+    border: 1px solid #303A6D; /* Define a cor e espessura da borda */
+    border-radius: 5px; /* Define o arredondamento dos cantos */
+    padding: 10px 15px; /* Adiciona espaçamento interno */
+    color: #303A6D; /* Cor do texto */
+    text-decoration: none; /* Remove sublinhado */
+    cursor: pointer; 
+    display: inline-block;
+    height: 45px;
+    width: 60px;
+    //margin-left: 908px;
+    margin-top: 20px;
+}
+.link-logout{
+    text-decoration: none;
+}
+select#patient option {
+    color: black !important; /* Cor das opções */
+    background-color: white !important; /* Fundo das opções */
+}

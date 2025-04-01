@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DadosComponent } from './dados.component';
+import { DadosComponent } from "./dados.component";
 
-describe('DadosComponent', () => {
+describe("DadosComponent", () => {
   let component: DadosComponent;
   let fixture: ComponentFixture<DadosComponent>;
 
@@ -17,7 +17,7 @@ describe('DadosComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

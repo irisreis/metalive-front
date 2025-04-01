@@ -3,12 +3,19 @@
     background-color: #ffffff;
     height: 76px;
     width: 100%;
+    z-index: 1000; 
+    display: flex;
+    position: fixed;
 }
 #logo{
     width: 180px;
     height: 27px;
     margin-top: 0px;
     margin-left: 164px;
+}
+#loginIcon{
+    background-image: url(../../../assets/icones/contatoEmail.png);
+    height: 40px;
 }
 #logobs{
     width: 180px;
@@ -35,6 +42,12 @@
     letter-spacing: 0em;
     text-align: center;
 }
+.link:hover{
+    color: #1472B0;
+}
+.navbar .navbar-toggler:not(.collapsed) + .navbar-collapse {
+    background-color: #f8f9fa; 
+  }
 @media screen and (max-width: 992px){
     #logo{
         margin-left: 10px;

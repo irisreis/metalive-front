@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ProfissionalComponent } from './profissional.component';
+import { ProfissionalComponent } from "./profissional.component";
 
-describe('ProfissionalComponent', () => {
+describe("ProfissionalComponent", () => {
   let component: ProfissionalComponent;
   let fixture: ComponentFixture<ProfissionalComponent>;
 
@@ -17,7 +17,7 @@ describe('ProfissionalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row">
+      <div id="topo">
+        <img id="logo" src="../../../assets/logo/logometalive1.png" alt="">
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-7 col-sm-12">
+        <p id="tituloPagamento">Opções de pagamento:</p>
+        <div id="posicaoOpçoesPagamento">
+          <a class="opcoesPagamento" href="">Cartão de Crédito</a>
+          <a class="opcoesPagamento" href="">PIX</a>
+        </div>
+        <form (ngSubmit)="processarPagamento()">
+                <div>
+                  <label class="textoInput" for="cardName">Nome no Cartão:</label><br>
+                  <input type="text" id="cardName" name="cardName" placeholder="Digite seu nome completo" [(ngModel)]="paymentData.name" required>
+                  <br>
+              
+                  <label class="textoInput" for="cardNumber">Número do Cartão:</label><br>
+                  <input type="text" id="cardNumber" name="cardNumber" placeholder="Digite o número do seu cartão" [(ngModel)]="paymentData.card_number" required>
+                  <br>
+              
+                  <label class="textoInput" for="expiryDate">Data de Validade:</label><br>
+                  <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/AA" [(ngModel)]="paymentData.card_expiration_date" required>
+                  <br>
+              
+                  <label class="textoInput" for="cvv">CVV:</label><br>
+                  <input type="text" id="cvv" name="cvv" placeholder="123" [(ngModel)]="paymentData.card_cvv" required>
+                  <br>
+              
+                  <label class="textoInput" for="billingAddress">Endereço de Cobrança:</label><br>
+                  <input type="text" id="billingAddress" name="billingAddress" placeholder="Rua, número, cidade" required>
+                  <br>
+                </div>
+              
+                <button id="botaoPagar" type="submit">Pagar</button>            
+        </form>
+      </div>
+      <div id="dadosPagamento" class="col-xl-6 col-lg-6 col-md-5 col-sm-12">
+        <div id="posicaoDados">
+          <p class="tituloTextoDados">Plano <u>Metalive</u></p>
+          <p class="textoDados">Custo de serviços:</p>
+          <p class="textoDadosValor">R$ 125,00</p>
+          <div class="linha"></div>
+          <p class="textoDados">Custo de operação:</p>
+          <p class="textoDadosValor">R$ 31,00</p>
+          <div class="linha"></div>
+          <p class="textoDados">Taxa de adesão:</p>
+          <p class="textoDadosValor">R$ 00,00</p>
+          <div class="linha"></div>
+          <p class="textoDados">Total:</p>
+          <p class="textoDadosValor">R$ 155,90</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

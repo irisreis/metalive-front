@@ -1,41 +1,101 @@
 <div class="container-fluid" id="paginaWelcome">
-    <div class="row">
-        <!--
-        <div id="logoEsquerda">
-            <img id="imgEsquerda" src="../../../assets/paginas/login/logo1.png" alt="">
-        </div>-->
-        <div class="col-8 mx-auto" id="blocoPrincipal">
-            <div class="row">
-                <div class="col-xl-4 col-lg-5 col-md-5 mx-auto" id="entrar">
-                    <div class="row">
-                    <p class="col-12 mx-auto" id="texto1">Welcome to</p>
-                        <img class="col-12 mx-auto" id="logoMetalive"
-                            src="../../../assets/paginas/login/tituloMetalive.png" alt="">
-                    <p class="col-12 mx-auto" id="testo2">Conexão, mente e corpo.</p>
-                    <input placeholder="   Username" id="username" class="col-12 mx-auto inputLogin" type="text" [(ngModel)]="email">
-                    <div class="col-12"></div>
-                    <input placeholder="   Password" id="password" class="col-12 mx-auto inputLogin" type="password" [(ngModel)]="password">
-                    <div class="col-12"></div>
-                    <input placeholder="   Password" id="password2" class="col-12 mx-auto inputLogin" type="password" [(ngModel)]="repeatPassword">
-                    <div class="col-12"></div>
-                    <button class="col-12 mx-auto" id="botaoEntrar" (click)="cadastrar()">Entrar</button>
-                    <div class="col-12"></div>
-                    <p class="col-12 mx-auto texto3">Continue com as redes sociais.</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-3 mx-auto"></div>
-                        <a class="col-1 mx-auto redesSociais" href=""><img
-                                src="../../../assets/paginas/login/google.png" alt=""></a>
-                        <a class="col-1 mx-auto redesSociais" href=""><img
-                                src="../../../assets/paginas/login/iconFacebook.png" alt=""></a>
-                        <div class="col-4 mx-auto"></div>
-                    </div>
-                </div>
-                <img class="col-xl-8 col-lg-8 col-md-8 d-none d-md-block" id="logoGrande" src="../../../assets/paginas/login/logo1.png" alt="">
-            </div>
-        </div><!--
-        <div id="logoDireita">
-            <img id="imgDireita" src="../../../assets/paginas/login/logo1.png" alt="">
-        </div>-->
+  <div class="row">
+    <div class="col-xl-9 col-lg-10 col-md-11 col-sm-11 col-12 mx-auto" id="blocoPrincipal">
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 mx-auto" id="entrar">
+          <div class="row">
+            <p class="col-12 mx-auto" id="texto1">Welcome to</p>
+            <img class="col-12 mx-auto" id="logoMetalive" src="../../../assets/paginas/login/tituloMetalive.png" alt="">
+            <p class="col-12 mx-auto" id="testo2">Conexão, mente e corpo.</p>
+
+            <!-- Nome Completo -->
+            <input placeholder="   Nome Completo" id="nome" class="col-12 mx-auto inputLogin" type="text"
+              [(ngModel)]="nome">
+            <div class="col-12"></div>
+
+            <!-- CPF -->
+            <input placeholder="   CPF" id="cpf" class="col-12 mx-auto inputLogin" type="text" [(ngModel)]="cpf">
+            <div class="col-12"></div>
+
+            <!-- Data de Nascimento -->
+            <input placeholder="   Data de Nascimento" id="dataNascimento" class="col-12 mx-auto inputLogin" type="date"
+              [(ngModel)]="dataNascimento">
+            <div class="col-12"></div>
+
+            <!-- Sexo -->
+            <select id="sexo" class="col-12 mx-auto inputLogin" [(ngModel)]="sexo">
+              <option value="masculino">Masculino</option>
+              <option value="feminino">Feminino</option>
+              <option value="outro">Outro</option>
+            </select>
+            <div class="col-12"></div>
+
+            <!-- Email -->
+            <input placeholder="   Email" id="email" class="col-12 mx-auto inputLogin" type="email" [(ngModel)]="email">
+            <div class="col-12"></div>
+
+            <!-- Número de Celular -->
+            <input placeholder="   Número de Celular" id="numeroCelular" class="col-12 mx-auto inputLogin" type="tel"
+              [(ngModel)]="numeroCelular">
+            <div class="col-12"></div>
+
+            <!-- CEP -->
+            <input placeholder="   CEP" id="cep" class="col-12 mx-auto inputLogin" type="text" [(ngModel)]="cep">
+            <div class="col-12"></div>
+
+            <!-- Rua -->
+            <input placeholder="   Rua" id="rua" class="col-12 mx-auto inputLogin" type="text" [(ngModel)]="rua">
+            <div class="col-12"></div>
+
+            <!-- Cidade -->
+            <input placeholder="   Cidade" id="cidade" class="col-12 mx-auto inputLogin" type="text"
+              [(ngModel)]="cidade">
+            <div class="col-12"></div>
+
+            <!-- Estado -->
+            <input placeholder="   Estado" id="estado" class="col-12 mx-auto inputLogin" type="text"
+              [(ngModel)]="estado">
+            <div class="col-12"></div>
+
+            <!-- Complemento -->
+            <input placeholder="   Complemento" id="complemento" class="col-12 mx-auto inputLogin" type="text"
+              [(ngModel)]="complemento">
+            <div class="col-12"></div>
+
+            <!-- Campo de seleção de role -->
+            <select id="role" class="col-12 mx-auto inputLogin" [(ngModel)]="role">
+              <option value="paciente">Paciente</option>
+              <option value="nutricionista">Nutricionista</option>
+              <option value="personal">Personal Trainer</option>
+            </select>
+            <div class="col-12"></div>
+            <!-- Senha -->
+            <input placeholder="   Password" id="password" class="col-12 mx-auto inputLogin" type="password"
+              [(ngModel)]="password">
+            <div class="col-12"></div>
+
+            <!-- Repetir Senha -->
+            <input placeholder="   Repeat Password" id="password2" class="col-12 mx-auto inputLogin" type="password"
+              [(ngModel)]="repeatPassword">
+            <div class="col-12"></div>
+
+            <button class="col-12 mx-auto" id="botaoEntrar" (click)="cadastrar()">Cadastrar</button>
+            <div class="col-12"></div>
+
+            <p class="col-12 mx-auto texto3">Continue com as redes sociais.</p>
+          </div>
+          <div class="row">
+            <div class="col-3 mx-auto"></div>
+            <a class="col-1 mx-auto redesSociais" href=""><img src="../../../assets/paginas/login/google.png"
+                alt=""></a>
+            <a class="col-1 mx-auto redesSociais" href=""><img src="../../../assets/paginas/login/iconFacebook.png"
+                alt=""></a>
+            <div class="col-4 mx-auto"></div>
+          </div>
+        </div>
+        <img class="col-xl-8 col-lg-8 col-md-8 d-none d-md-block" id="logoGrande"
+          src="../../../assets/paginas/login/logo1.png" alt="">
+      </div>
     </div>
+  </div>
 </div>

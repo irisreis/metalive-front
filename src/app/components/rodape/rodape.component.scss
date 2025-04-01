@@ -7,7 +7,6 @@
 #imgLogo{
     height: 75px;
     margin-top: 62px;
-
 }
 #infos{
     width: 850px;
@@ -28,13 +27,16 @@
 .infos{
     font-family: Poppins;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 200;
     text-decoration: none;
     line-height: 54.6px;
     letter-spacing: -0.8999999165534973px;
     text-align: left;
     color: #FFFFFF;
     height: 23px;
+}
+.infos:hover{
+    color: #1472B0;
 }
 .logo{
     margin-top: 30px;
@@ -44,6 +46,9 @@
     margin-top: 35px;
     opacity: 0px;
     color: #FFFFFF;
+}
+#texto1:hover{
+    color: #1472B0;
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
     #imgLogo{
