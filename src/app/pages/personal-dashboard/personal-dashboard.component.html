@@ -1,96 +1,344 @@
-<div class="container-fluid">
-    <div class="row">
-      <div id="topoDaPagina">
-        <div class="col-10" id="topo">
-          <img id="logo" src="../../../assets/logo/logometalive1.png" alt="Logo">
-        </div>
-        <div class="col-2" id="botaoSair">
-          <a (click)="onLogout()" class="link-logout" href="#">Sair</a> <!-- Link de logout -->
-      </div>
-      </div>
-  
-      <div class="col-7 posicaoLinks mx-auto">
-        <br>
-        <a class="link" (click)="showContent('content1')">Visão geral</a>
-        <a class="link" (click)="showContent('content2')">Gerenciamento de pacientes</a>
-        <a class="link" (click)="showContent('content3')">Outros</a>
-        <br>
-      </div>
-  
-      <div>
-        <!-- Content 1 -->
-        <div *ngIf="currentContent === 'content1'">
-          <div id="posicaoConteudoLink">
-            <p class="txtInformacoesGerais">Número de pacientes: {{patients.length}}</p>
-            <p class="txtInformacoesGerais">Número de consultas solicitadas: 0</p>
-            <p class="txtInformacoesGerais">Número de consultas concluidas: 0</p>
-            <p class="txtInformacoesGerais">Número de planos alimentares solicitados: 0</p>
-            <p class="txtInformacoesGerais">Número de planos alimentares concluidos: 0</p>
-          </div>
-        </div>
-  
-        <!-- Content 2 - Gerenciamento de Pacientes -->
-        <div *ngIf="currentContent === 'content2'">
-          <div id="posicaoConteudoLink">
-            <div class="manage-diet">
-              <form (ngSubmit)="updateDiet()" #dietForm="ngForm">
-                <div class="form-group">
-                  <label id="txtSelecionarPaciente" for="patient">Selecionar Paciente:</label>
-                  <select id="patient" [(ngModel)]="selectedPatient" name="patient" required
-                    style="color: black; background-color: white; border: 1px solid #ccc; width: 200px;">
-                    <option *ngFor="let patient of patients" [value]="patient.id"
-                      style="color: black; background-color: white;">
-                      {{ patient.nome }}
-                    </option>
-                  </select>
-                  <!-- <select id="patient" [(ngModel)]="selectedPatient" class="custom-select" name="patient" required>
-                                  
-                                <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.name }}</option>
-                                
-                              </select>-->
-                </div>
-                <div class="form-group">
-                  <label id="txtNovaDieta" for="diet">Nova Dieta:</label>
-                  <textarea id="diet" [(ngModel)]="newTreino" name="diet" rows="5" required [(ngModel)]="treinoEditado"
-                    name="dieta" rows="10" cols="50" required>
-                              </textarea>
-                </div>
-                <input type="file" (change)="onFileSelected($event)" accept=".pdf" required />
-                <button type="submit" [disabled]="!selectedFile">Enviar PDF</button>
-                <button type="submit">Atualizar</button>
-              </form>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo">METALIVE</div>
+                <div class="breadcrumb">Dashboard / Personal Trainer</div>
             </div>
-          </div>
-        </div>
-  <div>
-        <!-- Content 3 - Iniciar Chat -->
-          <div *ngIf="currentContent === 'content3'">
-            <!--
-            <div id="posicaoConteudoLink">
-            <h2>Selecione um Cliente:</h2>
-            <form (ngSubmit)="iniciarChat()" #clienteForm="ngForm">
-              <div class="form-group">
-                <label for="cliente">Cliente:</label>
-                <select id="cliente" [(ngModel)]="clienteSelecionado" name="cliente" required
-                  style="color: black; background-color: white; border: 1px solid #ccc; width: 200px;">
-                  <option *ngFor="let cliente of clientes" [value]="cliente.id" 
-                    style="color: black; background-color: white;">
-                    {{ cliente.nome }}
-                  </option>
-                </select>
-              </div>
-              <button type="submit" [disabled]="!clienteSelecionado">Iniciar Chat</button>
-            </form>
-        
-            Chat Component 
-            <app-chat *ngIf="clienteSelecionado" 
-              [senderId]="nutricionistaId ? nutricionistaId : 'default-id'" 
-              [receiverId]="clienteSelecionado">
-            </app-chat>-->
-          </div>
-        </div>
-        
-      </div>
+            <div class="user-section">
+                <div class="user-info">
+                    <div class="user-name">{{ personalTrainerName }}</div>
+                    <div class="user-plan">PAINEL DE CONTROLE</div>
+                </div>
+                <div class="user-avatar">👨‍</div> <!-- Ícone para personal trainer -->
+                <button class="logout-btn" (click)="onLogout()">Sair</button>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="nav-tab" [class.active]="currentContent === 'overview'" (click)="showContent('overview')">Visão Geral</button>
+            <button class="nav-tab" [class.active]="currentContent === 'clientList'" (click)="showContent('clientList')">Meus Clientes</button>
+            <button class="nav-tab" [class.active]="currentContent === 'consultations'" (click)="showContent('consultations')">Sessões</button>
+            <button class="nav-tab" [class.active]="currentContent === 'reports'" (click)="showContent('reports')">Relatórios</button>
+            <button class="nav-tab" [class.active]="currentContent === 'chat'" (click)="showContent('chat')">Chat</button>
+            <button class="nav-tab" [class.active]="currentContent === 'settings'" (click)="showContent('settings')">Configurações</button>
+        </nav>
+
+        <main class="main-content">
+            <!-- Mensagem de carregamento inicial -->
+            <div *ngIf="isLoadingClients && currentContent === 'overview'" class="loading-message">
+                <p>Carregando dados do dashboard...</p>
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Dashboard de Visão Geral (Overview) - RENDERIZA SOMENTE SE NÃO ESTIVER CARREGANDO E HOUVER DADOS -->
+            <ng-container *ngIf="currentContent === 'overview' && !isLoadingClients && personalDashboardData">
+                <div class="dashboard-grid">
+                    <!-- Planos de Treino Card -->
+                    <div class="dashboard-card">
+                        <div class="status-indicator" [class.status-active]="(personalDashboardData.planosAtivos || 0) > 0"></div>
+                        <div class="card-header">
+                            <div class="card-icon icon-treinos">🏋️‍♀️</div>
+                            <div>
+                                <div class="card-title">Planos de Treino</div>
+                                <div class="card-subtitle">Treinos personalizados e acompanhamento</div>
+                            </div>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div>
+                                    <div class="stat-number">{{ personalDashboardData.planosAtivos || 0 }}</div>
+                                    <div class="stat-label">ATIVOS</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div>
+                                    <div class="stat-number">{{ personalDashboardData.aderenciaMedia || 0 }}%</div>
+                                    <div class="stat-label">ADERÊNCIA</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" [style.width.%]="personalDashboardData.aderenciaMedia || 0"></div>
+                        </div>
+                        <button class="action-btn primary-btn" (click)="showContent('clientList')">Criar Novo Plano</button>
+                        <button class="secondary-btn" (click)="showContent('clientList')">Ver Todos os Planos</button>
+                    </div>
+
+                    <!-- Sessões Agendadas Card -->
+                    <div class="dashboard-card">
+                        <div class="status-indicator" [class.status-pending]="(personalDashboardData.sessoesHoje || 0) === 0" [class.status-active]="(personalDashboardData.sessoesHoje || 0) > 0"></div>
+                        <div class="card-header">
+                            <div class="card-icon icon-sessoes">📅</div>
+                            <div>
+                                <div class="card-title">Sessões Agendadas</div>
+                                <div class="card-subtitle">Agendamentos e compromissos</div>
+                            </div>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div>
+                                    <div class="stat-number">{{ personalDashboardData.sessoesHoje || 0 }}</div>
+                                    <div class="stat-label">HOJE</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div>
+                                    <div class="stat-number">{{ personalDashboardData.sessoesSemana || 0 }}</div>
+                                    <div class="stat-label">ESTA SEMANA</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="action-btn primary-btn" (click)="showContent('consultations')">Nova Sessão</button>
+                        <button class="secondary-btn" (click)="showContent('consultations')">Ver Agenda</button>
+                    </div>
+
+                    <!-- Pacientes Ativos Card -->
+                    <div class="dashboard-card">
+                        <div class="status-indicator" [class.status-active]="(personalDashboardData.pacientesAtivosTotal || 0) > 0"></div>
+                        <div class="card-header">
+                            <div class="card-icon icon-pacientes">👥</div>
+                            <div>
+                                <div class="card-title">Pacientes Ativos</div>
+                                <div class="card-subtitle">Acompanhamento de progresso</div>
+                            </div>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div>
+                                    <div class="stat-number">{{ personalDashboardData.pacientesAtivosTotal || 0 }}</div>
+                                    <div class="stat-label">TOTAL</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div>
+                                    <div class="stat-number">+{{ personalDashboardData.pacientesAtivosMes || 0 }}</div>
+                                    <div class="stat-label">ESTE MÊS</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="action-btn primary-btn" (click)="showContent('clientList')">Adicionar Paciente</button>
+                        <button class="secondary-btn" (click)="showContent('clientList')">Lista de Pacientes</button>
+                    </div>
+
+                    <!-- Análise de Resultados Card -->
+                    <div class="dashboard-card">
+                        <div class="status-indicator" [class.status-active]="(personalDashboardData.taxaSucessoGeral || 0) > 0"></div>
+                        <div class="card-header">
+                            <div class="card-icon icon-relatorios">📊</div>
+                            <div>
+                                <div class="card-title">Análise de Resultados</div>
+                                <div class="card-subtitle">Métricas e relatórios detalhados</div>
+                            </div>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div>
+                                    <div class="stat-number">{{ personalDashboardData.taxaSucessoGeral || 0 }}%</div>
+                                    <div class="stat-label">SUCESSO</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div>
+                                    <div class="stat-number">{{ personalDashboardData.avaliacaoGeral || 'N/A' }}</div>
+                                    <div class="stat-label">AVALIAÇÃO</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" [style.width.%]="personalDashboardData.taxaSucessoGeral || 0"></div>
+                        </div>
+                        <button class="action-btn primary-btn" (click)="showContent('reports')">Gerar Relatório</button>
+                        <button class="secondary-btn" (click)="showContent('reports')">Histórico</button>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <div class="activity-header">
+                        <h2 style="color: #373a6d; font-size: 1.5rem; margin: 0;">Atividade Recente</h2>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item" *ngFor="let activity of recentActivities">
+                            <div class="activity-icon">{{ activity.icon }}</div>
+                            <div class="activity-content">
+                                <div class="activity-title">{{ activity.title }}</div>
+                                <div class="activity-time">{{ activity.time }}</div>
+                            </div>
+                        </div>
+                        <div *ngIf="recentActivities.length === 0" class="textoNaoDisponivel">Nenhuma atividade recente.</div>
+                    </div>
+                </div>
+            </ng-container>
+            <!-- FIM DO DASHBOARD DE VISÃO GERAL -->
+
+
+            <!-- Painel de Gerenciamento de Clientes (Lista e Editor de Treino) -->
+            <ng-container *ngIf="currentContent === 'clientList' || currentContent === 'treinoEditor' || currentContent === 'upload'">
+                <div class="main-content-split">
+                    <!-- Painel Esquerdo: Lista de Clientes -->
+                    <div class="sidebar">
+                        <div class="stats-card"> <!-- Reutilizando stats-card para o container da lista -->
+                            <div class="stats-header">
+                                <div class="stats-title">Meus Clientes</div>
+                                <div class="stats-subtitle">Selecione um cliente para gerenciar</div>
+                            </div>
+                            <div class="client-list">
+                                <ng-container *ngIf="clientList.length > 0; else noClientsFound">
+                                    <div class="client-item"
+                                        *ngFor="let client of clientList"
+                                        [class.selected]="selectedClientData?.id === client.id"
+                                        (click)="selectClient(client.id)">
+                                        <div class="client-info">
+                                            <div class="client-avatar">{{ getInitials(client.nome) }}</div>
+                                            <div class="client-details">
+                                                <div class="client-name">{{ client.nome }}</div>
+                                                <div class="client-email">{{ client.email }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="select-arrow">❯</div>
+                                    </div>
+                                </ng-container>
+                                <ng-template #noClientsFound>
+                                    <p class="textoNaoDisponivel">Nenhum cliente cadastrado.</p>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Painel Direito: Detalhes e Edição do Cliente Selecionado -->
+                    <div class="diet-content"> <!-- Reutilizando diet-content para o layout principal (agora treino-content) -->
+                        <ng-container *ngIf="selectedClientData; else noClientSelected">
+                            <div class="profissional-card"> <!-- Reutilizando profissional-card para detalhes do cliente -->
+                                <div class="profissional-header">
+                                    <div class="profissional-avatar">{{ getInitials(selectedClientData.nome) }}</div>
+                                    <div class="profissional-info">
+                                        <h2>Cliente: {{ selectedClientData.nome }}</h2>
+                                        <p>Email: {{ selectedClientData.email }}</p>
+                                        <p>Plano: {{ selectedClientData.plano || 'N/A' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="diet-section"> <!-- Reutilizando diet-section para o editor de treino (agora treino-section) -->
+                                <div class="diet-header">
+                                    <div class="diet-title">
+                                        <div class="diet-icon">🏋️‍♂️</div>
+                                        <h2>Plano de Treino do Cliente</h2>
+                                    </div>
+                                    <div class="action-buttons horizontal">
+                                        <button class="primary-btn" (click)="editTreino()" *ngIf="!editingTreino">
+                                            <span>✍️</span>
+                                            Editar Treino
+                                        </button>
+                                        <button class="primary-btn" (click)="saveTreino()" *ngIf="editingTreino" [disabled]="isSavingTreino">
+                                            <span>💾</span>
+                                            <span *ngIf="!isSavingTreino">Salvar Treino</span>
+                                            <span *ngIf="isSavingTreino">Salvando...</span>
+                                        </button>
+                                        <button class="secondary-btn" (click)="cancelEditTreino()" *ngIf="editingTreino" [disabled]="isSavingTreino">
+                                            <span>✖️</span>
+                                            Cancelar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="isLoadingClientData || isSavingTreino" class="loading-message-small">
+                                    <p>Carregando/Salvando treino...</p>
+                                    <div class="spinner"></div>
+                                </div>
+
+                                <ng-container *ngIf="!isLoadingClientData && !isSavingTreino">
+                                    <textarea *ngIf="editingTreino; else displayTreino"
+                                        [(ngModel)]="currentTreinoText"
+                                        class="diet-editor" 
+                                        placeholder="Digite o plano de treino aqui...">
+                                    </textarea>
+                                    <ng-template #displayTreino>
+                                        <pre class="dietaTreinoPronto">{{ selectedClientData.treino || 'Nenhum treino cadastrado para este cliente. Clique em "Editar Treino" para adicionar.' }}</pre>
+                                    </ng-template>
+                                </ng-container>
+                            </div>
+
+                            <!-- Seção de Upload de PDF do Treino -->
+                            <div class="diet-section"> <!-- Reutilizando diet-section para upload (agora treino-upload-section) -->
+                                <div class="diet-header">
+                                    <div class="diet-title">
+                                        <div class="diet-icon">📄</div>
+                                        <h2>Upload de PDF do Treino</h2>
+                                    </div>
+                                    <button class="download-btn" (click)="viewTreinoPDF()" *ngIf="selectedClientData.treinoPdfUrl">
+                                        <span>👁️</span>
+                                        Ver PDF Atual
+                                    </button>
+                                </div>
+
+                                <div class="upload-area">
+                                    <input type="file" (change)="onFileSelected($event)" accept="application/pdf" class="file-input">
+                                    <button class="primary-btn" (click)="uploadTreinoPDF()" [disabled]="!selectedFile || isUploading">
+                                        <span *ngIf="!isUploading">⬆️ Fazer Upload</span>
+                                        <span *ngIf="isUploading">Enviando ({{ uploadProgress | number:'1.0-0' }}%)</span>
+                                    </button>
+                                </div>
+                                <div *ngIf="isUploading" class="loading-message-small">
+                                    <p>Upload em andamento...</p>
+                                    <div class="spinner"></div>
+                                </div>
+                                <div *ngIf="selectedClientData.treinoPdfUrl && !isUploading" class="pdf-status">
+                                    <p>PDF atual: <a [href]="selectedClientData.treinoPdfUrl" target="_blank">{{ selectedClientData.treinoPdfUrl | slice:0:40 }}...</a></p>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        <ng-template #noClientSelected>
+                            <div class="informacoesProfissional">
+                                <p class="textoNaoDisponivel">Selecione um cliente na lista à esquerda para gerenciar seu plano de treino e documentos.</p>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </ng-container>
+
+            <!-- Conteúdo para Consultas/Sessões (placeholder) -->
+            <div *ngIf="currentContent === 'consultations'">
+                <div class="informacoesProfissional">
+                    <p class="tituloConsulta">GERENCIAR SESSÕES</p>
+                    <p class="textoNaoDisponivel">Aqui você poderá gerenciar as sessões de treino agendadas com seus clientes.</p>
+                    <!-- Implemente o grid de sessões aqui -->
+                </div>
+            </div>
+
+            <!-- Conteúdo para Relatórios (placeholder) -->
+            <div *ngIf="currentContent === 'reports'">
+                <div class="informacoesProfissional">
+                    <p class="tituloConsulta">RELATÓRIOS E ANÁLISES</p>
+                    <p class="textoNaoDisponivel">Visualize relatórios de progresso e análises detalhadas dos seus clientes.</p>
+                    <!-- Implemente os gráficos/tabelas de relatórios aqui -->
+                </div>
+            </div>
+
+            <!-- Conteúdo para Chat (placeholder) -->
+            <div *ngIf="currentContent === 'chat'">
+                <div class="informacoesProfissional">
+                    <p class="tituloConsulta">CHAT COM CLIENTES</p>
+                    <p class="textoNaoDisponivel">Funcionalidade de chat em breve! Conecte-se diretamente com seus clientes.</p>
+                    <!-- Você pode integrar seu componente de chat aqui, passando os IDs -->
+                    <!-- <app-chat [userId]="nutricionistaId" [recipientId]="selectedClientData?.id"></app-chat> -->
+                </div>
+            </div>
+
+            <!-- Conteúdo para Configurações (placeholder) -->
+            <div *ngIf="currentContent === 'settings'">
+                <div class="informacoesProfissional">
+                    <p class="tituloConsulta">CONFIGURAÇÕES</p>
+                    <p class="textoNaoDisponivel">Gerencie suas preferências de perfil e do sistema aqui.</p>
+                    <!-- Implemente as opções de configuração aqui -->
+                </div>
+            </div>
+
+        </main>
+
+        <button class="floating-action" title="Ação rápida">+</button>
     </div>
-  </div>
-  
+</body>

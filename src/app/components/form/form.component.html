@@ -1,308 +1,349 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xl-10 col-lg-10 col-md-11 col-sm-12 col-12 mx-auto">
-                <div class="row">
-                    <h2 id="tituloForm">Formulário</h2>
-                    <div class="blocoPessoal">
-                        <div class="titulo1">
-                            <h3>PESSOAL</h3>
-                        </div>        
-                        <div class="row posicaoForm">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <p class="textoInput">Nome:</p><br>
-                                <input style="height: 40px;" class="caixaInputL col-11" formControlName="nome"
-                                type="text"><br>
-                                <p class="textoInput">E-mail:</p><br>
-                                <input style="height: 40px;" class="caixaInputL col-11" formControlName="email"
-                                type="text"><br>
-                                <p class="textoInput">Gênero:</p><br>
-                                <select class="col-11" formControlName="genero">
-                                    <option value="" disabled>Selecione o gênero</option>
-                                    <option value="masculino">Masculino</option>
-                                    <option value="feminino">Feminino</option>
-                                    <option value="outro">Outro</option>
-                                </select>
-                                <p class="textoInput">Data de nascimento:</p><br>
-                                <input class="col-11" formControlName="dataNascimento" type="date"><br>
-                                
-                                <p class="textoInput">Altura:</p><br>
-                                <input class="col-11" formControlName="altura" type="number" min="0">
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                
-                                <p class="textoInput">Peso:</p><br>
-                                <input class="col-11" formControlName="peso" type="number" min="0">
-                            
-                                <p class="textoInput">Objetivo:</p><br>
-                                <select class="col-11" formControlName="objetivo">
-                                    <option value="" disabled selected>Selecione o seu objetivo:</option>
-                                    <option value="ganharMassa">Ganhar massa</option>
-                                    <option value="perderGordura">Perder gordura</option>
-                                    <option value="manterPeso">Manter peso</option>
-                                    <option value="outro">Outro</option>
-                                </select>
-                                <p class="textoInput">Deixe aqui os melhores diase horários para agendar uma consulta::</p><br>
-                                <input style="height: 80px;" class="caixaInputL col-11" formControlName="consultaDiaEHora"
-                                type="text">
-                            </div>
-                        </div>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>METALIVE</h1>
+            <p>Formulário de Avaliação Completa</p>
+        </div>
+        <div class="form-container">
+            <!-- Adicionando [formGroup]="form" e (ngSubmit)="onSubmit()" -->
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <!-- Seção Pessoal -->
+                <div class="section">
+                    <h2 class="section-title">Dados Pessoais</h2>
 
+                    <div class="form-group full-width">
+                        <label for="nome">Nome Completo</label>
+                        <!-- Vincular ao FormControl 'nome' -->
+                        <input type="text" id="nome" formControlName="nome">
                     </div>
-                    <div class="blocoPessoal">
-                        <div class="titulo1">
-                            <h3>PERSONAL TRAINER</h3>
+                    <!-- Campos de documento, órgão, CPF, CEP, rua, número, complemento não estão no seu FormGroup.
+                         Se você precisa deles, adicione-os ao FormGroup no TS.
+                         Por enquanto, vou mantê-los como inputs básicos, sem vinculação a FormControl.
+                         É altamente recomendável que todos os campos do formulário sejam parte do FormGroup. -->
+                    <div class="form-row three-cols">
+                        <div class="form-group">
+                            <label for="documento">Número do Documento</label>
+                            <input type="text" id="documento" name="documento">
                         </div>
-                        <div class="row posicaoForm">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="row">
-                                    <p class="textoInput">Tem alguma restrição a prática de exercícios?</p>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">SIM</p>
-                                        <input class="checkInput" formControlName="restricaoExerciciosSim"
-                                            type="checkbox" [value]="1">
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">NÃO</p>
-                                        <input class="checkInput" formControlName="restricaoExerciciosNao"
-                                            type="checkbox" [value]="2">
-                                    </div>
-                                    <p class="textoInput">Pressão arterial:</p>
-                                    <div class="col-4">
-                                        <p class="textoInput">Baixa</p>
-                                        <input class="checkInput" formControlName="pressaoArterialBaixa" type="checkbox"
-                                            [value]="1">
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="textoInput">Média</p>
-                                        <input class="checkInput" formControlName="pressaoArterialMedia" type="checkbox"
-                                            [value]="2">
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="textoInput">Alta</p>
-                                        <input class="checkInput" formControlName="pressaoArterialAlta" type="checkbox"
-                                            [value]="3">
-                                    </div>
-                                    <p class="textoInput">Histórico familiar de doenças:</p>
-                                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <input class="checkInput" formControlName="historicoDoencasHipertensao"
-                                            type="checkbox" name="group4" value="1">
-                                        <p class="textoInput">Hipertensão</p>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <input class="checkInput" formControlName="historicoDoencasCardiopatia"
-                                            type="checkbox" name="group4" value="2">
-                                        <p class="textoInput">Cardiopatia</p>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <input class="checkInput" formControlName="historicoDoencasDiabetes"
-                                            type="checkbox" name="group4" value="3">
-                                        <p class="textoInput">Diabetes</p>
-                                    </div>
-                                    <p class="textoInput">Explique:</p>
-                                    <input class="caixaInputL col-11" formControlName="expliqueHistoricoDoencas"
-                                        type="">
-                                    <p class="col-11 textoInput">Recentemente fez ou faz algum tratamento no seu dia a
-                                        dia?</p>
-                                    <br>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">SIM</p>
-                                        <input class="checkInput" formControlName="tratamentoDiaADiaSim" type="checkbox"
-                                            name="group5" value="1" (click)="onlyOne($event.target, 'group5')">
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">NÃO</p>
-                                        <input class="checkInput" formControlName="tratamentoDiaADiaNao" type="checkbox"
-                                            name="group5" value="2" (click)="onlyOne($event.target, 'group5')">
-                                    </div>
+                        <div class="form-group">
+                            <label for="orgao">Órgão Emissor/UF</label>
+                            <select id="orgao" name="orgao">
+                                <option value="">Selecione</option>
+                                <option value="SSP/SP">SSP/SP</option>
+                                <option value="SSP/RJ">SSP/RJ</option>
+                                <option value="SSP/MG">SSP/MG</option>
+                                <option value="SSP/RS">SSP/RS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cpf">Número do CPF</label>
+                            <input type="text" id="cpf" name="cpf">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cep">CEP</label>
+                            <input type="text" id="cep" name="cep">
+                        </div>
+                        <div class="form-group">
+                            <label for="rua">RUA</label>
+                            <input type="text" id="rua" name="rua">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="numero">Número</label>
+                            <input type="text" id="numero" name="numero">
+                        </div>
+                        <div class="form-group">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" id="complemento" name="complemento">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dataNascimento">Data de Nascimento</label>
+                            <!-- Vincular ao FormControl 'dataNascimento' -->
+                            <input type="date" id="dataNascimento" formControlName="dataNascimento">
+                        </div>
+                        <div class="form-group">
+                            <label>Sexo</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <!-- Vincular ao FormControl 'genero' e usar (change) para onlyOne -->
+                                    <input type="radio" id="feminino" formControlName="genero" value="feminino" (change)="onlyOne($event.target, 'genero')">
+                                    <label for="feminino">Feminino</label>
                                 </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="row">
-                                    <br>
-                                    <p class="col-11 textoInput">Toma algum medicamento regularmente?</p>
-                                    <br>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">SIM</p>
-                                        <input class="checkInput" formControlName="medicamentoRegularSim"
-                                            type="checkbox" name="group6" value="1"
-                                            (click)="onlyOne($event.target, 'group6')">
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">NÃO</p>
-                                        <input class="checkInput" formControlName="medicamentoRegularNao"
-                                            type="checkbox" name="group6" value="2"
-                                            (click)="onlyOne($event.target, 'group6')">
-                                    </div>
-                                    <br>
-                                    <p class="col-11 textoInput">Se SIM, quais?</p><br>
-                                    <input class="col-11 caixaInputL" formControlName="qualMedicamentoRegular"
-                                        type="text">
-                                    <p class="col-11 textoInput">Fez alguma cirurgia ou esteve internado recentemente?
-                                    </p>
-                                    <br>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">SIM</p>
-                                        <input class="checkInput" formControlName="cirurgiaRecenteSim" type="checkbox"
-                                            name="group7" value="1" (click)="onlyOne($event.target, 'group7')">
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">NÃO</p>
-                                        <input class="checkInput" formControlName="cirurgiaRecenteNao" type="checkbox"
-                                            name="group7" value="2" (click)="onlyOne($event.target, 'group7')">
-                                    </div>
-                                    <br>
-                                    <p class="col-11 textoInput">Sente dor no seu dia a dia?</p>
-                                    <br>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">SIM</p>
-                                        <input class="checkInput" formControlName="dorDiaADiaSim" type="checkbox"
-                                            name="group8" value="1" (click)="onlyOne($event.target, 'group8')">
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">NÃO</p>
-                                        <input class="checkInput" formControlName="dorDiaADiaNao" type="checkbox"
-                                            name="group8" value="2" (click)="onlyOne($event.target, 'group8')">
-                                    </div>
-                                    <br>
-                                    <p class="textoInput">Qual local?</p><br>
-                                    <input class="col-11 caixaInputL" formControlName="localDorDiaADia" type="text">
+                                <div class="radio-item">
+                                    <input type="radio" id="masculino" formControlName="genero" value="masculino" (change)="onlyOne($event.target, 'genero')">
+                                    <label for="masculino">Masculino</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="blocoPessoal">
-                        <div class="titulo1">
-                            <h3>NUTRICIONISTA</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <!-- Vincular ao FormControl 'email' -->
+                            <input type="email" id="email" formControlName="email">
                         </div>
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="row posicaoForm">
-                                    <p class="col-12 textoInput">Pratica alguma atividade fisica?</p>
-                                    <br>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">SIM</p>
-                                        <input class="checkInput" formControlName="atividadeFisicaSim" type="checkbox"
-                                            name="group9" value="1" (click)="onlyOne($event.target, 'group9')">
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">NÃO</p>
-                                        <input class="checkInput" formControlName="atividadeFisicaNao" type="checkbox"
-                                            name="group9" value="2" (click)="onlyOne($event.target, 'group9')">
-                                    </div>
-                                    <p class="col-12 textoInput">Qual?</p><br>
-                                    <input class="col-11 caixaInputS" formControlName="qualAtividadeFisica" type="text">
-                                    <br>
-                                    <p class="col-12 textoInput">Quais dias e horários?</p><br>
-                                    <input class="col-11 caixaInputS" formControlName="atividadeFisicaDiasHorarios"
-                                        type="text">
-                                    <br>
-                                    <p class="col-12 textoInput">Consome bebidas alcoólicas?</p><br>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">SIM</p>
-                                        <input class="col-11 checkInput" formControlName="consomeBebidasAlcoolicasSim"
-                                            type="checkbox" name="group10" value="1"
-                                            (click)="onlyOne($event.target, 'group10')">
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">NÃO</p>
-                                        <input class="checkInput" formControlName="consomeBebidasAlcoolicasNao"
-                                            type="checkbox" name="group10" value="2"
-                                            (click)="onlyOne($event.target, 'group10')">
-                                    </div>
-                                    <p class="col-11 textoInput">Com qual frequência?</p><br>
-                                    <input class="col-11 caixaInputS" formControlName="frequenciaBebidasAlcoolicas"
-                                        type="text">
-                                    <br>
-                                    <p class="col-11 textoInput">É tabagista?</p>
-                                    <br>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">SIM</p>
-                                        <input class="checkInput" formControlName="tabagistaSim" type="checkbox"
-                                            name="group11" value="1" (click)="onlyOne($event.target, 'group11')">
-                                    </div>
-                                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                        <p class="textoInput">NÃO</p>
-                                        <input class="checkInput" formControlName="tabagistaNao" type="checkbox"
-                                            name="group11" value="2" (click)="onlyOne($event.target, 'group11')">
-                                    </div>
-                                    <br>
-                                    <p class="col-11 textoInput">Quantos litros de água consome por dia?</p>
-                                    <br>
-                                    <div class="col-12">
-                                        <input class="checkInput" formControlName="consumoAguaZero" type="checkbox"
-                                            name="group12" value="1" (click)="onlyOne($event.target, 'group12')">
-                                        <p class="textoInput">Zero</p><br>
-                                    </div>
-                                    <div class="col-12">
-                                        <input class="checkInput" formControlName="consumoAguaAte1l" type="checkbox"
-                                            name="group12" value="2" (click)="onlyOne($event.target, 'group12')">
-                                        <p class="textoInput">Até 1L</p><br>
-                                    </div>
-                                    <div class="col-12">
-                                        <input class="checkInput" formControlName="consumoAguaEntre1le2l"
-                                            type="checkbox" name="group12" value="3"
-                                            (click)="onlyOne($event.target, 'group12')">
-                                        <p class="textoInput">1L a 2l</p><br>
-                                    </div>
-                                    <div class="col-12">
-                                        <input class="checkInput" formControlName="consumoAguaEntre2le3l"
-                                            type="checkbox" name="group12" value="4"
-                                            (click)="onlyOne($event.target, 'group12')">
-                                        <p class="textoInput">2L a 3L</p><br>
-                                    </div>
-                                    <div class="col-12">
-                                        <input class="checkInput" formControlName="consumoAguaMais3l" type="checkbox"
-                                            name="group12" value="5" (click)="onlyOne($event.target, 'group12')">
-                                        <p class="textoInput">Mais de 3l</p><br>
-                                    </div>
-                                </div>                            </div>
-
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="row posicaoForm">
-                                        <p class="col-11 textoInput">Quais alimentos você não gosta de comer?</p><br>
-                                        <input class="col-11 caixaInputM" formControlName="alimentosNaoGosta"
-                                            type="text"><br>
-                                        <p class="col-11 textoInput">Quais são os alimentos indispensáveis, que você ama
-                                            comer?
-                                        </p><br>
-                                        <input class="col-11 caixaInputM" formControlName="alimentosIndispensaveis"
-                                            type="text"><br>
-                                        <p class="col-11 textoInput">Qual o horário de maior apetite?</p><br>
-                                        <input class="col-11 caixaInputM" formControlName="horarioMaiorApetite"
-                                            type="text"><br>
-                                        <p class="col-11 textoInput">Quantas refeições você faz no dia?</p><br>
-                                        <input class="col-11 caixaInputM" formControlName="refeicoesDia"
-                                            type="text"><br>
-                                        <p class="col-11 textoInput">Tem alguma alergia ou intolerância alimentar?</p>
-                                        <br>
-                                        <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                            <p class="textoInput">SIM</p>
-                                            <input class="checkInput" formControlName="alergiaIntoleranciaSim"
-                                                type="checkbox" name="group13" value="1"
-                                                (click)="onlyOne($event.target, 'group13')">
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
-                                            <p class="textoInput">NÃO</p>
-                                            <input class="checkInput" formControlName="alergiaIntoleranciaNao"
-                                                type="checkbox" name="group13" value="2"
-                                                (click)="onlyOne($event.target, 'group13')">
-                                        </div>
-                                        <p class="col-12 textoInput">Se sim, qual?</p><br>
-                                        <input class="col-11 caixaInputS" formControlName="qualAlergiaIntolerancia"
-                                            type="text">
-                                        <br>
-                                    </div>
-                                </div>
-
-                            <button style="margin-top: 20px;" class="col-3 mx-auto" (click)="onSubmit()">Salvar
-                                Dados</button>
-                            <div style="height: 50px;"></div>
+                        <div class="form-group">
+                            <label for="altura">Altura (cm)</label>
+                            <!-- Vincular ao FormControl 'altura' -->
+                            <input type="number" id="altura" formControlName="altura">
                         </div>
+                        <div class="form-group">
+                            <label for="peso">Peso (kg)</label>
+                            <!-- Vincular ao FormControl 'peso' -->
+                            <input type="number" id="peso" formControlName="peso">
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="objetivo">Principal Objetivo com a Metalive</label>
+                        <!-- Vincular ao FormControl 'objetivo' -->
+                        <textarea id="objetivo" formControlName="objetivo" placeholder="Descreva seu principal objetivo..."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="consultaDiaEHora">Dia e Hora Preferencial para Consulta</label>
+                        <!-- Vincular ao FormControl 'consultaDiaEHora' -->
+                        <input type="datetime-local" id="consultaDiaEHora" formControlName="consultaDiaEHora">
                     </div>
                 </div>
-            </div>
+
+                <!-- Seção Personal Trainer -->
+                <div class="section">
+                    <h2 class="section-title">Saúde e Atividade Física</h2>
+
+                    <div class="form-group">
+                        <label>Tem alguma restrição à prática de exercícios?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <!-- Vincular aos FormControls 'restricaoExerciciosSim'/'restricaoExerciciosNao' -->
+                                <input type="radio" id="restricao_sim" formControlName="restricaoExerciciosSim" [value]="true" (change)="onlyOne($event.target, 'restricaoExerciciosSim')">
+                                <label for="restricao_sim">Sim</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="restricao_nao" formControlName="restricaoExerciciosNao" [value]="true" (change)="onlyOne($event.target, 'restricaoExerciciosNao')">
+                                <label for="restricao_nao">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Recentemente fez ou faz algum tratamento no seu dia a dia?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="tratamento_sim" formControlName="tratamentoDiaADiaSim" [value]="true" (change)="onlyOne($event.target, 'tratamentoDiaADiaSim')">
+                                <label for="tratamento_sim">Sim</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="tratamento_nao" formControlName="tratamentoDiaADiaNao" [value]="true" (change)="onlyOne($event.target, 'tratamentoDiaADiaNao')">
+                                <label for="tratamento_nao">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nível de Pressão Arterial:</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="pressao_baixa" formControlName="pressaoArterialBaixa" [value]="true" (change)="onlyOne($event.target, 'pressaoArterialBaixa')">
+                                <label for="pressao_baixa">Baixa</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="pressao_media" formControlName="pressaoArterialMedia" [value]="true" (change)="onlyOne($event.target, 'pressaoArterialMedia')">
+                                <label for="pressao_media">Média</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="pressao_alta" formControlName="pressaoArterialAlta" [value]="true" (change)="onlyOne($event.target, 'pressaoArterialAlta')">
+                                <label for="pressao_alta">Alta</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Toma algum medicamento regularmente?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="medicamento_sim" formControlName="medicamentoRegularSim" [value]="true" (change)="onlyOne($event.target, 'medicamentoRegularSim')">
+                                <label for="medicamento_sim">Sim</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="medicamento_nao" formControlName="medicamentoRegularNao" [value]="true" (change)="onlyOne($event.target, 'medicamentoRegularNao')">
+                                <label for="medicamento_nao">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="qualMedicamentoRegular">Qual medicamento regularmente?</label>
+                        <textarea id="qualMedicamentoRegular" formControlName="qualMedicamentoRegular" placeholder="Descreva o medicamento..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Histórico familiar sobre doenças:</label>
+                        <div class="disease-options">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="hipertensao" formControlName="historicoDoencasHipertensao" [value]="true">
+                                <label for="hipertensao">Hipertensão</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cardiopatia" formControlName="historicoDoencasCardiopatia" [value]="true">
+                                <label for="cardiopatia">Cardiopatia</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="diabetes" formControlName="historicoDoencasDiabetes" [value]="true">
+                                <label for="diabetes">Diabetes</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="expliqueHistoricoDoencas">Se SIM, quais:</label>
+                        <textarea id="expliqueHistoricoDoencas" formControlName="expliqueHistoricoDoencas" placeholder="Descreva detalhadamente..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Fez alguma cirurgia ou esteve internado recentemente?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="cirurgia_sim" formControlName="cirurgiaRecenteSim" [value]="true" (change)="onlyOne($event.target, 'cirurgiaRecenteSim')">
+                                <label for="cirurgia_sim">Sim</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="cirurgia_nao" formControlName="cirurgiaRecenteNao" [value]="true" (change)="onlyOne($event.target, 'cirurgiaRecenteNao')">
+                                <label for="cirurgia_nao">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Sente dor no seu dia a dia?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="dor_sim" formControlName="dorDiaADiaSim" [value]="true" (change)="onlyOne($event.target, 'dorDiaADiaSim')">
+                                <label for="dor_sim">Sim</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="dor_nao" formControlName="dorDiaADiaNao" [value]="true" (change)="onlyOne($event.target, 'dorDiaADiaNao')">
+                                <label for="dor_nao">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="localDorDiaADia">Local da dor (se sim):</label>
+                        <textarea id="localDorDiaADia" formControlName="localDorDiaADia" placeholder="Descreva o local da dor..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Pratica alguma atividade física?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="atividade_sim" formControlName="atividadeFisicaSim" [value]="true" (change)="onlyOne($event.target, 'atividadeFisicaSim')">
+                                <label for="atividade_sim">Sim</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="atividade_nao" formControlName="atividadeFisicaNao" [value]="true" (change)="onlyOne($event.target, 'atividadeFisicaNao')">
+                                <label for="atividade_nao">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="qualAtividadeFisica">Qual?</label>
+                        <textarea id="qualAtividadeFisica" formControlName="qualAtividadeFisica" placeholder="Descreva as atividades que pratica..."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="atividadeFisicaDiasHorarios">Quantos dias e horários?</label>
+                        <textarea id="atividadeFisicaDiasHorarios" formControlName="atividadeFisicaDiasHorarios" placeholder="Frequência e duração..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Seção Nutricionista -->
+                <div class="section">
+                    <h2 class="section-title">Hábitos Alimentares e Outros</h2>
+
+                    <div class="form-group">
+                        <label>Consome bebida alcoólica?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="alcool_sim" formControlName="consomeBebidasAlcoolicasSim" [value]="true" (change)="onlyOne($event.target, 'consomeBebidasAlcoolicasSim')">
+                                <label for="alcool_sim">Sim</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="alcool_nao" formControlName="consomeBebidasAlcoolicasNao" [value]="true" (change)="onlyOne($event.target, 'consomeBebidasAlcoolicasNao')">
+                                <label for="alcool_nao">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="frequenciaBebidasAlcoolicas">Com qual frequência?</label>
+                        <textarea id="frequenciaBebidasAlcoolicas" formControlName="frequenciaBebidasAlcoolicas" placeholder="Frequência do consumo..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>É tabagista?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="tabagista_sim" formControlName="tabagistaSim" [value]="true" (change)="onlyOne($event.target, 'tabagistaSim')">
+                                <label for="tabagista_sim">Sim</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="tabagista_nao" formControlName="tabagistaNao" [value]="true" (change)="onlyOne($event.target, 'tabagistaNao')">
+                                <label for="tabagista_nao">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantos litros de água consome por dia?</label>
+                        <div class="water-options">
+                            <div class="radio-item">
+                                <input type="radio" id="agua_zero" formControlName="consumoAguaZero" [value]="true" (change)="onlyOne($event.target, 'consumoAguaZero')">
+                                <label for="agua_zero">Zero</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="agua_ate1" formControlName="consumoAguaAte1l" [value]="true" (change)="onlyOne($event.target, 'consumoAguaAte1l')">
+                                <label for="agua_ate1">Até 1L</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="agua_1a2" formControlName="consumoAguaEntre1le2l" [value]="true" (change)="onlyOne($event.target, 'consumoAguaEntre1le2l')">
+                                <label for="agua_1a2">1 a 2L</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="agua_2a3" formControlName="consumoAguaEntre2le3l" [value]="true" (change)="onlyOne($event.target, 'consumoAguaEntre2le3l')">
+                                <label for="agua_2a3">2 a 3L</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="agua_mais3" formControlName="consumoAguaMais3l" [value]="true" (change)="onlyOne($event.target, 'consumoAguaMais3l')">
+                                <label for="agua_mais3">Mais de 3L</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="alimentosNaoGosta">Quais alimentos você não gosta de comer?</label>
+                        <textarea id="alimentosNaoGosta" formControlName="alimentosNaoGosta" placeholder="Liste os alimentos que não gosta..."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="alimentosIndispensaveis">Quais são os alimentos indispensáveis, que você ama comer?</label>
+                        <textarea id="alimentosIndispensaveis" formControlName="alimentosIndispensaveis" placeholder="Liste seus alimentos favoritos..."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="horarioMaiorApetite">Qual o horário do maior apetite?</label>
+                        <textarea id="horarioMaiorApetite" formControlName="horarioMaiorApetite" placeholder="Descreva seus horários de maior fome..."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="refeicoesDia">Quantas refeições você faz no dia?</label>
+                        <textarea id="refeicoesDia" formControlName="refeicoesDia" placeholder="Descreva sua rotina alimentar..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tem alguma alergia ou intolerância alimentar?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="alergia_sim" formControlName="alergiaIntoleranciaSim" [value]="true" (change)="onlyOne($event.target, 'alergiaIntoleranciaSim')">
+                                <label for="alergia_sim">Sim</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="alergia_nao" formControlName="alergiaIntoleranciaNao" [value]="true" (change)="onlyOne($event.target, 'alergiaIntoleranciaNao')">
+                                <label for="alergia_nao">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="qualAlergiaIntolerancia">Se SIM, qual(is)?</label>
+                        <textarea id="qualAlergiaIntolerancia" formControlName="qualAlergiaIntolerancia" placeholder="Descreva a(s) alergia(s)/intolerância(s)..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Avaliação</button>
+            </form>
         </div>
     </div>
-</form>
+</body>

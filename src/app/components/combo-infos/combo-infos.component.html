@@ -1,143 +1,162 @@
-<div class="container-fluid" id="blocoCombos">
-    <div class="row">
-        <p class="col-10 mx-auto" id="tituloCombos">Combos</p>
-        <p class="col-11 mx-auto" id="textoCombos">Conheça nossos melhores combos e escolha o que mais combina com você!</p>
-        <div class="col-xl-10 col-lg-11 col-md-12 col-sm-12 col-12 mx-auto">
-            <div class="row">
-                <div id="posicaoCombos" class="mx-auto">
-                    <div class="linha"></div>
-                    <p class="descricao">Acompanhamento nutricional</p>
-                    <img class="checkImagem" src="../../../assets/paginas/combos/checkverde.svg" alt="">
-                    <div class="linha"></div>
-                    <p class="descricao">Personal trainer</p>
-                    <img class="checkImagem" src="../../../assets/paginas/combos/checkverde.svg" alt="">
-                    <div class="linha"></div>
-                    <p class="descricao">Monitoria</p>
-                    <img class="checkImagem" src="../../../assets/paginas/combos/checkverde.svg" alt="">
-                    <div class="linha"></div>
-                    <p class="descricao">Metodologia Metalive</p>
-                    <img class="checkImagem" src="../../../assets/paginas/combos/checkverde.svg" alt="">
-                    <div class="linha"></div>
-                    <p class="descricao">descrição testeeeee</p>
-                    <img class="checkImagem" src="../../../assets/paginas/combos/checkverde.svg" alt="">
-                    <div class="blocoValor">
-                        <p class="mensal">A partir de</p>
-                        <p class="val1">Rs</p>
-                        <p class="val2">159</p>
-                        <p class="val3">99</p>
-                        <p class="mensal">Mensal</p>
+<body>
+    <div class="scroll-indicator" #scrollIndicator></div> <!-- Adicionado #scrollIndicator -->
+
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span>🏃‍♂️</span>
+                <span>METALIVE</span>
+            </div>
+            <nav class="nav-links">
+                <a [routerLink]="['/colaboradores']">Para colaboradores</a>
+                <a [routerLink]="['/login']">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Adicionado #animatedElement -->
+    <section class="hero-section" #animatedElement>
+        <div class="hero-content">
+            <h1 class="hero-title">Transforme Sua Vida Hoje</h1>
+            <p class="hero-subtitle">
+                O combo mais completo do Brasil para quem busca resultados reais. Metodologia comprovada, acompanhamento profissional e tecnologia de ponta.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">2.500+</span>
+                    <span class="stat-label">Vidas transformadas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Satisfação dos clientes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">90 dias</span>
+                    <span class="stat-label">Resultados garantidos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <!-- Adicionado #animatedElement -->
+        <div class="combo-card" #animatedElement>
+            <div class="combo-header">
+                <div class="popular-badge">🔥 Mais Popular</div>
+                <h2 class="combo-title">Combo Transformação Total</h2>
+                <p class="combo-description">
+                    Tudo que você precisa para alcançar seus objetivos de forma definitiva. Acompanhamento completo com profissionais especializados.
+                </p>
+            </div>
+
+            <div class="combo-content">
+                <div class="benefits-wrapper">
+                    <h3 class="benefits-title">
+                        ✨ Tudo incluído no seu plano
+                    </h3>
+
+                    <div class="benefits-list">
+                        <!-- Adicionado #animatedElement para cada benefit-item -->
+                        <div class="benefit-item" #animatedElement>
+                            <div class="benefit-icon">🥗</div>
+                            <div class="benefit-content">
+                                <h4>Nutrição Personalizada</h4>
+                                <p>Plano alimentar único criado por nutricionista certificada, adaptado aos seus gostos e necessidades específicas.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item" #animatedElement>
+                            <div class="benefit-icon">💪</div>
+                            <div class="benefit-content">
+                                <h4>Personal Trainer Exclusivo</h4>
+                                <p>Treinos individuais com personal qualificado. Exercícios progressivos e monitoramento constante dos resultados.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item" #animatedElement>
+                            <div class="benefit-icon">📊</div>
+                            <div class="benefit-content">
+                                <h4>Monitoria Inteligente</h4>
+                                <p>Tecnologia avançada para acompanhar sua evolução com bioimpedância, métricas detalhadas e relatórios semanais.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item" #animatedElement>
+                            <div class="benefit-icon">🎯</div>
+                            <div class="benefit-content">
+                                <h4>Metodologia Exclusiva</h4>
+                                <p>Sistema Metalive que combina ciência do esporte, nutrição funcional e psicologia para resultados acelerados.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item" #animatedElement>
+                            <div class="benefit-icon">📱</div>
+                            <div class="benefit-content">
+                                <h4>App Completo + Suporte</h4>
+                                <p>Aplicativo próprio com todas as ferramentas + grupo VIP e suporte via WhatsApp 24/7.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                        <a class="linkAssineJa col-4 mx-auto" href="/cadastro">
-                            <p class="textoLink">Assine já!</p>
-                        </a>
+                </div>
+
+                <div class="pricing-sidebar">
+                    <div class="pricing-content">
+                        <div class="price-tag">
+                            <div class="price-label">Oferta especial</div>
+                            <div class="price-amount">R$ 159<span style="font-size: 1.5rem;">,99</span></div>
+                            <div class="price-period">por mês</div>
+                        </div>
+
+                        <button class="cta-button" #ctaButton> <!-- Adicionado #ctaButton -->
+                            Começar Transformação
+                        </button>
+
+                        <div class="guarantee-text">
+                            <span>🛡️</span>
+                            <span>30 dias de garantia total</span>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
-
-            <!--<div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-10 mx-auto combo">
-                    <div class="blocoTitulo">
-                        <p class="tituloCombo">Starter</p>
-                        <p class="subTituloCombo">Para iniciantes</p>
-                    </div>
-                    <div class="blocoValor">
-                        <p class="val1">Rs</p>
-                        <p class="val2">149</p>
-                        <p class="val3">99</p>
-                        <p class="mensal">Para iniciantes que querem começar a fazer exercícios</p>
-                    </div>
-                    <p class="comboInclui">Starter inclui</p>
-                    <div class="mx-auto linha"></div>
-                    <div class="posicaoDescricao">
-                        <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                        <p class="descricaoCombo">Alguma descrição</p>
-                        <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                        <p class="descricaoCombo">Alguma descrição</p>
-                        <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                        <p class="descricaoCombo">Alguma descrição</p>
-                        <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                        <p class="descricaoCombo">Alguma descrição</p>
-                    </div>
-                    <div class="posicaoLink1 row">
-                        <a class="linkAssineJa col-12 mx-auto" href="/formulario">
-                            <p class="textoLink">Assine já!</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-10 mx-auto combo">
-                    <div class="blocoTitulo">
-                        <p class="tituloCombo">Medium</p>
-                        <p class="subTituloCombo">Para participantes</p>
-                    </div>
-                    <div class="blocoValor">
-                        <p class="val1">Rs</p>
-                        <p class="val2">179</p>
-                        <p class="val3">99</p>
-                        <p class="mensal">Para iniciantes que querem começar a fazer exercícios</p>
-                    </div>
-                    <p class="comboInclui">Medium inclui</p>
-                    <div class="mx-auto linha">
-                        <div class="posicaoDescricao">
-                            <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                            <p class="descricaoCombo">Alguma descrição</p>
-                            <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                            <p class="descricaoCombo">Alguma descrição</p>
-                            <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                            <p class="descricaoCombo">Alguma descrição</p>
-                            <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                            <p class="descricaoCombo">Alguma descrição</p>
-                            <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                            <p class="descricaoCombo">Alguma descrição</p>
-                        </div>
-                    </div>
-                    <div class="posicaoLink2 row">
-                        <p class="obsDescricao col-10 mx-auto">Obs.: Este plano inclui avaliação física, treino,
-                            nutricionista e acompanhamento em grupo de whatsapp</p>
-                            <a class="linkAssineJa col-12 mx-auto" href="/formulario">
-                                <p class="textoLink">Assine já!</p>
-                            </a>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-10 mx-auto combo">
-                    <div class="blocoTitulo">
-                        <p class="tituloCombo">Premium</p>
-                        <p class="subTituloCombo">Para profissionais</p>
-                    </div>
-                    <div class="blocoValor">
-                        <p class="val1">Rs</p>
-                        <p class="val2">199</p>
-                        <p class="val3">99</p>
-                        <p class="mensal">Para iniciantes que querem começar a fazer exercícios</p>
-                    </div>
-                    <p class="comboInclui">Premium inclui</p>
-                    <div class="mx-auto linha"></div>
-                    <div class="posicaoDescricao">
-                        <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                        <p class="descricaoCombo">Alguma descrição</p>
-                        <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                        <p class="descricaoCombo">Alguma descrição</p>
-                        <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                        <p class="descricaoCombo">Alguma descrição</p>
-                        <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                        <p class="descricaoCombo">Alguma descrição</p>
-                        <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                        <p class="descricaoCombo">Alguma descrição</p>
-                        <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                        <p class="descricaoCombo">Alguma descrição</p>
-                        <img class="imgDescricao" src="../../../assets/icones/iconcombo.png" alt="">
-                        <p class="descricaoCombo">Alguma descrição</p>
-                    </div>
-                    <div class="row posicaoLink3">
-                        <a class="linkAssineJa col-12 mx-auto" href="/formulario">
-                            <p class="textoLink">Assine já!</p>
-                        </a>
-                    </div>
-                </div>
-            </div>-->
         </div>
-        <div class="col-12 blocoAzul"></div>
-    </div>
-</div>
+    </main>
+
+    <!-- Adicionado #animatedElement -->
+    <section class="features-section" #animatedElement>
+        <div class="features-grid">
+            <!-- Adicionado #animatedElement para cada feature-item -->
+            <div class="feature-item" #animatedElement>
+                <span class="feature-icon">⚡</span>
+                <div class="feature-title">Resultados Rápidos</div>
+                <div class="feature-desc">Primeiros resultados em até 15 dias</div>
+            </div>
+            <div class="feature-item" #animatedElement>
+                <span class="feature-icon">🏆</span>
+                <div class="feature-title">Metodologia Premiada</div>
+                <div class="feature-desc">Reconhecida nacionalmente</div>
+            </div>
+            <div class="feature-item" #animatedElement>
+                <span class="feature-icon">👥</span>
+                <div class="feature-title">Comunidade Ativa</div>
+                <div class="feature-desc">Mais de 2.500 membros</div>
+            </div>
+            <div class="feature-item" #animatedElement>
+                <span class="feature-icon">📈</span>
+                <div class="feature-title">Progresso Mensurado</div>
+                <div class="feature-desc">Relatórios detalhados semanais</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adicionado #animatedElement -->
+    <section class="testimonial-section" #animatedElement>
+        <div class="testimonial-content">
+            <div class="rating">★★★★★</div>
+            <blockquote class="testimonial-quote">
+                "Em 3 meses perdi 15kg e ganhei muito mais disposição. O acompanhamento é incrível e realmente funciona. Recomendo de olhos fechados!"
+            </blockquote>
+            <cite class="testimonial-author">- Marina Silva, 32 anos</cite>
+        </div>
+    </section>
+</body>

@@ -1,200 +1,417 @@
-<div class="container-fluid">
-    <div class="row">
-        <nav id="header" class="col-12 navbar navbar-expand-lg bg-body-tertiary">
-            <div class="header container-fluid">
-              <a class="navbar-brand" href="#">
-                <img id="logo" src="../../../assets/logo/logometalive1.png" alt="">
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <div class="d-block d-md-none">
-                    <p class="textoNav" id="nome">Olá, {{ clienteData?.nome || 'Nome do Cliente' }}</p>
-                    <p class="textoNav">Plano: Metalive Básico <u>ATIVO</u></p>
-                  </div>
-                  <li class="nav-item">
-
-                    <a class="link" (click)="showContent('content1')">Inicio</a>
-
-                  </li>
-                  <li class="nav-item">
-
-                    <a class="link" (click)="showContent('content2')">Nutricionista</a>
-
-                    </li>
-                  <li class="nav-item">
-
-                    <a class="link" (click)="showContent('content3')">Personal</a>
-
-                  </li>
-                  <div class="d-none d-md-block">
-                    <p class="textoNav" id="nome">Olá, {{ clienteData?.nome || 'Nome do Cliente' }}</p>
-                    <p class="textoNav">Plano: Metalive Básico <u>ATIVO</u></p>
-                  </div>
-                  <div id="botaoSair">
-                    <a (click)="onLogout()" class="link-logout" href="#">Sair</a> <!-- Link de logout -->
-                </div>
-                </ul>
-              </div>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">METALIVE</div>
+                <div class="breadcrumb">Dashboard / Visão Geral</div>
             </div>
-          </nav>
-
-          <div>
-            <div *ngIf="currentContent === 'content1'">
-                <div class="col-4 informacoesProfissional">
-                  <p class="tituloConsulta">Próximas consultas:</p>
-                  <ul>
-                      <li>Nenhuma consulta agendada</li>
-                      <!--<li></li>-->
-                  </ul>
-              </div> 
-              <div style="margin-left: 50px;" class="col-4 informacoesProfissional">
-                <p class="tituloConsulta">Histórico de consultas:</p>
-                <ul>
-                    <li>Histórico de consultas vazio</li>
-                    <!--<li></li>-->
-                </ul>
-            </div> 
-            <div class="col-4 informacoesProfissional">
-              <p class="tituloConsulta">Formulário</p>
-              <ul>
-                  <li>Clique <a [routerLink]="['/formulario', clienteId]">aqui</a> para preencher o formulário.</li>
-                  <!--<li></li>-->
-              </ul>
-          </div> 
-            </div>
-            <div *ngIf="currentContent === 'content2'">
-                <div class="informacoesProfissional">
-                    <p class="tituloConsulta">NUTRICIONISTA</p>
-                    <ul>
-                        <li>Profissional: Amanda Santana.</li>
-                        <li>Detalhes do Atendimento: Atendimento via Google Meet após o preenchimento do formulário.</li>
-                    </ul>
-                </div>
-                <div id="posicao1" class="col-12">
-                    <img class="icon" src="../../../assets/paginas/perfil/minhaalimentacao1.png" alt="">
-                    <p class="titulo">Meu plano alimentar.</p>
-                </div>
-                <br><br>
-                <div class="mx-auto" id="dieta">
-                    <ng-container *ngIf="clienteData?.diet; else noDiet">
-                      <pre class="dietaTreinoPronto">{{ clienteData.diet }}</pre> <!-- Dieta do Cliente -->
-                    </ng-container>
-                    <ng-template #noDiet>
-                        <p class="textoNaoDisponivel">Nenhuma dieta disponível, clique <a [routerLink]="['/formulario', clienteId]">aqui</a> para responder um formulário e agendar uma consulta.
-                        </p>
-                    </ng-template>
-                  </div>                  
-                  <!--
-                <p class="col-11 mx-auto texto1">De acordo com seu perfil, evite consumir alimentos industrializados com muito sal (sódio) como hambúrguer, charque, salsicha, lingüiça, presunto, salgadinhos, conservas de vegetais, sopas, molhos e temperos prontos. – Beba pelo menos 2 litros (6 a 8 copos) de água por dia. Dê preferência ao consumo de água nos intervalos das refeições.</p>
-                <div class="col-10 mx-auto">
-                    <img class="icon2" src="../../../assets/paginas/perfil/iconCheck.png" alt="">
-                    <p class="tituloRefeicao">Café da manhã</p>
-                    
-                <p class="tituloOp">Opção 1:</p>
-                <ul>
-                    <li>2 fatias de pão integral.</li>
-                    <li>1 ovo cozido ou mexido.</li>
-                    <li>1 copo de suco natural de laranja.</li>
-                </ul>
-                <div class="col-12">
-                    <p class="tituloOp">Opção 2:</p>
-                </div>
-                <ul>
-                    <li>Aveia com frutas (banana, maçã, morangos).</li>
-                    <li>1 iogurte natural sem adição de açúcar.</li>
-                </ul>
-                <p class="col-12 tituloOp">Opção 3:</p>
-                <ul>
-                    <li>Vitamina de frutas (banana, morangos, mamão) com leite de amêndoas ou leite desnatado.</li>
-                </ul>
-                <div class="col-12">
-                    <img class="icon2" src="../../../assets/paginas/perfil/iconCheck.png" alt="">
-                    <p class="tituloRefeicao">Almoço</p>
-                </div>
-                <p class="col-12 tituloOp">Opção 1:</p>
-                <ul>
-                    <li>1 filé de frango grelhado.</li>
-                    <li>Arroz Integral.</li>
-                    <li>Feijão preto ou lentilha.</li>
-                    <li>Salada de folhas verdes (alface, rúcula, agrião) temperada com azeite de oliva e limão.</li>
-                </ul>
-                <p class="col-12 tituloOp">Opção 2:</p>
-                <ul>
-                    <li>Peixe assado ou cozido.</li>
-                    <li>Batata doce cozida ou assada.</li>
-                    <li>Brócolis refogado.</li>
-                    <li>Salada de tomate, pepino e cenoura ralada temperada com azeite de vinagre balsâmico.</li>
-                </ul>
-                <p class="col-12 tituloOp">Opção 3:</p>
-                <ul>
-                    <li>Quinoa cozida com legumes (cenoura, abobrinha, pimentão).</li>
-                    <li>Filé de carne magra grelhada.</li>
-                    <li>Salada de beterraba ralada com cebola roxa e salsinha.</li>
-                </ul>
-                <div class="col-12">
-                    <img class="icon2" src="../../../assets/paginas/perfil/iconCheck.png" alt="">
-                    <p class="tituloRefeicao">Jantar</p>
-                </div>
-                <p class="col-12 tituloOp">Opção 1:</p>
-                <ul>
-                    <li>1 filé de frango grelhado.</li>
-                    <li>Arroz Integral.</li>
-                    <li>Feijão preto ou lentilha.</li>
-                    <li>Salada de folhas verdes (alface, rúcula, agrião) temperada com azeite de oliva e limão.</li>
-                </ul>
-                <p class="col-12 tituloOp">Opção 2:</p>
-                <ul>
-                    <li>Peixe assado ou cozido.</li>
-                    <li>Batata doce cozida ou assada.</li>
-                    <li>Brócolis refogado.</li>
-                    <li>Salada de tomate, pepino e cenoura ralada temperada com azeite de vinagre balsâmico.</li>
-                </ul>
-                <p class="col-12 tituloOp">Opção 3:</p>
-                <ul>
-                    <li>Quinoa cozida com legumes (cenoura, abobrinha, pimentão).</li>
-                    <li>Filé de carne magra grelhada.</li>
-                    <li>Salada de beterraba ralada com cebola roxa e salsinha.</li>
-                </ul>
-                <div class="col-11 mx-auto linha2"></div><br>
-                <img class="icon2" src="../../../assets/paginas/perfil/iconTreino.png" alt="">
-                <div class="col-11 mx-auto linha2"></div><br>
-                </div>-->
-            </div>
-            <div *ngIf="currentContent === 'content3'">
-                <div class="informacoesProfissional">
-                    <p class="tituloConsulta">PERSONAL TRAINER</p>
-                    <ul>
-                        <li>Profissional: Maicon Salles.</li>
-                        <li>Detalhes do Atendimento: Atendimento via Google Meet após o preenchimento do formulário.</li>
-                    </ul>
-                </div> 
-                <div id="posicaoMeuDesempenho">
-                    <p class="titulo">Meu treino</p> <br><br>
-                    <div class="mx-auto" id="treino">
-                        <ng-container *ngIf="clienteData?.treino; else noDiet">
-                          <pre class="dietaTreinoPronto">{{ clienteData.treino }}</pre> <!-- Dieta do Cliente -->
-                        </ng-container>
-                        <ng-template #noDiet>
-                            <p class="textoNaoDisponivel">Nenhum treino disponível, clique <a [routerLink]="['/formulario', clienteId]">aqui</a> para responder um formulário e agendar uma consulta.
-                            </p>
-                        </ng-template>
-                      </div>   
-                    <!--
-                    <ul>
-                        <li>Segunda Feira: Treino de membros inferiores e cardio.</li>
-                        <li>Terça Feira: Treino de partes superior do corpo.</li>
-                        <li>Quarta Feira: Descanso ativo.</li>
-                        <li>Quinta Feira: Treino de membros inferiores e core.</li>
-                        <li>Sexta Feira: Treino de parte superior do corpo e cardio.</li>
-                        <li>Sábado: Treino de corpo inteiro (circuito).</li>
-                        <li>Domingo: Descanso total.</li>
-                    </ul>-->  
+            <div class="user-section">
+                <div class="user-info">
+                    <div class="avatar">{{ getInitials(clienteData?.nome) }}</div>
+                    <div class="user-details">
+                        <h3>{{ clienteData?.nome || 'Nome do Cliente' }}</h3>
+                        <div class="plan-badge">{{ clienteData?.plano || 'PLANO BÁSICO' }} {{ clienteData?.statusPlano || 'ATIVO' }}</div>
                     </div>
+                </div>
+                <button class="logout-btn" (click)="onLogout()">Sair</button>
             </div>
-          </div>
-          
+        </div>
+
+        <div class="nav-container">
+            <div class="nav-tabs">
+                <button class="nav-tab" [class.active]="currentContent === 'overview'" (click)="showContent('overview')">Visão Geral</button>
+                <button class="nav-tab" [class.active]="currentContent === 'nutritionist'" (click)="showContent('nutritionist')">Nutricionista</button>
+                <button class="nav-tab" [class.active]="currentContent === 'personalTrainer'" (click)="showContent('personalTrainer')">Personal Trainer</button>
+                <button class="nav-tab" [class.active]="currentContent === 'academy'" (click)="showContent('academy')">Academia</button>
+                <button class="nav-tab" [class.active]="currentContent === 'chat'" (click)="showContent('chat')">Chat</button>
+                <button class="nav-tab" [class.active]="currentContent === 'reports'" (click)="showContent('reports')">Relatórios</button>
+                <button class="nav-tab" [class.active]="currentContent === 'settings'" (click)="showContent('settings')">Configurações</button>
+            </div>
+        </div>
+
+        <div *ngIf="isLoading" class="loading-message">
+            <p>Carregando dados do cliente...</p>
+            <div class="spinner"></div>
+        </div>
+
+        <ng-container *ngIf="!isLoading && clienteData">
+            <div class="dashboard-grid" *ngIf="currentContent === 'overview'">
+
+                <!-- NOVO FORMULÁRIO CARD -->
+                <div class="premium-card">
+                    <div class="card-header">
+                        <div class="card-info">
+                            <div class="card-icon form-icon">📝</div> <!-- Novo ícone para formulário -->
+                            <div class="card-content">
+                                <h3>Formulário de Saúde</h3>
+                                <div class="card-subtitle">Mantenha seus dados atualizados</div>
+                            </div>
+                        </div>
+                        <!-- Status do formulário -->
+                        <div class="status-indicator" [class.status-active]="!!clienteData?.formularioPreenchido" [class.status-pending]="!clienteData?.formularioPreenchido"></div>
+                    </div>
+                    <div class="card-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">{{ clienteData?.formularioPreenchido ? 'Preenchido' : 'Pendente' }}</div>
+                            <div class="stat-label">Status</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">{{ clienteData?.ultimaAtualizacaoFormulario || 'N/A' }}</div>
+                            <div class="stat-label">Última Atualização</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <ng-container *ngIf="!clienteData?.formularioPreenchido; else formFilled">
+                            <button class="primary-btn" [routerLink]="['/formulario', clienteId]">Preencher Formulário</button>
+                        </ng-container>
+                        <ng-template #formFilled>
+                            <button class="secondary-btn" [routerLink]="['/formulario', clienteId]">Preencher Novamente</button>
+                        </ng-template>
+                    </div>
+                </div>
+                <!-- FIM DO NOVO FORMULÁRIO CARD -->
+                <div class="premium-card">
+                    <div class="card-header">
+                        <div class="card-info">
+                            <div class="card-icon consultations-icon">📅</div>
+                            <div class="card-content">
+                                <h3>Próximas Consultas</h3>
+                                <div class="card-subtitle">Agendamentos e compromissos</div>
+                            </div>
+                        </div>
+                        <div class="status-indicator" [class.status-pending]="(clienteData?.proximasConsultas?.length || 0) === 0" [class.status-active]="(clienteData?.proximasConsultas?.length || 0) > 0"></div>
+                    </div>
+                    <div class="card-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">{{ clienteData?.proximasConsultas?.length || 0 }}</div>
+                            <div class="stat-label">Agendadas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Este Mês</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="primary-btn" (click)="scheduleConsultation()">Agendar Nova Consulta</button>
+                        <button class="secondary-btn" (click)="viewHistory('consultations')">Ver Histórico</button>
+                    </div>
+                </div>
+
+                <div class="premium-card">
+                    <div class="card-header">
+                        <div class="card-info">
+                            <div class="card-icon nutrition-icon">🥗</div>
+                            <div class="card-content">
+                                <h3>Plano Nutricional</h3>
+                                <div class="card-subtitle">Dieta personalizada e acompanhamento</div>
+                            </div>
+                        </div>
+                        <div class="status-indicator" [class.status-active]="!!clienteData?.diet" [class.status-pending]="!clienteData?.diet"></div>
+                    </div>
+                    <div class="card-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">{{ clienteData?.aderenciaDieta || 'N/A' }}{{ clienteData?.aderenciaDieta ? '%' : '' }}</div>
+                            <div class="stat-label">Aderência</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">{{ clienteData?.pesoPerdidoMes || '0' }}kg</div>
+                            <div class="stat-label">Este Mês</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="primary-btn" (click)="openNutritionPlan()">Acessar Plano</button>
+                        <button class="secondary-btn" (click)="viewReports('nutrition')">Relatório Nutricional</button>
+                    </div>
+                </div>
+
+                <div class="premium-card">
+                    <div class="card-header">
+                        <div class="card-info">
+                            <div class="card-icon personal-icon">💪</div>
+                            <div class="card-content">
+                                <h3>Personal Trainer</h3>
+                                <div class="card-subtitle">Treinos e acompanhamento físico</div>
+                            </div>
+                        </div>
+                        <div class="status-indicator" [class.status-active]="!!clienteData?.treino" [class.status-pending]="!clienteData?.treino"></div>
+                    </div>
+                    <div class="card-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">{{ clienteData?.treinosRealizados || '0' }}</div>
+                            <div class="stat-label">Treinos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">{{ clienteData?.frequenciaTreino || '0x' }}</div>
+                            <div class="stat-label">Semana</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="primary-btn" (click)="openWorkout()">Treino de Hoje</button>
+                        <button class="secondary-btn" (click)="viewReports('personal')">Evolução Física</button>
+                    </div>
+                </div>
+
+                <div class="premium-card">
+                    <div class="card-header">
+                        <div class="card-info">
+                            <div class="card-icon history-icon">📊</div>
+                            <div class="card-content">
+                                <h3>Análise de Performance</h3>
+                                <div class="card-subtitle">Métricas e relatórios detalhados</div>
+                            </div>
+                        </div>
+                        <div class="status-indicator" [class.status-active]="(clienteData?.progressoGeral || 0) > 0" [class.status-pending]="(clienteData?.progressoGeral || 0) === 0"></div>
+                    </div>
+                    <div class="card-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">{{ clienteData?.progressoGeral || '0' }}%</div>
+                            <div class="stat-label">Progresso</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">{{ clienteData?.avaliacaoGeral || 'N/A' }}</div>
+                            <div class="stat-label">Avaliação</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="primary-btn" (click)="viewAnalytics()">Relatório Completo</button>
+                        <button class="secondary-btn" (click)="exportData()">Exportar Dados</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analytics-section" *ngIf="currentContent === 'overview'">
+                <div class="analytics-header">
+                    <div class="analytics-title">Performance Analytics</div>
+                    <div class="analytics-subtitle">Acompanhe seu progresso e conquistas em tempo real</div>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-number">{{ clienteData?.diasAtivos || '0' }}</div>
+                        <div class="metric-label">Dias Ativos</div>
+                        <div class="metric-change">{{ clienteData?.diasAtivosChange || '0%' }} vs. mês anterior</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">{{ clienteData?.pesoAtual || '0.0' }}kg</div>
+                        <div class="metric-label">Peso Atual</div>
+                        <div class="metric-change">{{ clienteData?.pesoDesdeInicio || '0.0' }}kg desde início</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">{{ clienteData?.caloriasDia || '0' }}</div>
+                        <div class="metric-label">Calorias/Dia</div>
+                        <div class="metric-change">Meta: {{ clienteData?.metaCalorias || '0' }} cal</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">{{ clienteData?.taxaSucesso || '0' }}%</div>
+                        <div class="metric-label">Taxa de Sucesso</div>
+                        <div class="metric-change">{{ clienteData?.taxaSucessoChange || '0%' }} vs. mês anterior</div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="currentContent === 'nutritionist'">
+                <ng-container *ngIf="clienteData?.diet; else noDietNutritionist">
+                    <div class="main-content">
+                        <div class="diet-content">
+                            <div class="profissional-card">
+                                <div class="profissional-header">
+                                    <div class="profissional-avatar">👩‍⚕️</div>
+                                    <div class="profissional-info">
+                                        <h2>Profissional: Amanda Santana</h2>
+                                        <p>Nutricionista Clínica Especializada</p>
+                                        <div class="consultation-info">
+                                            <strong>Detalhes do Atendimento:</strong> Atendimento via Google Meet após o preenchimento do formulário.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="service-section">
+                                <div class="service-header">
+                                    <div class="service-title">
+                                        <div class="service-icon">🍽️</div>
+                                        <h2>Plano de Dieta Semanal</h2>
+                                    </div>
+                                    <button class="download-btn" (click)="downloadDietPDF()">
+                                        <span>📥</span>
+                                        Baixar PDF
+                                    </button>
+                                </div>
+
+                                <pre class="dietaTreinoPronto">{{ clienteData.diet }}</pre>
+                            </div>
+                        </div>
+
+                        <div class="sidebar">
+                            <div class="stats-card">
+                                <div class="stats-header">
+                                    <div class="stats-title">Progresso Nutricional</div>
+                                    <div class="stats-subtitle">Semana atual</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Meta Calórica</span>
+                                    <span class="stat-value">{{ clienteData?.metaCaloriasNutricional || '0' }} cal</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Consumidas</span>
+                                    <span class="stat-value">{{ clienteData?.caloriasConsumidas || '0' }} cal</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Aderência</span>
+                                    <span class="stat-value">{{ clienteData?.aderenciaNutricional || '0' }}%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" [style.width.%]="clienteData?.aderenciaNutricional || 0"></div>
+                                </div>
+                            </div>
+
+                            <div class="stats-card">
+                                <div class="stats-header">
+                                    <div class="stats-title">Ações Rápidas</div>
+                                    <div class="stats-subtitle">Gerencie seu plano</div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="primary-btn" (click)="scheduleConsultation()">Agendar Consulta</button>
+                                    <button class="secondary-btn" (click)="viewNutritionHistory()">Histórico Nutricional</button>
+                                    <button class="secondary-btn" (click)="updateProgress()">Atualizar Progresso</button>
+                                </div>
+                            </div>
+
+                            <div class="stats-card">
+                                <div class="stats-header">
+                                    <div class="stats-title">Dica da Semana</div>
+                                    <div class="stats-subtitle">Amanda Santana</div>
+                                </div>
+                                <p style="color: #4a5568; font-size: 14px; line-height: 1.5;">
+                                    "Lembre-se de manter-se hidratada! Beba pelo menos 2 litros de água por dia e inclua chás naturais sem açúcar em sua rotina."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-template #noDietNutritionist>
+                    <div class="informacoesProfissional">
+                        <p class="textoNaoDisponivel">Nenhuma dieta disponível. Clique <a [routerLink]="['/formulario', clienteId]">aqui</a> para responder um formulário e agendar uma consulta.</p>
+                    </div>
+                </ng-template>
+            </div>
+
+
+            <div *ngIf="currentContent === 'personalTrainer'">
+                <ng-container *ngIf="clienteData?.treino; else noWorkoutPersonal">
+                    <div class="main-content">
+                        <div class="workout-content">
+                            <div class="profissional-card">
+                                <div class="profissional-header">
+                                    <div class="profissional-avatar">👨‍</div>
+                                    <div class="profissional-info">
+                                        <h2>Profissional: Maicon Salles</h2>
+                                        <p>Personal Trainer Especializado</p>
+                                        <div class="consultation-info">
+                                            <strong>Detalhes do Atendimento:</strong> Atendimento via Google Meet após o preenchimento do formulário.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="service-section">
+                                <div class="service-header">
+                                    <div class="service-title">
+                                        <div class="service-icon">🏋️‍♀️</div>
+                                        <h2>Plano de Treino Semanal</h2>
+                                    </div>
+                                    <button class="download-btn" (click)="downloadWorkoutPDF()">
+                                        <span>📥</span>
+                                        Baixar PDF
+                                    </button>
+                                </div>
+
+                                <pre class="dietaTreinoPronto">{{ clienteData.treino }}</pre>
+                            </div>
+                        </div>
+
+                        <div class="sidebar">
+                            <div class="stats-card">
+                                <div class="stats-header">
+                                    <div class="stats-title">Progresso de Treino</div>
+                                    <div class="stats-subtitle">Semana atual</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Treinos Concluídos</span>
+                                    <span class="stat-value">{{ clienteData?.treinosSemanaConcluidos || '0' }}</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Sessões Restantes</span>
+                                    <span class="stat-value">{{ clienteData?.sessoesRestantes || '0' }}</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Aderência</span>
+                                    <span class="stat-value">{{ clienteData?.treinoAderencia || '0' }}%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" [style.width.%]="clienteData?.treinoAderencia || 0"></div>
+                                </div>
+                            </div>
+
+                            <div class="stats-card">
+                                <div class="stats-header">
+                                    <div class="stats-title">Ações Rápidas</div>
+                                    <div class="stats-subtitle">Gerencie seu treino</div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="primary-btn" (click)="scheduleConsultation()">Agendar Sessão</button>
+                                    <button class="secondary-btn" (click)="viewPersonalHistory()">Histórico de Treinos</button>
+                                    <button class="secondary-btn" (click)="updateWorkoutProgress()">Atualizar Progresso</button>
+                                </div>
+                            </div>
+
+                            <div class="stats-card">
+                                <div class="stats-header">
+                                    <div class="stats-title">Dica da Semana</div>
+                                    <div class="stats-subtitle">Maicon Salles</div>
+                                </div>
+                                <p style="color: #4a5568; font-size: 14px; line-height: 1.5;">
+                                    "Consistência é a chave! Mantenha seus treinos em dia e garanta um bom aquecimento para evitar lesões."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-template #noWorkoutPersonal>
+                    <div class="informacoesProfissional">
+                        <p class="textoNaoDisponivel">Nenhum treino disponível. Clique <a [routerLink]="['/formulario', clienteId]">aqui</a> para responder um formulário e agendar uma consulta.</p>
+                    </div>
+                </ng-template>
+            </div>
+
+            <div *ngIf="currentContent === 'chat'">
+                <div class="informacoesProfissional">
+                    <p class="tituloConsulta">CHAT DE SUPORTE</p>
+                    <p class="textoNaoDisponivel">Funcionalidade de chat em desenvolvimento. Em breve você poderá conversar com nossa equipe de suporte e profissionais por aqui! Aguarde por novidades!</p>
+                </div>
+            </div>
+
+            <div *ngIf="currentContent === 'academy'">
+                <div class="informacoesProfissional">
+                    <p class="tituloConsulta">ACADEMIA</p>
+                    <p class="textoNaoDisponivel">Informações sobre a academia e agendamento de aulas em breve.</p>
+                </div>
+            </div>
+            <div *ngIf="currentContent === 'reports'">
+                <div class="informacoesProfissional">
+                    <p class="tituloConsulta">RELATÓRIOS</p>
+                    <p class="textoNaoDisponivel">Aqui você poderá ver relatórios detalhados do seu progresso.</p>
+                </div>
+            </div>
+            <div *ngIf="currentContent === 'settings'">
+                <div class="informacoesProfissional">
+                    <p class="tituloConsulta">CONFIGURAÇÕES</p>
+                    <p class="textoNaoDisponivel">Gerencie suas preferências e informações de perfil aqui.</p>
+                </div>
+            </div>
+        </ng-container>
+
+        <div *ngIf="!isLoading && !clienteData" class="no-data-message">
+            <p>Nenhum dado do cliente encontrado. Por favor, tente novamente mais tarde ou entre em contato com o suporte.</p>
+        </div>
     </div>
-</div>
+</body>

@@ -1,56 +1,98 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
-import { HttpClient } from '@angular/common/http'; // Importando o HttpClient para enviar requisições HTTP
-import { ScrollService } from "../../scroll.service";
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // Para usar [(ngModel)]
+import { CommonModule } from '@angular/common'; // Para diretivas como ngIf
+// Importe seu AppToastService se quiser usar toasts para feedback
+// import { AppToastService } from '../../services/toast.service';
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
 
 @Component({
-  selector: "app-contato",
+  selector: 'app-contato',
   standalone: true,
-  imports: [],
-  templateUrl: "./contato.component.html",
-  styleUrls: ["./contato.component.scss"]
+  imports: [CommonModule, FormsModule], // Adicione FormsModule
+  templateUrl: './contato.component.html',
+  styleUrls: ['./contato.component.scss']
 })
-export class ContatoComponent implements AfterViewInit {
-  @ViewChild("destinoContato") destinoContato!: ElementRef;
-
-  nome: string = '';
+export class ContatoComponent implements OnInit {
+  // Propriedades para vincular aos campos do formulário
+  name: string = '';
   email: string = '';
-  mensagem: string = '';
+  phone: string = '';
+  message: string = '';
 
-  constructor(private scrollService: ScrollService, private http: HttpClient) {}
+  isSending: boolean = false; // Flag para controlar o estado de envio
 
-  ngAfterViewInit() {
-    this.scrollService.getRolagemObservable().subscribe(idElemento => {
-      if (this.destinoContato && this.destinoContato.nativeElement) {
-        if (this.destinoContato.nativeElement.id === idElemento) {
-          this.destinoContato.nativeElement.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    });
+  // Injete seu ToastService se for usar
+  // constructor(private toastService: AppToastService) { }
+  constructor() { }
+
+  ngOnInit(): void {
+    // Inicialização do componente
   }
 
-  // Função para enviar o e-mail
-  sendEmail() {
-    const emailData = {
-      nome: this.nome,
+  /**
+   * Envia o formulário de contato.
+   * Em um ambiente real, esta função faria uma requisição HTTP para um backend.
+   */
+  async onSubmit(): Promise<void> {
+    // Validação básica (você pode adicionar mais validações aqui)
+    if (!this.name || !this.email || !this.phone || !this.message) {
+      alert('Por favor, preencha todos os campos do formulário.');
+      // this.toastService.showDanger('Erro', 'Por favor, preencha todos os campos do formulário.');
+      return;
+    }
+
+    this.isSending = true; // Ativa o estado de envio para mostrar um spinner/mensagem
+
+    const formData: ContactFormData = {
+      name: this.name,
       email: this.email,
-      mensagem: this.mensagem
+      phone: this.phone,
+      message: this.message
     };
 
-    // Envia o e-mail para a função Firebase 
-    this.http.post('https://us-central1-metalive-8b9e7.cloudfunctions.net/sendEmail', emailData)
-    .subscribe({
-      next: (response: any) => {
-        console.log('E-mail enviado com sucesso', response);
-        // Aqui você pode mostrar uma mensagem de sucesso ao usuário
-      },
-      error: (error: any) => {
-        console.error('Erro ao enviar o e-mail', error);
-        // Aqui você pode mostrar uma mensagem de erro ao usuário
-      },
-      complete: () => {
-        console.log('Processo de envio de e-mail concluído');
-      }
-    });
-  
+    try {
+      console.log('Dados do formulário de contato para envio:', formData);
+
+      // --- SIMULAÇÃO DE ENVIO PARA BACKEND ---
+      // Em um cenário real, você faria uma requisição HTTP aqui:
+      // const response = await fetch('SUA_URL_DO_ENDPOINT_DE_BACKEND_DE_CONTATO', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify(formData),
+      // });
+
+      // if (!response.ok) {
+      //   const errorData = await response.json();
+      //   throw new Error(errorData.message || 'Erro ao enviar mensagem.');
+      // }
+
+      // Simula um atraso de rede
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      console.log('Mensagem enviada com sucesso (simulado)!');
+      alert('Sua mensagem foi enviada com sucesso! Em breve entraremos em contato.');
+      // this.toastService.showSuccess('Sucesso!', 'Sua mensagem foi enviada com sucesso!');
+
+      // Limpa o formulário após o envio
+      this.name = '';
+      this.email = '';
+      this.phone = '';
+      this.message = '';
+
+    } catch (error) {
+      console.error('Erro ao enviar mensagem:', error);
+      alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.');
+      // this.toastService.showDanger('Erro', 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.');
+    } finally {
+      this.isSending = false; // Desativa o estado de envio
+    }
   }
 }

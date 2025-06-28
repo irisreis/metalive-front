@@ -1,61 +1,95 @@
-<div class="container-fluid" id="paginaWelcome">
-    <div class="row">
-      <div class="col-xl-9 col-lg-10 col-md-11 col-sm-11 col-12 mx-auto" id="blocoPrincipal">
-        <div class="row">
-          <div class="col-xl-4 col-lg-4 col-md-4 mx-auto" id="entrar">
-            <div class="row">
-              <p class="col-12 mx-auto" id="texto1">Welcome to</p>
-              <a href="/" class="logoMetalive mx-auto">
-                <img class="logoMetalive" src="../../../assets/paginas/login/tituloMetalive.png" alt="">
-              </a>
-              <p class="col-12 mx-auto" id="texto2">Conexão, mente e corpo.</p>
-              <div id="posicaoInput">
-                <form (ngSubmit)="login()">
-                  <input 
-                    placeholder="   Username" 
-                    id="username" 
-                    class="col-12 mx-auto inputLogin" 
-                    type="text" 
-                    [(ngModel)]="email" 
-                    name="username" 
-                    required>
-                  <div class="col-12"></div>
-                  <input 
-                    placeholder="   Password" 
-                    id="password" 
-                    class="col-12 mx-auto inputLogin" 
-                    type="password" 
-                    [(ngModel)]="password" 
-                    name="password" 
-                    required>
-                  <div class="col-12"></div>
-                  <button class="col-12 mx-auto" id="botaoEntrar" type="submit">Entrar</button>
-                </form>
-              </div>
-  
-              <p class="col-12 mx-auto text-center text-primary cursor-pointer texto4" (click)="resetPassword()">Esqueci minha senha.</p>
-              <p class="col-12 mx-auto texto3">
-                Não tem uma conta? <a id="linkCadastro" href="/cadastro">Cadastre-se agora!</a>
-              </p><!--
-              <div class="col-12"></div>
-              <p class="col-12 mx-auto texto3">Ou</p>
-              <div class="col-12"></div>
-              <p class="col-12 mx-auto texto3">Continue com as redes sociais.</p>-->
-            </div>
-  <!--
-            <div class="row">
-              <div class="col-4 mx-auto"></div>
-              <a class="col-1 mx-auto redesSociais" href=""><img
-                  src="../../../assets/paginas/login/google.png" alt=""></a>
-              <a class="col-1 mx-auto redesSociais" href=""><img
-                  src="../../../assets/paginas/login/iconFacebook.png" alt=""></a>
-              <div class="col-4 mx-auto"></div>
-            </div>-->
-          </div>
-          <img class="col-xl-8 col-lg-8 col-md-8 d-none d-md-block" id="logoGrande" src="../../../assets/paginas/login/logo1.png" alt="">
-        </div>
-      </div>
+<body>
+    <div class="background-pattern"></div>
+    <div class="geometric-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </div>
-  </div>
-  <app-toast aria-live="polite" aria-atomic="true"></app-toast>
-  
+
+    <div class="container">
+        <div class="left-panel">
+            <div class="brand-section">
+                <div class="logo-container">
+                    <!-- A div.logo-symbol agora contém a imagem da logo -->
+                    <div class="logo-symbol">
+                        <!-- Imagem placeholder para a logo "seta azul" -->
+                        <img id="logoMetalive" src="../../../assets/logo/logometalivemini.png" alt="Metalive Logo Seta Azul">
+                    </div>
+                    <h1 class="brand-name">METALIVE</h1>
+                    <p class="brand-tagline">
+                        Transformando a conexão entre <span class="tagline-highlight">mente e corpo</span> através da tecnologia
+                    </p>
+                </div>
+                <div class="features">
+                    <div class="feature-item">
+                        <div class="feature-icon"></div>
+                        <span class="feature-text">Acompanhamento nutricional</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"></div>
+                        <span class="feature-text">Personalização de treinos</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"></div>
+                        <span class="feature-text">Metodologia Metalive</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <!-- Adicionando (ngSubmit) ao formulário para chamar a função login() -->
+            <form class="login-form" (ngSubmit)="login()">
+                <div class="form-header">
+                    <h2 class="form-title">Bem-vindo</h2>
+                    <p class="form-subtitle">Faça login para continuar</p>
+                </div>
+
+                <div class="input-group">
+                    
+                    <input
+                        type="email"
+                        class="input-field"
+                        placeholder=" "
+                        [(ngModel)]="email" 
+                        name="email"        
+                        required
+                    >
+                    <label class="input-label">E-mail</label>
+                </div>
+
+                <div class="input-group">
+                    <input
+                        type="password"
+                        class="input-field"
+                        placeholder=" "
+                        [(ngModel)]="password" 
+                        name="password"     
+                        required
+                    >
+                    <label class="input-label">Senha</label>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    <span>Entrar</span>
+                </button>
+
+                <div class="form-links">
+                    <!-- Link para recuperação de senha, chama resetPassword() -->
+                    <a href="javascript:void(0)" class="forgot-link" (click)="resetPassword()">Esqueci minha senha</a>
+
+                    <div class="divider"></div>
+
+                    <p class="signup-text">
+                        Não tem uma conta?
+                        <!-- Link para cadastro (ajuste a rota conforme seu setup) -->
+                        <a [routerLink]="['/cadastro']" class="signup-link">Cadastre-se agora</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Componente de Toast para exibir mensagens de sucesso/erro -->
+    <app-toast aria-live="polite" aria-atomic="true"></app-toast>
+</body>

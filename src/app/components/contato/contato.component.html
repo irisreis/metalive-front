@@ -1,49 +1,71 @@
-<div class="container-fluid" #destinoContato id="destinoContato">
-    <div id="blocoContato">
-        <div class="row">
-            <div class="col-12" id="bloco1">
-                <p id="tituloContato">Contato</p>
-            </div>
-            <div class="col-lg-5 col-md-5 col-sm-9 mx-auto" id="bloco2">
-                <p id="texto1">Sinta-se livre para nos contatar. Estamos à disposição para tirar todas as suas dúvidas.</p>
+    <!-- Contact Section -->
+    <section class="contact" id="contato">
+        <div class="container contact-container">
+            <h2>Contato</h2>
+            <p class="contact-subtitle">Sinta-se livre para nos contatar. Estamos à disposição para tirar todas as suas dúvidas e começar sua transformação hoje mesmo.</p>
             
-                <div class="d-flex align-items-center mb-3"> <!-- Div de flexbox para o primeiro item de contato -->
-                    <img class="iconContato mr-2" src="../../../assets/icones/contatoTel.png" alt="">
-                    <div>
-                        <p id="nosLigue" class="textoContato mb-0">Nos ligue</p>
-                        <p class="infoContato mb-0">+55 (41) 8839-7307</p>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h3>Nos ligue</h3>
+                            <p>+55 (41) 8839-7307</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>metalive.sa&commat;gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h3>Localização</h3>
+                            <p>Curitiba, Paraná</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div class="contact-details">
+                            <h3>Horário de Atendimento</h3>
+                            <p>Seg-Sex: 6h às 22h<br>Sáb-Dom: 8h às 18h</p>
+                        </div>
                     </div>
                 </div>
-            
-                <div class="d-flex align-items-center mb-3"> <!-- Div de flexbox para o segundo item de contato -->
-                    <img class="iconContato mr-2" src="../../../assets/icones/contatoEmail.png" alt="">
-                    <div>
-                        <p class="textoContato mb-0">Email</p>
-                        <p class="infoContato mb-0">metalive.sa&commat;gmail.com</p>
-                    </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nome completo</label>
+                            <input type="text" id="name" placeholder="Seu nome completo">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="seu@email.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" placeholder="(11) 99999-9999">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" placeholder="Conte-nos sobre seus objetivos e como podemos ajudá-lo..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            🚀 Enviar mensagem
+                        </button>
+                    </form>
                 </div>
-            <!--
-                <div class="d-flex align-items-center"> Div de flexbox para o terceiro item de contato
-                    <img class="iconContato mr-2" src="../../../assets/icones/contatoLocal.png" alt="">
-                    <div>
-                        <p class="textoContato mb-0">Localização</p>
-                        <p class="infoContato mb-0">Rua Principal, 123 - Centro, Curitiba/PR</p>
-                    </div>
-                </div>-->
             </div>
-            
-            <div class="col-lg-5 col-md-6 col-sm-10 mx-auto" id="bloco3">
-                <div id="blocoInput">
-                    <div class="row">
-                        <input class="input1 mx-auto" id="inputNome" type="text" placeholder="Nome">
-                        <input class="input1 mx-auto" id="inputEmail" type="email" placeholder="Email">
-                        <input class="mx-auto" id="inputMensagem" type="text" placeholder="Mensagem">
-                        <input (click)="sendEmail()" class="mx-auto" id="submit" type="submit" value="Enviar">
-                    </div>
-                </div>
-            </div>
-            <div id="blocoAzul"></div>
         </div>
-    </div>
-    
-</div>
+    </section>
