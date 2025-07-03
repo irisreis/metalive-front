@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Header2Component } from "../../components/header2/header2.component";
+import { HeaderComponent } from "../../components/header/header.component";
 import { RodapeComponent } from "../../components/rodape/rodape.component";
 import { CombosComponent } from "../../components/combos/combos.component";
 import { ComboInfosComponent } from "../../components/combo-infos/combo-infos.component";
@@ -7,7 +7,7 @@ import { ComboInfosComponent } from "../../components/combo-infos/combo-infos.co
 @Component({
   selector: "app-combo",
   standalone: true,
-  imports: [Header2Component, RodapeComponent, ComboInfosComponent],
+  imports: [HeaderComponent, RodapeComponent, ComboInfosComponent],
   templateUrl: "./combo.component.html",
   styleUrl: "./combo.component.scss"
 })

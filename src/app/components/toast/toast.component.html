@@ -1,7 +1,30 @@
-@for (toast of toastService.toasts; track toast) {
-    <ngb-toast
-      [class]="toast.classes"
-      [header]="toast.header" [autohide]="true" [delay]="toast.delay || 3000"
-      (hidden)="toastService.remove(toast)"
-    >{{ toast.body }}</ngb-toast>
-  }
+<!-- SE O SEU TOAST.COMPONENT.HTML TIVER NGB-TOAST: -->
+<ngb-toast
+  *ngFor="let toast of toastService.toasts"
+  [class]="toast.classname"  
+  [autohide]="toast.autohide"
+  [delay]="toast.delay || 5000"
+  (hidden)="toastService.remove(toast)"
+>
+  <ng-template ngbToastHeader>
+    <strong class="mx-auto">{{ toast.header }}</strong>
+  </ng-template>
+  {{ toast.body }}
+</ngb-toast>
+
+<!-- SE O SEU TOAST.COMPONENT.HTML TIVER UMA ESTRUTURA DE DIVS PERSONALIZADA: -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div *ngFor="let toast of toastService.toasts">
+    <div class="toast show fade"
+         [class]="toast.classname"  
+         role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">{{ toast.header }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" (click)="toastService.remove(toast)"></button>
+      </div>
+      <div class="toast-body">
+        {{ toast.body }}
+      </div>
+    </div>
+  </div>
+</div>

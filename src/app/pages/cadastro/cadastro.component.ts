@@ -7,12 +7,13 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Necessário para ngIf, ngFor, etc.
 import { AuthService } from "../../auth.service";
 import { ScrollService } from "../../scroll.service";
+import { HeaderComponent } from "../../components/header/header.component";
 //import { firstValueFrom } from 'rxjs'; // Mantido comentado se paymentService não estiver em uso
 
 @Component({
   selector: "app-cadastro",
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule], // Adicionado CommonModule e RouterModule
+  imports: [FormsModule, CommonModule, RouterModule, HeaderComponent], // Adicionado CommonModule e RouterModule
   templateUrl: "./cadastro.component.html",
   styleUrls: ["./cadastro.component.scss"]
 })

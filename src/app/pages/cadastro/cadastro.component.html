@@ -1,12 +1,15 @@
+<app-header></app-header>
 <body>
+    <div class="aux"></div>
     <div class="container">
         <!-- Seção Esquerda - Resumo do Plano -->
         <div class="left-section">
-            <div class="logo">
-                <!-- Usando img para o logo da Metalive -->
+            <!-- Envolve o .logo com um link [routerLink] -->
+            <!-- <a [routerLink]="['/home']" class="logo logo-link-clickable">
+                < !-- Usando img para o logo da Metalive -- >
                 <img src="../../../assets/logo/logometalivemini.png" alt="Logo Metalive" class="logo-icon-img">
                 <div class="logo-text">METALIVE</div>
-            </div>
+            </a> -->
             <div class="tagline">Conexão, mente e corpo.</div>
 
             <div class="plan-summary">
@@ -82,7 +85,6 @@
                     </div>
                 </div>
 
-                <!-- Removido [disabled]="isLoading" da tag <form> -->
                 <form (ngSubmit)="onSubmit()">
                     <div class="form-grid">
                         <div class="form-group">
@@ -97,7 +99,6 @@
                             <label for="phone">Telefone</label>
                             <input type="tel" id="phone" [(ngModel)]="numeroTelefone" name="numeroTelefone" placeholder="(XX) XXXXX-XXXX" required [disabled]="isLoading">
                         </div>
-                        <!-- CPF não está no TS, se precisar, adicione ao componente -->
                         <div class="form-group">
                             <label for="cpf">CPF</label>
                             <input type="text" id="cpf" placeholder="000.000.000-00" [disabled]="isLoading">
@@ -109,7 +110,6 @@
                         <input type="text" id="address" [(ngModel)]="billingAddress" name="billingAddress" placeholder="Rua, número, bairro, cidade, CEP" required [disabled]="isLoading">
                     </div>
 
-                    <!-- Campos de senha -->
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="password">Senha</label>
@@ -124,7 +124,6 @@
                     <div class="form-group">
                         <label>Método de pagamento</label>
                         <div class="payment-methods">
-                            <!-- Adicionando classe 'active' dinamicamente e (click) -->
                             <div class="payment-method" [class.active]="selectedPaymentMethod === 'credit_card'" (click)="selectPaymentMethod('credit_card')" [class.disabled]="isLoading">
                                 💳 Cartão
                             </div>
@@ -137,9 +136,8 @@
                         </div>
                     </div>
 
-                    <!-- Campos de cartão de crédito (visíveis apenas se 'credit_card' for selecionado) -->
                     <ng-container *ngIf="selectedPaymentMethod === 'credit_card'">
-                        <div class="form-grid" #destinoDetalhePagamento id="card-payment-details"> <!-- Adicionado #destinoDetalhePagamento -->
+                        <div class="form-grid" #destinoDetalhePagamento id="card-payment-details">
                             <div class="form-group">
                                 <label for="cardName">Nome no cartão</label>
                                 <input type="text" id="cardName" [(ngModel)]="card_name" name="card_name" placeholder="Nome como no cartão" required [disabled]="isLoading">
@@ -159,7 +157,6 @@
                         </div>
                     </ng-container>
 
-                    <!-- Mensagem para PIX/Boleto (visíveis se o método for selecionado) -->
                     <div *ngIf="selectedPaymentMethod === 'pix'" class="payment-info-message">
                         Você será redirecionado(a) para gerar o código PIX após a confirmação.
                     </div>
@@ -172,7 +169,6 @@
                         <label for="terms">Eu aceito os <a [routerLink]="['/termos-de-uso']" style="color: #2169a4;">termos de uso</a> e <a [routerLink]="['/politica-de-privacidade']" style="color: #2169a4;">política de privacidade</a></label>
                     </div>
 
-                    <!-- Botão de submit desabilitado durante o carregamento ou se termos não aceitos -->
                     <button type="submit" class="checkout-btn" [disabled]="!aceito || isLoading">
                         <span *ngIf="!isLoading">🚀 COMEÇAR TRANSFORMAÇÃO - R$ 159,90/mês</span>
                         <span *ngIf="isLoading">Processando...</span>

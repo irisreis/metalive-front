@@ -7,6 +7,7 @@
             </div>
             <div class="user-section">
                 <div class="user-info">
+                    <!-- getInitials(clienteData?.nome) ainda usa ?. porque está fora do ng-container principal -->
                     <div class="avatar">{{ getInitials(clienteData?.nome) }}</div>
                     <div class="user-details">
                         <h3>{{ clienteData?.nome || 'Nome do Cliente' }}</h3>
@@ -34,34 +35,34 @@
             <div class="spinner"></div>
         </div>
 
-        <ng-container *ngIf="!isLoading && clienteData">
+        <!-- CORREÇÃO PRINCIPAL AQUI: *ngIf="clienteData as cliente" -->
+        <ng-container *ngIf="!isLoading && clienteData as cliente">
             <div class="dashboard-grid" *ngIf="currentContent === 'overview'">
 
                 <!-- NOVO FORMULÁRIO CARD -->
                 <div class="premium-card">
                     <div class="card-header">
                         <div class="card-info">
-                            <div class="card-icon form-icon">📝</div> <!-- Novo ícone para formulário -->
+                            <div class="card-icon form-icon">📝</div>
                             <div class="card-content">
                                 <h3>Formulário de Saúde</h3>
                                 <div class="card-subtitle">Mantenha seus dados atualizados</div>
                             </div>
                         </div>
-                        <!-- Status do formulário -->
-                        <div class="status-indicator" [class.status-active]="!!clienteData?.formularioPreenchido" [class.status-pending]="!clienteData?.formularioPreenchido"></div>
+                        <div class="status-indicator" [class.status-active]="!!cliente.formularioPreenchido" [class.status-pending]="!cliente.formularioPreenchido"></div>
                     </div>
                     <div class="card-stats">
                         <div class="stat-item">
-                            <div class="stat-number">{{ clienteData?.formularioPreenchido ? 'Preenchido' : 'Pendente' }}</div>
+                            <div class="stat-number">{{ cliente.formularioPreenchido ? 'Preenchido' : 'Pendente' }}</div>
                             <div class="stat-label">Status</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">{{ clienteData?.ultimaAtualizacaoFormulario || 'N/A' }}</div>
+                            <div class="stat-number">{{ cliente.ultimaAtualizacaoFormulario || 'N/A' }}</div>
                             <div class="stat-label">Última Atualização</div>
                         </div>
                     </div>
                     <div class="action-buttons">
-                        <ng-container *ngIf="!clienteData?.formularioPreenchido; else formFilled">
+                        <ng-container *ngIf="!cliente.formularioPreenchido; else formFilled">
                             <button class="primary-btn" [routerLink]="['/formulario', clienteId]">Preencher Formulário</button>
                         </ng-container>
                         <ng-template #formFilled>
@@ -79,11 +80,11 @@
                                 <div class="card-subtitle">Agendamentos e compromissos</div>
                             </div>
                         </div>
-                        <div class="status-indicator" [class.status-pending]="(clienteData?.proximasConsultas?.length || 0) === 0" [class.status-active]="(clienteData?.proximasConsultas?.length || 0) > 0"></div>
+                        <div class="status-indicator" [class.status-pending]="(cliente.proximasConsultas?.length || 0) === 0" [class.status-active]="(cliente.proximasConsultas?.length || 0) > 0"></div>
                     </div>
                     <div class="card-stats">
                         <div class="stat-item">
-                            <div class="stat-number">{{ clienteData?.proximasConsultas?.length || 0 }}</div>
+                            <div class="stat-number">{{ cliente.proximasConsultas?.length || 0 }}</div>
                             <div class="stat-label">Agendadas</div>
                         </div>
                         <div class="stat-item">
@@ -106,15 +107,15 @@
                                 <div class="card-subtitle">Dieta personalizada e acompanhamento</div>
                             </div>
                         </div>
-                        <div class="status-indicator" [class.status-active]="!!clienteData?.diet" [class.status-pending]="!clienteData?.diet"></div>
+                        <div class="status-indicator" [class.status-active]="!!cliente.diet" [class.status-pending]="!cliente.diet"></div>
                     </div>
                     <div class="card-stats">
                         <div class="stat-item">
-                            <div class="stat-number">{{ clienteData?.aderenciaDieta || 'N/A' }}{{ clienteData?.aderenciaDieta ? '%' : '' }}</div>
+                            <div class="stat-number">{{ cliente.aderenciaDieta || 'N/A' }}{{ cliente.aderenciaDieta ? '%' : '' }}</div>
                             <div class="stat-label">Aderência</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">{{ clienteData?.pesoPerdidoMes || '0' }}kg</div>
+                            <div class="stat-number">{{ cliente.pesoPerdidoMes || '0' }}kg</div>
                             <div class="stat-label">Este Mês</div>
                         </div>
                     </div>
@@ -133,15 +134,15 @@
                                 <div class="card-subtitle">Treinos e acompanhamento físico</div>
                             </div>
                         </div>
-                        <div class="status-indicator" [class.status-active]="!!clienteData?.treino" [class.status-pending]="!clienteData?.treino"></div>
+                        <div class="status-indicator" [class.status-active]="!!cliente.treino" [class.status-pending]="!cliente.treino"></div>
                     </div>
                     <div class="card-stats">
                         <div class="stat-item">
-                            <div class="stat-number">{{ clienteData?.treinosRealizados || '0' }}</div>
+                            <div class="stat-number">{{ cliente.treinosRealizados || '0' }}</div>
                             <div class="stat-label">Treinos</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">{{ clienteData?.frequenciaTreino || '0x' }}</div>
+                            <div class="stat-number">{{ cliente.frequenciaTreino || '0x' }}</div>
                             <div class="stat-label">Semana</div>
                         </div>
                     </div>
@@ -160,15 +161,15 @@
                                 <div class="card-subtitle">Métricas e relatórios detalhados</div>
                             </div>
                         </div>
-                        <div class="status-indicator" [class.status-active]="(clienteData?.progressoGeral || 0) > 0" [class.status-pending]="(clienteData?.progressoGeral || 0) === 0"></div>
+                        <div class="status-indicator" [class.status-active]="(cliente.progressoGeral || 0) > 0" [class.status-pending]="(cliente.progressoGeral || 0) === 0"></div>
                     </div>
                     <div class="card-stats">
                         <div class="stat-item">
-                            <div class="stat-number">{{ clienteData?.progressoGeral || '0' }}%</div>
+                            <div class="stat-number">{{ cliente.progressoGeral || '0' }}%</div>
                             <div class="stat-label">Progresso</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">{{ clienteData?.avaliacaoGeral || 'N/A' }}</div>
+                            <div class="stat-number">{{ cliente.avaliacaoGeral || 'N/A' }}</div>
                             <div class="stat-label">Avaliação</div>
                         </div>
                     </div>
@@ -186,30 +187,31 @@
                 </div>
                 <div class="metrics-grid">
                     <div class="metric-card">
-                        <div class="metric-number">{{ clienteData?.diasAtivos || '0' }}</div>
+                        <div class="metric-number">{{ cliente.diasAtivos || '0' }}</div>
                         <div class="metric-label">Dias Ativos</div>
-                        <div class="metric-change">{{ clienteData?.diasAtivosChange || '0%' }} vs. mês anterior</div>
+                        <div class="metric-change">{{ cliente.diasAtivosChange || '0%' }} vs. mês anterior</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-number">{{ clienteData?.pesoAtual || '0.0' }}kg</div>
+                        <div class="metric-number">{{ cliente.pesoAtual || '0.0' }}kg</div>
                         <div class="metric-label">Peso Atual</div>
-                        <div class="metric-change">{{ clienteData?.pesoDesdeInicio || '0.0' }}kg desde início</div>
+                        <div class="metric-change">{{ cliente.pesoDesdeInicio || '0.0' }}kg desde início</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-number">{{ clienteData?.caloriasDia || '0' }}</div>
+                        <div class="metric-number">{{ cliente.caloriasDia || '0' }}</div>
                         <div class="metric-label">Calorias/Dia</div>
-                        <div class="metric-change">Meta: {{ clienteData?.metaCalorias || '0' }} cal</div>
+                        <div class="metric-change">Meta: {{ cliente.metaCalorias || '0' }} cal</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-number">{{ clienteData?.taxaSucesso || '0' }}%</div>
+                        <div class="metric-number">{{ cliente.taxaSucesso || '0' }}%</div>
                         <div class="metric-label">Taxa de Sucesso</div>
-                        <div class="metric-change">{{ clienteData?.taxaSucessoChange || '0%' }} vs. mês anterior</div>
+                        <div class="metric-change">{{ cliente.taxaSucessoChange || '0%' }} vs. mês anterior</div>
                     </div>
                 </div>
             </div>
 
             <div *ngIf="currentContent === 'nutritionist'">
-                <ng-container *ngIf="clienteData?.diet; else noDietNutritionist">
+                <!-- Agora 'cliente.diet' é seguro -->
+                <ng-container *ngIf="cliente.diet; else noDietNutritionist">
                     <div class="main-content">
                         <div class="diet-content">
                             <div class="profissional-card">
@@ -231,13 +233,13 @@
                                         <div class="service-icon">🍽️</div>
                                         <h2>Plano de Dieta Semanal</h2>
                                     </div>
-                                    <button class="download-btn" (click)="downloadDietPDF()">
+                                    <!-- CORREÇÃO: Use downloadDietPDF() para o cliente -->
+                                    <!-- <button class="download-btn" (click)="downloadDietPDF()" *ngIf="cliente.pdfUrl">
                                         <span>📥</span>
                                         Baixar PDF
-                                    </button>
+                                    </button> -->
                                 </div>
-
-                                <pre class="dietaTreinoPronto">{{ clienteData.diet }}</pre>
+                                <pre class="dietaTreinoPronto">{{ cliente.diet }}</pre>
                             </div>
                         </div>
 
@@ -249,18 +251,18 @@
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Meta Calórica</span>
-                                    <span class="stat-value">{{ clienteData?.metaCaloriasNutricional || '0' }} cal</span>
+                                    <span class="stat-value">{{ cliente.metaCaloriasNutricional || '0' }} cal</span>
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Consumidas</span>
-                                    <span class="stat-value">{{ clienteData?.caloriasConsumidas || '0' }} cal</span>
+                                    <span class="stat-value">{{ cliente.caloriasConsumidas || '0' }} cal</span>
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Aderência</span>
-                                    <span class="stat-value">{{ clienteData?.aderenciaNutricional || '0' }}%</span>
+                                    <span class="stat-value">{{ cliente.aderenciaNutricional || '0' }}%</span>
                                 </div>
                                 <div class="progress-bar">
-                                    <div class="progress-fill" [style.width.%]="clienteData?.aderenciaNutricional || 0"></div>
+                                    <div class="progress-fill" [style.width.%]="cliente.aderenciaNutricional || 0"></div>
                                 </div>
                             </div>
 
@@ -297,6 +299,7 @@
 
 
             <div *ngIf="currentContent === 'personalTrainer'">
+                <!-- CORREÇÃO: Use *ngIf="clienteData as cliente" aqui também para este bloco -->
                 <ng-container *ngIf="clienteData?.treino; else noWorkoutPersonal">
                     <div class="main-content">
                         <div class="workout-content">
@@ -319,13 +322,14 @@
                                         <div class="service-icon">🏋️‍♀️</div>
                                         <h2>Plano de Treino Semanal</h2>
                                     </div>
-                                    <button class="download-btn" (click)="downloadWorkoutPDF()">
+                                    <!-- CORREÇÃO: Use downloadWorkoutPDF() para o cliente -->
+                                    <!-- <button class="download-btn" (click)="downloadWorkoutPDF()" *ngIf="cliente.treinoPdfUrl">
                                         <span>📥</span>
                                         Baixar PDF
-                                    </button>
+                                    </button> -->
                                 </div>
 
-                                <pre class="dietaTreinoPronto">{{ clienteData.treino }}</pre>
+                                <pre class="dietaTreinoPronto">{{ cliente.treino }}</pre>
                             </div>
                         </div>
 
@@ -337,18 +341,18 @@
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Treinos Concluídos</span>
-                                    <span class="stat-value">{{ clienteData?.treinosSemanaConcluidos || '0' }}</span>
+                                    <span class="stat-value">{{ cliente.treinosSemanaConcluidos || '0' }}</span>
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Sessões Restantes</span>
-                                    <span class="stat-value">{{ clienteData?.sessoesRestantes || '0' }}</span>
+                                    <span class="stat-value">{{ cliente.sessoesRestantes || '0' }}</span>
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Aderência</span>
-                                    <span class="stat-value">{{ clienteData?.treinoAderencia || '0' }}%</span>
+                                    <span class="stat-value">{{ cliente.treinoAderencia || '0' }}%</span>
                                 </div>
                                 <div class="progress-bar">
-                                    <div class="progress-fill" [style.width.%]="clienteData?.treinoAderencia || 0"></div>
+                                    <div class="progress-fill" [style.width.%]="cliente.treinoAderencia || 0"></div>
                                 </div>
                             </div>
 

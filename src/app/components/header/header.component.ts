@@ -1,19 +1,28 @@
-import { ScrollService } from "../../scroll.service";
-import { Component } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Para ngIf
+import { RouterModule } from '@angular/router'; // Para routerLink
 
 @Component({
-  selector: "app-header",
+  selector: 'app-header', // Selector para usar no template pai
   standalone: true,
-  imports: [],
-  templateUrl: "./header.component.html",
-  styleUrl: "./header.component.scss"
+  imports: [CommonModule, RouterModule], // Importar CommonModule e RouterModule
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
-  constructor(private scrollService: ScrollService) {}
+export class HeaderComponent implements OnInit {
+  isMobileMenuOpen: boolean = false; // Estado para controlar a visibilidade do menu mobile
 
-  rolarParaDestino(event: Event, idElemento: string) {
-    event.preventDefault();
-    console.log("Evento de rolagem emitido para:", idElemento);//tirar
-    this.scrollService.emitirRolagem(idElemento);
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  // Opcional: Fechar menu ao clicar em um link
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen = false;
   }
 }
