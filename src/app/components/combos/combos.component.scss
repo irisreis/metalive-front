@@ -158,7 +158,14 @@
             font-size: 0.95rem;
         }
 
+        .cta-container {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        }
+
         .cta-button {
+            display: inline-block;
             width: 100%;
             background: linear-gradient(135deg, #373a6d, #2169a4);
             color: white;
@@ -170,7 +177,9 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
+            text-decoration: none;
             letter-spacing: 1px;
+            text-align: center;
         }
 
         .cta-button:hover {
