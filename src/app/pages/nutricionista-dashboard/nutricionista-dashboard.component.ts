@@ -316,58 +316,89 @@ export class NutricionistaDashboardComponent implements OnInit {
   /**
    * Inicia o processo de upload do PDF para o Storage e salva a URL no Firestore.
    */
-  async uploadDietPDF(): Promise<void> {
-    if (!this.selectedFile || !this.selectedClientData?.id) {
-      console.warn('Por favor, selecione um arquivo e um cliente antes de fazer o upload.');
-      // TODO: Adicionar feedback visual ao usuário
-      return;
-    }
+  async uploadDietPDF(): Promise<void> {
+    if (!this.selectedFile || !this.selectedClientData?.id) {
+      console.warn('Por favor, selecione um arquivo e um cliente antes de fazer o upload.');
+      // TODO: Adicionar feedback visual ao usuário
+      return;
+    }
 
-    this.isUploading = true;
-    this.uploadProgress = 0;
+    this.isUploading = true;
+    this.uploadProgress = 0;
 
-    const filePath = `dietas_pdf/${this.selectedClientData.id}/${this.selectedFile.name}`;
-    const storageRef = ref(this.storage, filePath);
-    const uploadTask = uploadBytesResumable(storageRef, this.selectedFile);
+    console.log('Iniciando upload para o Storage...');
+    console.log('Cliente ID:', this.selectedClientData.id);
+    console.log('Nome do arquivo:', this.selectedFile.name);
 
-    uploadTask.on('state_changed',
-      (snapshot) => {
-        // Observa eventos de mudança de estado, como progresso, pausa, e resume
-        this.uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + this.uploadProgress + '% done');
-      },
-      (error) => {
-        // Lida com erros de upload
-        console.error('Erro ao fazer upload do PDF:', error);
-        this.isUploading = false;
-        this.uploadProgress = 0;
-        // TODO: Feedback de erro ao usuário
-      },
-      async () => {
-        // Upload completo com sucesso
-        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-        console.log('PDF disponível em:', downloadURL);
+    // Adicionar um timestamp ao nome do arquivo para garantir unicidade e evitar cache
+    const timestamp = new Date().getTime();
+    const fileName = `${timestamp}_${this.selectedFile.name}`;
+    const filePath = `dietas_pdf/${this.selectedClientData.id}/${fileName}`; // Use o novo fileName
+    
+    console.log('Caminho completo no Storage:', filePath);
 
-        // Salva a URL do PDF no documento do cliente no Firestore
-        const clientDocRef = doc(this.firestore, `clientes/${this.selectedClientData?.id}`);
-        try {
-          await updateDoc(clientDocRef, { pdfUrl: downloadURL });
-          if (this.selectedClientData) {
-            this.selectedClientData.pdfUrl = downloadURL; // Atualiza localmente
-          }
-          console.log('URL do PDF salva no Firestore com sucesso!');
-          // TODO: Feedback de sucesso ao usuário
-        } catch (error) {
-          console.error('Erro ao salvar a URL do PDF no Firestore:', error);
-          // TODO: Feedback de erro ao usuário
-        } finally {
-          this.isUploading = false;
-          this.selectedFile = null; // Limpa o arquivo selecionado após o upload
-          this.uploadProgress = 0;
-        }
-      }
-    );
-  }
+    const storageRef = ref(this.storage, filePath);
+    
+    console.log('Referência do Storage criada:', storageRef);
+
+    // Adicionar um pequeno atraso para ver se algo está bloqueando o início imediato
+    await new Promise(resolve => setTimeout(resolve, 50)); 
+
+    const uploadTask = uploadBytesResumable(storageRef, this.selectedFile);
+
+    console.log('Tarefa de upload iniciada. Objeto uploadTask:', uploadTask);
+
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        // Observa eventos de mudança de estado, como progresso, pausa, e resume
+        this.uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + this.uploadProgress + '% done. Bytes transferidos:', snapshot.bytesTransferred, 'Total bytes:', snapshot.totalBytes);
+        
+        // Feedback visual no console para ver se esta parte está sendo ativada
+        if (this.uploadProgress > 0 && this.uploadProgress < 100) {
+          console.log(`Progresso: ${this.uploadProgress.toFixed(0)}%`);
+        }
+      },
+      (error) => {
+        // Lida com erros de upload
+        console.error('Erro REAL ao fazer upload do PDF:', error); // Mensagem mais destacada
+        this.isUploading = false;
+        this.uploadProgress = 0;
+        alert('Erro ao fazer upload do PDF. Verifique o console para detalhes.'); // Feedback visual
+      },
+      async () => {
+        // Upload completo com sucesso
+        console.log('Upload CONCLUÍDO. Tentando obter URL de download...');
+        try {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          console.log('PDF disponível em:', downloadURL);
+
+          // Salva a URL do PDF no documento do cliente no Firestore
+          const clientDocRef = doc(this.firestore, `clientes/${this.selectedClientData?.id}`);
+          try {
+            await updateDoc(clientDocRef, { pdfUrl: downloadURL });
+            if (this.selectedClientData) {
+              this.selectedClientData.pdfUrl = downloadURL; // Atualiza localmente
+            }
+            console.log('URL do PDF salva no Firestore com sucesso!');
+            alert('Upload e atualização do Firestore concluídos com sucesso!'); // Feedback final
+          } catch (error) {
+            console.error('Erro ao salvar a URL do PDF no Firestore:', error);
+            alert('Erro ao salvar a URL do PDF no Firestore. Tente novamente.');
+          } finally {
+            this.isUploading = false;
+            this.selectedFile = null; // Limpa o arquivo selecionado após o upload
+            this.uploadProgress = 0;
+          }
+        } catch (downloadUrlError) {
+          console.error('Erro ao obter URL de download:', downloadUrlError);
+          alert('Erro ao finalizar o upload (não foi possível obter a URL).');
+          this.isUploading = false;
+          this.uploadProgress = 0;
+        }
+      }
+    );
+  }
 
   /**
    * Abre o PDF da dieta em uma nova aba.

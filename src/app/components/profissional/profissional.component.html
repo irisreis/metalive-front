@@ -7,7 +7,6 @@
             </div>
             <div class="user-section">
                 <div class="user-info">
-                    <!-- getInitials(clienteData?.nome) ainda usa ?. porque está fora do ng-container principal -->
                     <div class="avatar">{{ getInitials(clienteData?.nome) }}</div>
                     <div class="user-details">
                         <h3>{{ clienteData?.nome || 'Nome do Cliente' }}</h3>
@@ -35,11 +34,9 @@
             <div class="spinner"></div>
         </div>
 
-        <!-- CORREÇÃO PRINCIPAL AQUI: *ngIf="clienteData as cliente" -->
         <ng-container *ngIf="!isLoading && clienteData as cliente">
             <div class="dashboard-grid" *ngIf="currentContent === 'overview'">
 
-                <!-- NOVO FORMULÁRIO CARD -->
                 <div class="premium-card">
                     <div class="card-header">
                         <div class="card-info">
@@ -70,7 +67,6 @@
                         </ng-template>
                     </div>
                 </div>
-                <!-- FIM DO NOVO FORMULÁRIO CARD -->
                 <div class="premium-card">
                     <div class="card-header">
                         <div class="card-info">
@@ -107,8 +103,7 @@
                                 <div class="card-subtitle">Dieta personalizada e acompanhamento</div>
                             </div>
                         </div>
-                        <div class="status-indicator" [class.status-active]="!!cliente.diet" [class.status-pending]="!cliente.diet"></div>
-                    </div>
+                        <div class="status-indicator" [class.status-active]="!!cliente.diet || !!cliente.pdfUrl" [class.status-pending]="!cliente.diet && !cliente.pdfUrl"></div> </div>
                     <div class="card-stats">
                         <div class="stat-item">
                             <div class="stat-number">{{ cliente.aderenciaDieta || 'N/A' }}{{ cliente.aderenciaDieta ? '%' : '' }}</div>
@@ -210,9 +205,7 @@
             </div>
 
             <div *ngIf="currentContent === 'nutritionist'">
-                <!-- Agora 'cliente.diet' é seguro -->
-                <ng-container *ngIf="cliente.diet; else noDietNutritionist">
-                    <div class="main-content">
+                <ng-container *ngIf="cliente.diet || cliente.pdfUrl; else noDietNutritionist"> <div class="main-content">
                         <div class="diet-content">
                             <div class="profissional-card">
                                 <div class="profissional-header">
@@ -233,13 +226,14 @@
                                         <div class="service-icon">🍽️</div>
                                         <h2>Plano de Dieta Semanal</h2>
                                     </div>
-                                    <!-- CORREÇÃO: Use downloadDietPDF() para o cliente -->
-                                    <!-- <button class="download-btn" (click)="downloadDietPDF()" *ngIf="cliente.pdfUrl">
+                                    <button class="download-btn" (click)="downloadDietPDF()">
                                         <span>📥</span>
                                         Baixar PDF
-                                    </button> -->
+                                    </button>
                                 </div>
-                                <pre class="dietaTreinoPronto">{{ cliente.diet }}</pre>
+                                <pre class="dietaTreinoPronto" *ngIf="cliente.diet" [innerHtml]="cliente.diet"></pre>
+                                <p *ngIf="!cliente.diet && !cliente.pdfUrl" class="textoNaoDisponivel">Nenhum plano de dieta disponível no momento.</p>
+                                <p *ngIf="!cliente.diet && cliente.pdfUrl" class="textoNaoDisponivel">Seu plano de dieta está disponível apenas em PDF. Clique em "Baixar PDF" acima.</p>
                             </div>
                         </div>
 
@@ -299,7 +293,6 @@
 
 
             <div *ngIf="currentContent === 'personalTrainer'">
-                <!-- CORREÇÃO: Use *ngIf="clienteData as cliente" aqui também para este bloco -->
                 <ng-container *ngIf="clienteData?.treino; else noWorkoutPersonal">
                     <div class="main-content">
                         <div class="workout-content">
@@ -322,11 +315,10 @@
                                         <div class="service-icon">🏋️‍♀️</div>
                                         <h2>Plano de Treino Semanal</h2>
                                     </div>
-                                    <!-- CORREÇÃO: Use downloadWorkoutPDF() para o cliente -->
-                                    <!-- <button class="download-btn" (click)="downloadWorkoutPDF()" *ngIf="cliente.treinoPdfUrl">
+                                    <button class="download-btn" (click)="downloadWorkoutPDF()">
                                         <span>📥</span>
                                         Baixar PDF
-                                    </button> -->
+                                    </button>
                                 </div>
 
                                 <pre class="dietaTreinoPronto">{{ cliente.treino }}</pre>

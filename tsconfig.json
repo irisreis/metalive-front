@@ -27,7 +27,7 @@
       "src/@types"
     ],
     "types": [
-      "jest",
+     // "jest",
       "node", 
      // "joi"
     ]

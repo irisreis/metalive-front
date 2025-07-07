@@ -10,11 +10,12 @@ import { provideStorage, getStorage } from "@angular/fire/storage";
 import { ReactiveFormsModule } from "@angular/forms"; // Importação para formulários reativos
 
 // Configurações do Firebase
+// Configurações do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyD7rLD2BbkgExlwd6hhABPqvl39SfcrtFo",
   authDomain: "metalive-8b9e7.firebaseapp.com",
   projectId: "metalive-8b9e7",
-  storageBucket: "metalive-8b9e7.appspot.com",
+  storageBucket: "metalive-8b9e7.firebasestorage.app", // <<<<< ALTERADO AQUI!
   messagingSenderId: "1052735217691",
   appId: "1:1052735217691:web:53d5aaccbb01b2bad1d8be",
   measurementId: "G-1GJLL3P14D",

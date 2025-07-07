@@ -4,7 +4,12 @@ import { RouterModule, Router } from '@angular/router';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { inject } from '@angular/core';
 import { AuthService } from "../../auth.service";
+import { User } from '@angular/fire/auth'; // <<<<<<< Adicione este import para tipagem da interface User
 
+// Adicione este pipe se ainda não tiver e for usar o pipe 'nl2br' no HTML
+//import { Nl2brPipe } from '../../pipes/nl2br.pipe'; // <<<<<<< Descomente e importe o pipe se for usar
+
+// Interface para dados do cliente
 interface ClienteData {
   nome?: string;
   plano?: string;
@@ -13,6 +18,7 @@ interface ClienteData {
   aderenciaDieta?: number;
   pesoPerdidoMes?: number;
   diet?: string;
+  pdfUrl?: string; // <<<<<<<< ESSA PROPRIEDADE É CRUCIAL PARA O PDF
   treinosRealizados?: number;
   frequenciaTreino?: string;
   treino?: string;
@@ -32,15 +38,14 @@ interface ClienteData {
   treinosSemanaConcluidos?: number;
   sessoesRestantes?: number;
   treinoAderencia?: number;
-  // NOVA PROPRIEDADE PARA O FORMULÁRIO
   formularioPreenchido?: boolean;
-  ultimaAtualizacaoFormulario?: string; // Ex: '25/06/2025' ou 'N/A'
+  ultimaAtualizacaoFormulario?: string;
 }
 
 @Component({
   selector: "app-profissional",
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule], // <<<<<<< Adicione Nl2brPipe aqui se estiver usando
   templateUrl: "./profissional.component.html",
   styleUrl: "./profissional.component.scss"
 })
@@ -56,7 +61,20 @@ export class ProfissionalComponent implements OnInit {
   constructor(private firestore: Firestore) {}
 
   ngOnInit(): void {
-    this.loadClienteData();
+    // É uma boa prática carregar o ID do usuário logado se ele não for passado como @Input
+    // ou se você quiser garantir que o cliente só veja os próprios dados.
+    this.authService.getCurrentUserObservable().subscribe((user: User | null) => { // <<<<< ALTERADO AQUI
+      if (user && !this.clienteId) { // Se não foi passado via Input, usa o ID do usuário logado
+        this.clienteId = user.uid;
+        this.loadClienteData();
+      } else if (this.clienteId) { // Se já tem o ID via Input (ex: para testes ou admin vendo cliente específico)
+        this.loadClienteData();
+      } else {
+        console.warn("Nenhum clienteId fornecido e nenhum usuário logado. Carregando dados de exemplo.");
+        this.clienteData = this.getMockClienteData();
+        this.isLoading = false;
+      }
+    });
   }
 
   showContent(content: string): void {
@@ -83,7 +101,7 @@ export class ProfissionalComponent implements OnInit {
       if (docSnapshot.exists()) {
         this.clienteData = docSnapshot.data() as ClienteData;
         console.log('Dados do cliente:', this.clienteData);
-        this.populateMockDataIfMissing();
+        this.populateMockDataIfMissing(); // Garante que campos ausentes recebam valores mockados
       } else {
         console.warn(`Documento do cliente com ID '${this.clienteId}' não encontrado. Carregando dados de exemplo.`);
         this.clienteData = this.getMockClienteData();
@@ -99,9 +117,11 @@ export class ProfissionalComponent implements OnInit {
   private populateMockDataIfMissing(): void {
     if (!this.clienteData) return;
 
+    // Mescla os dados do Firestore com os dados mockados,
+    // garantindo que campos ausentes no Firestore recebam valores padrão do mock.
     this.clienteData = {
-      ...this.getMockClienteData(),
-      ...this.clienteData
+      ...this.getMockClienteData(), // Pega todos os dados mockados como base
+      ...this.clienteData           // Sobrescreve com os dados reais do Firestore
     };
   }
 
@@ -134,6 +154,8 @@ export class ProfissionalComponent implements OnInit {
         * Opção 1: Sopa de legumes com frango desfiado.
         * Opção 2: Salada completa com grão de bico e atum.
       `,
+      // >>>>>>>>>> Adicionado PDF de exemplo para o mock <<<<<<<<<<
+      pdfUrl: 'https://www.africau.edu/images/default/sample.pdf',
       treinosRealizados: 12,
       frequenciaTreino: '4x Semana',
       treino: `
@@ -190,8 +212,7 @@ export class ProfissionalComponent implements OnInit {
       treinosSemanaConcluidos: 4,
       sessoesRestantes: 1,
       treinoAderencia: 80,
-      // DADOS MOCKADOS PARA O NOVO FORMULÁRIO CARD
-      formularioPreenchido: false, // Defina como true ou false para testar os estados
+      formularioPreenchido: false,
       ultimaAtualizacaoFormulario: '10/06/2025',
     };
   }
@@ -235,8 +256,18 @@ export class ProfissionalComponent implements OnInit {
     console.log('Exportar Dados clicado');
   }
 
+  /**
+   * Abre o PDF da dieta em uma nova aba do navegador.
+   * Exibe um alerta se a URL do PDF não estiver disponível.
+   */
   downloadDietPDF(): void {
-    console.log('Botão "Baixar PDF" (Dieta) clicado');
+    if (this.clienteData && this.clienteData.pdfUrl) {
+      window.open(this.clienteData.pdfUrl, '_blank');
+      console.log('Abrindo PDF da dieta:', this.clienteData.pdfUrl);
+    } else {
+      console.warn('Nenhuma dieta em PDF disponível para este cliente.');
+      alert('Nenhuma dieta em PDF disponível para download no momento.'); // Feedback para o usuário
+    }
   }
 
   viewNutritionHistory(): void {
@@ -249,6 +280,15 @@ export class ProfissionalComponent implements OnInit {
 
   downloadWorkoutPDF(): void {
     console.log('Botão "Baixar PDF" (Treino) clicado');
+    // Implementar lógica similar para baixar PDF de treino, se houver 'treinoPdfUrl'
+        if (this.clienteData && this.clienteData.pdfUrl) {
+      window.open(this.clienteData.pdfUrl, '_blank');
+      console.log('Abrindo PDF da dieta:', this.clienteData.pdfUrl);
+    } else {
+      console.warn('Nenhuma dieta em PDF disponível para este cliente.');
+      alert('Nenhuma dieta em PDF disponível para download no momento.'); // Feedback para o usuário
+    }
+    //alert('Funcionalidade de download de PDF do treino ainda não implementada.');
   }
 
   viewPersonalHistory(): void {
@@ -262,9 +302,25 @@ export class ProfissionalComponent implements OnInit {
   async onLogout(): Promise<void> {
     try {
       await this.authService.logout();
+      this.router.navigate(['/login']); // Redireciona para a página de login
       console.log('Usuário foi deslogado e redirecionado');
     } catch (error) {
       console.error('Erro ao deslogar:', error);
     }
   }
 }
+
+// Se você ainda não tem o pipe nl2br, crie-o em um arquivo como 'src/app/pipes/nl2br.pipe.ts'
+/*
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'nl2br',
+  standalone: true // Importante para Angular 15+ standalone components
+})
+export class Nl2brPipe implements PipeTransform {
+  transform(value: string | null | undefined): string {
+    return value ? value.replace(/\n/g, '<br/>') : '';
+  }
+}
+*/
