@@ -33,7 +33,8 @@
     </div>
 
     <!-- Menu mobile (visível/oculto com ngClass) -->
-    <div class="mobile-nav" [ngClass]="{'is-open': isMobileMenuOpen}">
+    <div class="mobile-nav" [ngClass]="{'active': isMobileMenuOpen}">
+
         <div class="mobile-nav-content">
             <div class="mobile-nav-links">
                 <a [routerLink]="['/home']" class="mobile-nav-link" (click)="closeMobileMenu()">Quem somos</a>

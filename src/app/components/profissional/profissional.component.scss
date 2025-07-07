@@ -270,18 +270,19 @@
         }
 
         .stat-number {
-            font-size: 24px;
+            font-size: 13px;
             font-weight: 700;
             color: #373a6d;
             margin-bottom: 4px;
         }
 
         .stat-label {
-            font-size: 12px;
+            font-size: 10px;
             color: #718096;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            padding-left: 3px;
         }
 
         .action-buttons {
@@ -730,6 +731,62 @@
             background: rgba(55, 58, 109, 0.1);
             border-color: #373a6d;
         }
+
+        .informacoesProfissional {
+        background: white;
+        border-radius: 20px;
+        padding: 32px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        border: 1px solid #f0f0f0;
+        margin-bottom: 24px;
+        position: relative;
+        overflow: hidden;
+    }
+
+     .informacoesProfissional .tituloConsulta {
+        font-size: 24px;
+        font-weight: 700;
+        color: #373a6d;
+        margin-bottom: 16px;
+        text-align: center; /* Centralizado */
+    }
+
+    .informacoesProfissional ul {
+    list-style: none;
+    padding-left: 0;
+    }
+
+    .informacoesProfissional li {
+        font-size: 16px;
+        color: #4a5568;
+        margin-bottom: 8px;
+    }
+
+    .informacoesProfissional li:last-child {
+        margin-bottom: 0;
+    }
+
+    .textoNaoDisponivel {
+        font-size: 16px;
+        color: #666;
+        text-align: center;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        border: 1px dashed #e9ecef;
+        margin-top: 20px;
+    }
+
+    .textoNaoDisponivel a {
+        color: #2169a4;
+        text-decoration: underline;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .textoNaoDisponivel a:hover {
+        color: #373a6d;
+    }
 
         /* Responsive Design */
         @media (max-width: 1024px) {

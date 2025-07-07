@@ -42,6 +42,7 @@
                         <div class="card-info">
                             <div class="card-icon form-icon">📝</div>
                             <div class="card-content">
+                                <!---att-->
                                 <h3>Formulário de Saúde</h3>
                                 <div class="card-subtitle">Mantenha seus dados atualizados</div>
                             </div>
@@ -392,12 +393,16 @@
                     <p class="textoNaoDisponivel">Informações sobre a academia e agendamento de aulas em breve.</p>
                 </div>
             </div>
+
+            <!--att-->
             <div *ngIf="currentContent === 'reports'">
                 <div class="informacoesProfissional">
-                    <p class="tituloConsulta">RELATÓRIOS</p>
-                    <p class="textoNaoDisponivel">Aqui você poderá ver relatórios detalhados do seu progresso.</p>
+                    <p class="tituloConsulta">RELATÓRIOS E ANÁLISES</p>
+                    <p class="textoNaoDisponivel">Visualize relatórios de progresso e análises detalhadas dos seus clientes.</p>
+                    <!-- Implemente os gráficos/tabelas de relatórios aqui -->
                 </div>
             </div>
+
             <div *ngIf="currentContent === 'settings'">
                 <div class="informacoesProfissional">
                     <p class="tituloConsulta">CONFIGURAÇÕES</p>
