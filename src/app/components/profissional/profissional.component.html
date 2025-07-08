@@ -22,6 +22,7 @@
                 <button class="nav-tab" [class.active]="currentContent === 'overview'" (click)="showContent('overview')">Visão Geral</button>
                 <button class="nav-tab" [class.active]="currentContent === 'nutritionist'" (click)="showContent('nutritionist')">Nutricionista</button>
                 <button class="nav-tab" [class.active]="currentContent === 'personalTrainer'" (click)="showContent('personalTrainer')">Personal Trainer</button>
+                <button class="nav-tab" [class.active]="currentContent === 'consulta'" (click)="showContent('consulta')">Consultas</button>
                 <button class="nav-tab" [class.active]="currentContent === 'academy'" (click)="showContent('academy')">Academia</button>
                 <button class="nav-tab" [class.active]="currentContent === 'chat'" (click)="showContent('chat')">Chat</button>
                 <button class="nav-tab" [class.active]="currentContent === 'reports'" (click)="showContent('reports')">Relatórios</button>
@@ -377,6 +378,111 @@
                         <p class="textoNaoDisponivel">Nenhum treino disponível. Clique <a [routerLink]="['/formulario', clienteId]">aqui</a> para responder um formulário e agendar uma consulta.</p>
                     </div>
                 </ng-template>
+            </div>
+            <div *ngIf="currentContent === 'consulta'">
+                
+        <div class="consultation-grid">
+            <!-- Nutricionista -->
+            <div class="consultation-card-consultation">
+                <div class="card-header-consultation">
+                    <div class="card-icon-consultation">🥗</div>
+                    <h2 class="card-title-consultation">Nutricionista</h2>
+                    <p class="card-subtitle-consultation">Planejamento nutricional personalizado</p>
+                </div>
+                <div class="card-content-consultation">
+                    <div class="date-picker-consultation">
+                        <h3>Selecione a Data</h3>
+                        <div class="date-options-consultation">
+                            <div class="date-option-consultation" onclick="selectDate(this, 'nutri')">
+                                <div class="date-day-consultation">Seg</div>
+                                <div class="date-number-consultation">15</div>
+                            </div>
+                            <div class="date-option-consultation" onclick="selectDate(this, 'nutri')">
+                                <div class="date-day-consultation">Ter</div>
+                                <div class="date-number-consultation">16</div>
+                            </div>
+                            <div class="date-option-consultation" onclick="selectDate(this, 'nutri')">
+                                <div class="date-day-consultation">Qua</div>
+                                <div class="date-number-consultation">17</div>
+                            </div>
+                            <div class="date-option-consultation" onclick="selectDate(this, 'nutri')">
+                                <div class="date-day-consultation">Qui</div>
+                                <div class="date-number-consultation">18</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="time-selection-consultation">
+                        <h3>Horários Disponíveis</h3>
+                        <div class="time-slots-consultation">
+                            <div class="time-slot-consultation" onclick="selectTime(this, 'nutri')">08:00</div>
+                            <div class="time-slot-consultation" onclick="selectTime(this, 'nutri')">09:00</div>
+                            <div class="time-slot unavailable-consultation">10:00</div>
+                            <div class="time-slot-consultation" onclick="selectTime(this, 'nutri')">11:00</div>
+                            <div class="time-slot-consultation" onclick="selectTime(this, 'nutri')">14:00</div>
+                            <div class="time-slot-consultation" onclick="selectTime(this, 'nutri')">15:00</div>
+                            <div class="time-slot-consultation" onclick="selectTime(this, 'nutri')">16:00</div>
+                            <div class="time-slot unavailable-consultation">17:00</div>
+                        </div>
+                    </div>
+                    
+                    <button class="book-button-consultation" id="nutri-button-consultation" disabled onclick="bookConsultation('nutri')">
+                        Agendar Consulta
+                    </button>
+                </div>
+            </div>
+
+            <!-- Personal Trainer -->
+            <div class="consultation-card-consultation">
+                <div class="card-header-consultation">
+                    <div class="card-icon-consultation">💪</div>
+                    <h2 class="card-title-consultation">Personal Trainer</h2>
+                    <p class="card-subtitle-consultation">Treinamento personalizado e eficiente</p>
+                </div>
+                <div class="card-content-consultation">
+                    <div class="date-picker-consultation">
+                        <h3>Selecione a Data</h3>
+                        <div class="date-options-consultation">
+                            <div class="date-option-consultation" onclick="selectDate(this, 'personal')">
+                                <div class="date-day-consultation">Seg</div>
+                                <div class="date-number-consultation">15</div>
+                            </div>
+                            <div class="date-option-consultation" onclick="selectDate(this, 'personal')">
+                                <div class="date-day-consultation">Ter</div>
+                                <div class="date-number-consultation">16</div>
+                            </div>
+                            <div class="date-option-consultation" onclick="selectDate(this, 'personal')">
+                                <div class="date-day-consultation">Qua</div>
+                                <div class="date-number-consultation">17</div>
+                            </div>
+                            <div class="date-option-consultation" onclick="selectDate(this, 'personal')">
+                                <div class="date-day-consultation">Qui</div>
+                                <div class="date-number-consultation">18</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="time-selection-consultation">
+                        <h3>Horários Disponíveis</h3>
+                        <div class="time-slots">
+                            <div class="time-slot-consultation" onclick="selectTime(this, 'personal')">07:00</div>
+                            <div class="time-slot-consultation" onclick="selectTime(this, 'personal')">08:00</div>
+                            <div class="time-slot-consultation" onclick="selectTime(this, 'personal')">09:00</div>
+                            <div class="time-slot-consultation unavailable">10:00</div>
+                            <div class="time-slot-consultation" onclick="selectTime(this, 'personal')">18:00</div>
+                            <div class="time-slot-consultation" onclick="selectTime(this, 'personal')">19:00</div>
+                            <div class="time-slot-consultation" onclick="selectTime(this, 'personal')">20:00</div>
+                            <div class="time-slot-unavailable-consultation">21:00</div>
+                        </div>
+                    </div>
+
+                    <button class="book-button-consultation" id="personal-button-consultation" disabled onclick="bookConsultation('personal')">
+                        Agendar Consulta
+                    </button>
+                </div>
+            </div>
+        </div>
+
             </div>
 
             <div *ngIf="currentContent === 'chat'">

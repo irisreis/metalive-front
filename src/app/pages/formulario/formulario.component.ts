@@ -16,7 +16,9 @@ export class FormularioComponent implements OnInit {
 
     ngOnInit(): void {
         // Obtenha o clienteId da rota
-        this.clienteId = this.route.snapshot.paramMap.get('clienteId') || '';
-        console.log('clienteId obtido em FormularioComponent:', this.clienteId);
+        // this.clienteId = this.route.snapshot.paramMap.get('clienteId') || '';
+        // console.log('clienteId obtido em FormularioComponent:', this.clienteId);
+        this.clienteId = this.route.snapshot.paramMap.get('uid') || ''; // <<<<< MUDOU DE 'clienteId' PARA 'uid'
+        console.log('clienteId obtido em FormularioComponent:', this.clienteId); // Log para confirmar
     }
 }

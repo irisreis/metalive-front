@@ -731,6 +731,267 @@
             border-color: #373a6d;
         }
 
+        consulta
+               .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .consultation-grid-consultation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .consultation-card-consultation {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(33, 105, 164, 0.1);
+        }
+
+        .consultation-card-consultation:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header-consultation {
+            padding: 2rem;
+            background: linear-gradient(135deg, #d4d4d4 0%, #f3f8fd 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .card-icon-consultation {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .card-title-consultation {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle-consultation {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .card-content-consultation {
+            padding: 2rem;
+        }
+
+        .time-selection-consultation {
+            margin-bottom: 2rem;
+        }
+
+        .time-selection-consultation h3 {
+            color: #373a6d;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .time-slots-consultation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .time-slot-consultation {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            background: white;
+        }
+
+        .time-slot-consultation:hover {
+            border-color: #2169a4;
+            background: #f8f9ff;
+        }
+
+        .time-slot-consultation.selected {
+            background: linear-gradient(135deg, #2169a4, #2f5389);
+            color: white;
+            border-color: #2169a4;
+        }
+
+        .time-slot-consultation.unavailable {
+            background: #f8f9fa;
+            color: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .date-picker-consultation {
+            margin-bottom: 2rem;
+        }
+
+        .date-picker-consultation h3 {
+            color: #373a6d;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .date-options-consultation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .date-option-consultation {
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .date-option-consultation:hover {
+            border-color: #2169a4;
+            background: #f8f9ff;
+        }
+
+        .date-option-consultation.selected {
+            background: linear-gradient(135deg, #2169a4, #2f5389);
+            color: white;
+            border-color: #2169a4;
+        }
+
+        .date-day-consultation {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 0.25rem;
+        }
+
+        .date-number-consultation {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .book-button-consultation {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #373a6d, #2f5389);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .book-button-consultation:hover {
+            background: linear-gradient(135deg, #2f5389, #2169a4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(55, 58, 109, 0.3);
+        }
+
+        .book-button-consultation:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .benefits-section-consultation {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+
+        .benefits-title-consultation {
+            color: #373a6d;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .benefits-grid-consultation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .benefit-item-consultation {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f8f9ff, #fff);
+            border-radius: 12px;
+            border: 1px solid rgba(33, 105, 164, 0.1);
+        }
+
+        .benefit-icon-consultation {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #2169a4, #2f5389);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .benefit-text-consultation {
+            font-weight: 500;
+            color: #373a6d;
+        }
+
+        @media (max-width: 768px) {
+            .consultation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .date-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
             .main-content {

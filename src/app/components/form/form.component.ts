@@ -98,7 +98,7 @@ export class FormComponent implements OnInit, OnChanges { // Implemente OnChange
     // seu valor já estará lá.
     // Apenas para garantir que o UID é o valor mais recente da propriedade
     // se alguma lógica de validação for sensível a campos desabilitados.
-    // this.form.get('uid')?.enable(); // Habilita o campo antes de validar se estava desabilitado
+     this.form.get('uid')?.enable(); // Habilita o campo antes de validar se estava desabilitado
 
     if (this.form.valid) {
         // O valor de `this.clienteId` na propriedade do componente
