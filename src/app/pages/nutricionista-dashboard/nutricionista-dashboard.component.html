@@ -178,6 +178,8 @@
             <ng-container *ngIf="currentContent === 'clientList' || currentContent === 'dietEditor' || currentContent === 'upload'">
                 <div class="main-content-split">
                     <!-- Painel Esquerdo: Lista de Clientes -->
+
+                    <!--atualização -->
                     <div class="sidebar">
                         <div class="stats-card"> <!-- Reutilizando stats-card para o container da lista -->
                             <div class="stats-header">
@@ -227,6 +229,7 @@
                                         <div class="diet-icon">🍽️</div>
                                         <h2>Plano de Dieta do Cliente</h2>
                                     </div>
+                                    <!--atualização-->
                                     <div class="action-buttons horizontal">
                                         <button class="primary-btn" (click)="editDiet()" *ngIf="!editingDiet">
                                             <span>✍️</span>

@@ -1110,6 +1110,62 @@ body {
     color: #333;
 }
 
+.primary-btn {
+  background: linear-gradient(180deg, #373a6d 0%, #2f5389 50%, #2169a4 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Botão primário desabilitado */
+.primary-btn:disabled {
+  background: #7ab8f0;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* Botão secundário (Cancelar) */
+.secondary-btn {
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: 
+  background 0.3s ease, transform 0.2s ease;
+}
+
+.secondary-btn:hover {
+  background: #c8c8c8;
+  transform: translateY(-2px);
+}
+
+.secondary-btn:disabled {
+  background: #eee;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+
 .download-btn {
     background: linear-gradient(135deg, #373a6d, #2169a4);
     color: white;

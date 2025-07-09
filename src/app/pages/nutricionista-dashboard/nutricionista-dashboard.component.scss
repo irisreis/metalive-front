@@ -132,56 +132,138 @@ body {
     background: #f8f9fa;
 }
 
-/* Main Content Area */
-.main-content {
-    padding: 2rem;
-    max-width: 1400px; /* Essencial para a centralização interna, se precisar */
-    margin: 0 auto; /* Centraliza o conteúdo principal dentro do container */
-    display: flex;
-    flex-direction: column; /* Define o layout principal como coluna */
-    gap: 2rem; /* Espaçamento entre as seções */
-}
-
-/* Dashboard Grid (para Visão Geral) */
-.dashboard-grid {
+//* mudança*/
+.main-content-split {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-bottom: 0; /* Remove a margem inferior para que o main-content defina o espaçamento */
+    grid-template-columns: 1fr 2.5fr;
+    gap: 32px;
+    margin-bottom: 32px;
 }
 
-.dashboard-card {
-    background: white;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
+@media (max-width: 1024px) {
+    .main-content-split {
+        grid-template-columns: 1fr;
+    }
+
+    .main-content-split .sidebar {
+        order: -1;
+    }
 }
 
-.dashboard-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-
-.dashboard-card .card-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.dashboard-card .card-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 15px;
+// Small loading message for consistency
+.loading-message-small {
+    text-align: center;
+    padding: 15px;
+    color: #666;
+    font-size: 14px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    margin: 15px 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    gap: 10px;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #2169a4;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+
+/* --- Client List Specifics (reused) --- */
+.client-list {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(55, 58, 109, 0.1);
+}
+
+.client-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    background-color: rgba(55, 58, 109, 0.03);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.client-item:hover {
+    background-color: rgba(55, 58, 109, 0.08);
+    border-color: rgba(55, 58, 109, 0.15);
+    transform: translateY(-2px);
+}
+
+.client-item.selected {
+    background: linear-gradient(135deg, #373a6d, #2169a4);
+    color: white;
+    box-shadow: 0 4px 12px rgba(55, 58, 109, 0.25);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.client-item.selected .client-name,
+.client-item.selected .client-email {
     color: white;
 }
+
+.client-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #2169a4;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.client-item.selected .client-avatar {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.client-info {
+    flex-grow: 1;
+}
+
+.client-name {
+    font-weight: 600;
+    color: #373a6d;
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.client-email {
+    font-size: 12px;
+    color: #718096;
+}
+
+.select-arrow {
+    font-size: 18px;
+    color: #718096;
+    transition: transform 0.2s ease;
+}
+
+.client-item.selected .select-arrow {
+    color: white;
+    transform: translateX(5px);
+}
+
 
 /* Cores dos ícones dos cards */
 .icon-planos { background: linear-gradient(135deg, #2169a4, #2f5389); } /* Cor da sua paleta */
@@ -727,6 +809,68 @@ body {
 .file-input::file-selector-button:hover {
     opacity: 0.9;
 }
+
+.action-buttons.horizontal {
+  display: flex;
+  gap: 0.75rem; 
+}
+
+/* Botão primário (Editar e Salvar) */
+.primary-btn {
+  background: linear-gradient(180deg, #373a6d 0%, #2f5389 50%, #2169a4 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Botão primário desabilitado */
+.primary-btn:disabled {
+  background: #7ab8f0;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* Botão secundário (Cancelar) */
+.secondary-btn {
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: 
+  background 0.3s ease, transform 0.2s ease;
+}
+
+.secondary-btn:hover {
+  background: #c8c8c8;
+  transform: translateY(-2px);
+}
+
+.secondary-btn:disabled {
+  background: #eee;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
 
 .upload-area .primary-btn {
     align-self: stretch;
