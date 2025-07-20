@@ -2,18 +2,36 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    
+    // Regras para usuários
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow write: if request.auth != null; // Permite que usuários autenticados escrevam
+    }
+    
+    // Regras para nutricionistas
+    match /nutricionistas/{nutricionistaId} {
+      allow read, write: if request.auth != null; // Permite que usuários autenticados leiam e escrevam
+    }
+        // Regras para personais
+    match /personais/{personalId} {
+      allow read, write: if request.auth != null; // Permite que usuários autenticados leiam e escrevam
+    }
+    
+    // Regras para clientes
+    match /clientes/{clienteId} {
+      allow read, write: if request.auth != null; // Permite que usuários autenticados leiam e escrevam
+    }
 
-    // This rule allows anyone with your Firestore database reference to view, edit,
-    // and delete all data in your Firestore database. It is useful for getting
-    // started, but it is configured to expire after 30 days because it
-    // leaves your app open to attackers. At that time, all client
-    // requests to your Firestore database will be denied.
-    //
-    // Make sure to write security rules for your app before that time, or else
-    // all client requests to your Firestore database will be denied until you Update
-    // your rules
-    match /{document=**} {
-      allow read, write: if request.time < timestamp.date(2024, 10, 8);
+    // Regras para formularios
+    match /formularios/{formularioId} {
+      allow read, write: if request.auth != null; // Apenas usuários autenticados podem ler e escrever
+    }
+    
+    // Acesso público
+    match /publicCollection/{docId} {
+      allow read: if true; // Leitura pública
+      allow write: if request.auth != null; // Apenas autenticados podem escrever
     }
   }
 }

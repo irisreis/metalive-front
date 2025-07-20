@@ -20,17 +20,13 @@
     }
   ],
   "hosting": {
-    "public": "dist",
+    "public": "dist/metalive-front",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
     "rewrites": [
-      {
-        "source": "/api/**",
-        "function": "gerarCardHash" 
-      },
       {
         "source": "**",
         "destination": "/index.html"

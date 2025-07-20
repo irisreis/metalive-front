@@ -1,9 +1,11 @@
 import { Component, inject } from "@angular/core";
 import { Auth, sendPasswordResetEmail, signInWithEmailAndPassword } from "@angular/fire/auth";
 import { FormsModule } from "@angular/forms";
-import { Router, RouterModule } from "@angular/router"; // Importe RouterModule aqui
+import { Router, RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { ToastComponent } from "../../components/toast/toast.component";
+
+// <<< AQUI ESTÁ A CORREÇÃO: Importe 'ToastListComponent', não 'ToastComponent'
+import { ToastListComponent } from "../../components/toast/toast.component";
 import { AppToastService } from "../../services/toast.service";
 
 @Component({
@@ -12,8 +14,8 @@ import { AppToastService } from "../../services/toast.service";
   imports: [
     FormsModule,
     NgbModule,
-    ToastComponent,
-    RouterModule // Adicione RouterModule aqui
+    ToastListComponent, // <<< AQUI ESTÁ A CORREÇÃO: Use 'ToastListComponent'
+    RouterModule
   ],
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"]
@@ -22,17 +24,19 @@ export class LoginComponent {
   private auth: Auth = inject(Auth);
   email: string = "";
   password: string = "";
-  showToast = false;
+  showToast = false; // Esta propriedade pode não ser mais necessária se você usa o serviço AppToastService
   toastService = inject(AppToastService);
 
   constructor(private router: Router) {}
 
+  // <<< AQUI ESTÁ A CORREÇÃO: Use os métodos showSuccess e showError do serviço
   showSuccess(title: string, message: string) {
-    this.toastService.show(title, message, "bg-success text-light");
+    this.toastService.showSuccess(message, title); // showSuccess espera message, title
   }
 
+  // <<< AQUI ESTÁ A CORREÇÃO: Use os métodos showSuccess e showError do serviço
   showDanger(title: string, message: string) {
-    this.toastService.show(title, message, "bg-danger text-light");
+    this.toastService.showError(message, title); // showError espera message, title
   }
 
   async login() {
@@ -43,7 +47,6 @@ export class LoginComponent {
       this.showSuccess("Sucesso!", "Login efetuado com sucesso!");
       localStorage.setItem("user", JSON.stringify(user));
         setTimeout(() => {
-          //this.router.navigateByUrl("/perfil/${user.uid}");
           this.router.navigate([`/perfil`, user.uid]);
         }, 2000);
     } catch (error: any) {

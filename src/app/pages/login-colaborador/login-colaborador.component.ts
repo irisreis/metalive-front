@@ -1,9 +1,14 @@
+// src/app/pages/login-colaborador/login-colaborador.component.ts
 import { Component, inject } from "@angular/core";
 import { Auth, sendPasswordResetEmail, signInWithEmailAndPassword } from "@angular/fire/auth";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap"; // Se estiver usando o NgbModule em algum lugar para modais, etc.
-import { ToastComponent } from "../../components/toast/toast.component";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+
+// Importação do COMPONENTE visual que exibe os toasts
+import { ToastListComponent } from "../../components/toast/toast.component"; // <--- AGORA ESTÁ CORRETO
+
+// Importação do SERVIÇO que gerencia e emite os toasts
 import { AppToastService } from "../../services/toast.service";
 
 @Component({
@@ -11,7 +16,12 @@ import { AppToastService } from "../../services/toast.service";
   templateUrl: './login-colaborador.component.html',
   styleUrls: ['./login-colaborador.component.scss'],
   standalone: true,
-  imports: [FormsModule, ToastComponent, RouterModule, NgbModule] // Adicionado NgbModule
+  imports: [
+    FormsModule,
+    RouterModule,
+    NgbModule,
+    ToastListComponent 
+  ]
 })
 export class LoginColaboradorComponent {
 
@@ -19,32 +29,27 @@ export class LoginColaboradorComponent {
   role: string = ''; // nutri ou personal
   email: string = "";
   password: string = "";
-  // showToast não é mais usado diretamente se você tem um AppToastService
-  toastService = inject(AppToastService);
+  toastService = inject(AppToastService); // Injeta o serviço de toast
 
-  constructor(private router: Router) {}
+  router = inject(Router);
 
   showSuccess(title: string, message: string) {
-    this.toastService.show(title, message, "bg-success text-light");
+    this.toastService.showSuccess(message, title);
   }
 
   showDanger(title: string, message: string) {
-    this.toastService.show(title, message, "bg-danger text-light");
+    this.toastService.showError(message, title);
   }
 
-  // Métodos para controlar o estado do label do select (para fazer flutuar)
   onSelectFocus(): void {
-    // O Angular gerencia bem o `select` com `ngModel` para a classe `ng-valid`, `ng-dirty`, etc.
-    // Mas para o efeito de label flutuante com placeholder, a classe `has-value` ajuda.
+    // Lógica para controle de foco, se necessário
   }
 
   onSelectBlur(): void {
-    // O `[(ngModel)]` e `[class.has-value]="role !== ''"` já cuidam disso.
-    // Este método pode ser vazio ou ter lógica adicional de validação.
+    // Lógica para controle de blur, se necessário
   }
 
-
-  async login() { // Use async/await para melhor legibilidade
+  async login() {
     try {
       const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
       const user = userCredential.user;
@@ -54,27 +59,24 @@ export class LoginColaboradorComponent {
 
       setTimeout(() => {
         console.log("Função selecionada para login:", this.role);
-        // Normaliza a role para evitar erros de case (maiúsculas/minúsculas)
         const normalizedRole = this.role.toLowerCase();
 
         if (normalizedRole === "nutricionista") {
           this.router.navigate([`/nutricionista`, user.uid]);
-        } else if (normalizedRole === "personal trainer" || normalizedRole === "personal") { // Aceita "personal trainer" ou "personal"
+        } else if (normalizedRole === "personal trainer" || normalizedRole === "personal") {
           this.router.navigate([`/personal`, user.uid]);
         } else {
           console.error("Erro: Função selecionada inválida ou não reconhecida:", this.role);
           this.showDanger("Erro.", "Função selecionada inválida. Por favor, escolha Nutricionista ou Personal Trainer.");
-          // Opcional: Redirecionar para uma página padrão de erro ou home se a role for inválida
-          // this.router.navigate(['/']);
         }
       }, 2000);
     } catch (error: any) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.error("Erro de autenticação:", errorCode, errorMessage); // Log mais detalhado
+      console.error("Erro de autenticação:", errorCode, errorMessage);
 
       if (errorCode === "auth/invalid-credential" || errorCode === "auth/user-not-found" || errorCode === "auth/wrong-password") {
-        this.showDanger("Erro.", "E-mail ou senha inválidos."); // Mensagem genérica para segurança
+        this.showDanger("Erro.", "E-mail ou senha inválidos.");
       } else if (errorCode === "auth/invalid-email") {
         this.showDanger("Erro.", "Formato de e-mail inválido.");
       } else if (errorCode === "auth/too-many-requests") {
@@ -85,7 +87,7 @@ export class LoginColaboradorComponent {
     }
   }
 
-  async resetPassword() { // Use async/await
+  async resetPassword() {
     if (!this.email) {
       this.showDanger("Erro.", "Por favor, insira um e-mail para redefinir a senha.");
       return;
