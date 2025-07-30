@@ -1,10 +1,11 @@
 import { Component, ViewChild, ElementRef, OnInit } from "@angular/core";
 import { ScrollService } from "../../scroll.service";
+import { RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-apresentacao",
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: "./apresentacao.component.html",
   styleUrls: ["./apresentacao.component.scss"]
 })

@@ -7,11 +7,13 @@
         </div>
 
         <div class="container">
-            <div class="section-header">
-                <h1 class="section-title">Quem Somos</h1>
-                <p class="section-subtitle">Transformamos vidas através de uma abordagem integrada de saúde e bem-estar</p>
-            </div>
-
+            <section id="quem-somos">
+                <div class="section-header">
+                    <h1 class="section-title">Quem Somos</h1>
+                    <p class="section-subtitle">Transformamos vidas através de uma abordagem integrada de saúde e bem-estar</p>
+                </div>
+            </section>
+            
             <div class="cards-grid">
                 <div class="card">
                     <div class="card-icon">🎯</div>
@@ -68,7 +70,7 @@
             <div class="cta-section">
                 <h2 class="cta-title">Pronto para Sua Transformação?</h2>
                 <p class="cta-subtitle">Junte-se a centenas de pessoas que já transformaram suas vidas com a metodologia METALIVE. Seu corpo ideal está a um clique de distância.</p>
-                <a href="http://localhost:4200/cadastro" class="cta-button">Começar Minha Jornada</a>
+                <a  [routerLink]="['/cadastro']" class="cta-button">Começar Minha Jornada</a>
             </div>
         </div>
     </section>

@@ -106,7 +106,7 @@
         .stats-section {
             background: linear-gradient(135deg, #373a6d, #2169a4);
             border-radius: 25px;
-            padding: 60px;
+            padding: 80px;
             color: white;
             text-align: center;
             position: relative;
@@ -263,7 +263,15 @@
                 font-size: 0.9rem;
             }
 
-        
+            .stat-label{
+                font-size: 0.9rem;
+               
+            }
+
+            .stat-number{
+                font-size: 1rem;
+            }
+
             .cta-title {
                 font-size: 2rem;
             }

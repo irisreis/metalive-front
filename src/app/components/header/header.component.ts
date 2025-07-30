@@ -21,6 +21,13 @@ export class HeaderComponent implements OnInit {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
+  scrollToSection(sectionId: string): void {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
   // Opcional: Fechar menu ao clicar em um link
   closeMobileMenu(): void {
     this.isMobileMenuOpen = false;

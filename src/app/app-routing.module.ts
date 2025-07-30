@@ -1,22 +1,23 @@
 // app-routing.module.ts
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { HomeComponent } from '../app/pages/home/home.component'; // Certifique-se de importar o HomeComponent
-import { FormularioComponent } from './pages/formulario/formulario.component'; // Certifique-se de importar o FormularioComponent
 
-// Importe as rotas definidas
+import { HomeComponent } from './pages/home/home.component';
+import { FormularioComponent } from './pages/formulario/formulario.component';
+
+
 export const routes: Routes = [
-  { path: '', component: HomeComponent }, // Rota para a página inicial
-  { path: 'formulario/:clienteId', component: FormularioComponent }, // Rota para o formulário
-  // Outras rotas aqui...
+  { path: '', component: HomeComponent }, 
+  { path: 'formulario/:clienteId', component: FormularioComponent }, 
+  
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)  // Configura o RouterModule com as rotas definidas
+    RouterModule.forRoot(routes) 
   ],
   exports: [
-    RouterModule  // Exporta o RouterModule para que ele esteja disponível em todo o aplicativo
+    RouterModule
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
