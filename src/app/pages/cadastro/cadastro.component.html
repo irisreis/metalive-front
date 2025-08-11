@@ -2,14 +2,7 @@
 <body>
     <div class="aux"></div>
     <div class="container">
-        <!-- Seção Esquerda - Resumo do Plano -->
         <div class="left-section">
-            <!-- Envolve o .logo com um link [routerLink] -->
-            <!-- <a [routerLink]="['/home']" class="logo logo-link-clickable">
-                < !-- Usando img para o logo da Metalive -- >
-                <img src="../../../assets/logo/logometalivemini.png" alt="Logo Metalive" class="logo-icon-img">
-                <div class="logo-text">METALIVE</div>
-            </a> -->
             <div class="tagline">Conexão, mente e corpo.</div>
 
             <div class="plan-summary">
@@ -47,10 +40,8 @@
                     </li>
                 </ul>
             </div>
-
         </div>
 
-        <!-- Seção Direita - Formulário -->
         <div class="right-section">
             <div class="form-container">
                 <h2>Finalize sua assinatura</h2>
@@ -71,15 +62,15 @@
                     </div>
                 </div>
 
-                <form (ngSubmit)="onSubmit()">
+                <form id="form-checkout">
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="fullName">Nome completo</label>
                             <input type="text" id="fullName" [(ngModel)]="nome" name="nome" placeholder="Seu nome completo" required [disabled]="isLoading">
                         </div>
                         <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" [(ngModel)]="email" name="email" placeholder="seu@email.com" required [disabled]="isLoading">
+                            <label for="cardholderEmail">E-mail</label>
+                            <input type="email" id="cardholderEmail" [(ngModel)]="cardholderEmail" name="cardholderEmail" placeholder="seu@email.com" required [disabled]="isLoading">
                         </div>
                         <div class="form-group">
                             <label for="phone">Telefone</label>
@@ -110,44 +101,43 @@
                     <div class="form-group">
                         <label>Método de pagamento</label>
                         <div class="payment-methods">
-                            <div class="payment-method" [class.active]="selectedPaymentMethod === 'credit_card'" (click)="selectPaymentMethod('credit_card')" [class.disabled]="isLoading">
+                            <div class="payment-method active">
                                 💳 Cartão
                             </div>
-                            <div class="payment-method" [class.active]="selectedPaymentMethod === 'pix'" (click)="selectPaymentMethod('pix')" [class.disabled]="isLoading">
+                            <div class="payment-method disabled">
                                 💰 PIX
                             </div>
-                            <div class="payment-method" [class.active]="selectedPaymentMethod === 'boleto'" (click)="selectPaymentMethod('boleto')" [class.disabled]="isLoading">
+                            <div class="payment-method disabled">
                                 🎫 Boleto
                             </div>
                         </div>
                     </div>
 
-                    <ng-container *ngIf="selectedPaymentMethod === 'credit_card'">
-                        <div class="form-grid" #destinoDetalhePagamento id="card-payment-details">
-                            <div class="form-group">
-                                <label for="cardName">Nome no cartão</label>
-                                <input type="text" id="cardName" [(ngModel)]="card_name" name="card_name" placeholder="Nome como no cartão" required [disabled]="isLoading">
-                            </div>
-                            <div class="form-group">
-                                <label for="cardNumber">Número do cartão</label>
-                                <input type="text" id="cardNumber" [(ngModel)]="card_number" name="card_number" placeholder="0000 0000 0000 0000" required [disabled]="isLoading">
-                            </div>
-                            <div class="form-group">
-                                <label for="expiry">Validade</label>
-                                <input type="text" id="expiry" [(ngModel)]="card_expiration_date" name="card_expiration_date" placeholder="MM/AA" required [disabled]="isLoading">
-                            </div>
-                            <div class="form-group">
-                                <label for="cvv">CVV</label>
-                                <input type="text" id="cvv" [(ngModel)]="card_cvv" name="card_cvv" placeholder="123" required [disabled]="isLoading">
-                            </div>
+                    <div class="form-grid" #destinoDetalhePagamento id="card-payment-details">
+                        <div class="form-group">
+                            <label for="cardName">Nome no cartão</label>
+                            <input type="text" id="cardholderName" [(ngModel)]="cardholderName" name="cardholderName" placeholder="Nome como no cartão" required [disabled]="isLoading">
                         </div>
-                    </ng-container>
-
-                    <div *ngIf="selectedPaymentMethod === 'pix'" class="payment-info-message">
-                        Você será redirecionado(a) para gerar o código PIX após a confirmação.
-                    </div>
-                    <div *ngIf="selectedPaymentMethod === 'boleto'" class="payment-info-message">
-                        O boleto será gerado e enviado para seu e-mail após a confirmação.
+                        <div class="form-group">
+                            <label for="cardNumber">Número do cartão</label>
+                            <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" required [disabled]="isLoading">
+                        </div>
+                        <div class="form-group">
+                            <label for="expiry">Validade</label>
+                            <input type="text" id="expirationDate" placeholder="MM/YY" required [disabled]="isLoading">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="securityCode" placeholder="123" required [disabled]="isLoading">
+                        </div>
+                        <div class="form-group">
+                            <label for="issuer">Banco emissor</label>
+                            <select id="issuer" class="inputLogin"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="installments">Parcelas</label>
+                            <select id="installments" class="inputLogin"></select>
+                        </div>
                     </div>
 
                     <div class="terms-checkbox">
@@ -155,7 +145,7 @@
                         <label for="terms">Eu aceito os <a [routerLink]="['/termos-de-uso']" style="color: #2169a4;">termos de uso</a> e <a [routerLink]="['/politica-de-privacidade']" style="color: #2169a4;">política de privacidade</a></label>
                     </div>
 
-                    <button type="submit" class="checkout-btn" [disabled]="!aceito || isLoading">
+                    <button type="submit" class="checkout-btn" (click)="validarFormulario()" [disabled]="!aceito || isLoading">
                         <span *ngIf="!isLoading">🚀 COMEÇAR TRANSFORMAÇÃO - R$ 159,90/mês</span>
                         <span *ngIf="isLoading">Processando...</span>
                     </button>

@@ -7,19 +7,29 @@
   <meta name="description" content="Metalive - acompanhamento com personal e nutricionista.">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://www.gstatic.com;">-->
-  <!-- <meta http-equiv="Content-Security-Policy" content="
-  default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://www.googleapis.com;
+
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+<!-- 
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self' data: https://www.mercadolibre.com https://www.mercadolibre.com/*;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://www.googleapis.com https://sdk.mercadopago.com https://sdk.mercadopago.com/* https://www.mercadolibre.com https://www.mercadolibre.com/* https://http2.mlstatic.com/storage/event-metrics-sdk/js;
+    style-src 'self' 'unsafe-inline' https://www.gstatic.com https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    connect-src 'self' https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://firestore.googleapis.com/* https://us-central1-metalive-8b9e7.cloudfunctions.net https://api.mercadopago.com https://api.mercadopago.com/* https://www.mercadolibre.com/ https://www.mercadolibre.com/* https://api.mercadolibre.com/tracks https://events.mercadopago.com/v2/traffic-light https://events.mercadopago.com/v2/metric https://us-central1-metalive-copy.cloudfunctions.net/confirmarPagamento;
+    img-src 'self' data: https://www.gstatic.com https://www.google.com https://www.mercadolibre.com https://www.mercadolibre.com/* https://www.mercadolivre.com https://www.mercadolivre.com/*;
+    object-src 'none';
+    base-uri 'self';
+  "> -->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self' data: https://www.mercadolibre.com https://www.mercadolibre.com/*;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://www.googleapis.com https://sdk.mercadopago.com https://sdk.mercadopago.com/* https://www.mercadolibre.com https://www.mercadolibre.com/* https://http2.mlstatic.com/storage/event-metrics-sdk/js;
   style-src 'self' 'unsafe-inline' https://www.gstatic.com https://fonts.googleapis.com;
   font-src 'self' https://fonts.gstatic.com;
-  connect-src 'self' https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://firestore.googleapis.com/* https://us-central1-metalive-8b9e7.cloudfunctions.net;
-  img-src 'self' data: https://www.gstatic.com https://www.google.com;
+  connect-src 'self' https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://firestore.googleapis.com/* https://api.mercadopago.com https://api.mercadopago.com/* https://www.mercadolibre.com/ https://www.mercadolibre.com/* https://api.mercadolibre.com/tracks https://events.mercadopago.com/v2/traffic-light https://events.mercadopago.com/v2/metric https://us-central1-metalive-copy.cloudfunctions.net/confirmarPagamento https://confirmarpagamento-sjlgvpsoea-uc.a.run.app https://sendemail-slgjygxoce-uc.a.run.app;
+  img-src 'self' data: https://www.gstatic.com https://www.google.com https://www.mercadolibre.com https://www.mercadolibre.com/* https://www.mercadolivre.com https://www.mercadolivre.com/*;
   object-src 'none';
-  child-src 'none';
-  frame-src 'none';
   base-uri 'self';
-"> -->
+">
 </head>
 <body>
   <app-root></app-root>
