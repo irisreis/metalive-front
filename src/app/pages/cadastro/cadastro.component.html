@@ -1,156 +1,109 @@
-<app-header></app-header>
-<body>
-    <div class="aux"></div>
-    <div class="container">
-        <div class="left-section">
-            <div class="tagline">Conexão, mente e corpo.</div>
-
-            <div class="plan-summary">
-                <div class="plan-title">Plano METALIVE</div>
-                <div class="plan-subtitle">Básico</div>
-                <div class="price">
-                    R$ 159,90
-                    <span class="price-period">/mês</span>
+<div class="container-fluid" id="paginaWelcome">
+  <div class="row">
+    <div class="col-xl-9 col-lg-10 col-md-11 col-sm-11 col-12 mx-auto" id="blocoPrincipal">
+      <div class="row">
+        <div class="col-xl-9 col-lg-9 col-md-11 col-12 mx-auto" id="entrar">
+          <div class="row">
+            <p class="col-12 mx-auto" id="texto1">Cadastre-se</p>
+            <a href="/" class="logoMetalive mx-auto">
+              <img class="logoMetalive mx-auto" src="../../../assets/paginas/login/tituloMetalive.png" alt="">
+            </a>
+            <p class="col-12 mx-auto" id="testo2">Conexão, mente e corpo.</p>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-11 col-11 mx-auto resumoPlanoPagamento">
+              <div class="row">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9 col-8">
+                  <p class="tituloTextoDados">Plano <u>Metalive</u></p>
+                  <a (click)="rolarParaDestino($event, 'destinoDetalhePagamento')" class="linkDetalhesPagamento"
+                    href="/">Detalhes de pagamento ></a>
                 </div>
-
-                <ul class="features">
-                    <li>
-                        <span class="check-icon">✓</span>
-                        Personal trainer especializado
-                    </li>
-                    <li>
-                        <span class="check-icon">✓</span>
-                        Nutricionista qualificado
-                    </li>
-                    <li>
-                        <span class="check-icon">✓</span>
-                        Acesso completo à academia
-                    </li>
-                    <li>
-                        <span class="check-icon">✓</span>
-                        Plano alimentar personalizado
-                    </li>
-                    <li>
-                        <span class="check-icon">✓</span>
-                        Acompanhamento semanal
-                    </li>
-                    <li>
-                        <span class="check-icon">✓</span>
-                        App exclusivo de treinos
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="right-section">
-            <div class="form-container">
-                <h2>Finalize sua assinatura</h2>
-                <p class="form-subtitle">Preencha seus dados para começar sua transformação</p>
-
-                <div class="price-breakdown">
-                    <div class="price-row">
-                        <span>Custo de serviços:</span>
-                        <span>R$ 125,00</span>
-                    </div>
-                    <div class="price-row">
-                        <span>Custo de operação:</span>
-                        <span>R$ 34,90</span>
-                    </div>
-                    <div class="price-row total">
-                        <span>Total:</span>
-                        <span>R$ 159,90</span>
-                    </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4">
+                  <p class="textoDados">Total:</p>
+                  <p class="textoDadosValor2">R$ 159,90 - (R$ 1,00 p/ teste)</p>
                 </div>
-
-                <form id="form-checkout">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="fullName">Nome completo</label>
-                            <input type="text" id="fullName" [(ngModel)]="nome" name="nome" placeholder="Seu nome completo" required [disabled]="isLoading">
-                        </div>
-                        <div class="form-group">
-                            <label for="cardholderEmail">E-mail</label>
-                            <input type="email" id="cardholderEmail" [(ngModel)]="cardholderEmail" name="cardholderEmail" placeholder="seu@email.com" required [disabled]="isLoading">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Telefone</label>
-                            <input type="tel" id="phone" [(ngModel)]="numeroTelefone" name="numeroTelefone" placeholder="(XX) XXXXX-XXXX" required [disabled]="isLoading">
-                        </div>
-                        <div class="form-group">
-                            <label for="cpf">CPF</label>
-                            <input type="text" id="cpf" placeholder="000.000.000-00" [disabled]="isLoading">
-                        </div>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="address">Endereço completo (para cobrança)</label>
-                        <input type="text" id="address" [(ngModel)]="billingAddress" name="billingAddress" placeholder="Rua, número, bairro, cidade, CEP" required [disabled]="isLoading">
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="password">Senha</label>
-                            <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Sua senha" required [disabled]="isLoading">
-                        </div>
-                        <div class="form-group">
-                            <label for="repeatPassword">Confirmar Senha</label>
-                            <input type="password" id="repeatPassword" [(ngModel)]="repeatPassword" name="repeatPassword" placeholder="Confirme sua senha" required [disabled]="isLoading">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Método de pagamento</label>
-                        <div class="payment-methods">
-                            <div class="payment-method active">
-                                💳 Cartão
-                            </div>
-                            <div class="payment-method disabled">
-                                💰 PIX
-                            </div>
-                            <div class="payment-method disabled">
-                                🎫 Boleto
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-grid" #destinoDetalhePagamento id="card-payment-details">
-                        <div class="form-group">
-                            <label for="cardName">Nome no cartão</label>
-                            <input type="text" id="cardholderName" [(ngModel)]="cardholderName" name="cardholderName" placeholder="Nome como no cartão" required [disabled]="isLoading">
-                        </div>
-                        <div class="form-group">
-                            <label for="cardNumber">Número do cartão</label>
-                            <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" required [disabled]="isLoading">
-                        </div>
-                        <div class="form-group">
-                            <label for="expiry">Validade</label>
-                            <input type="text" id="expirationDate" placeholder="MM/YY" required [disabled]="isLoading">
-                        </div>
-                        <div class="form-group">
-                            <label for="cvv">CVV</label>
-                            <input type="text" id="securityCode" placeholder="123" required [disabled]="isLoading">
-                        </div>
-                        <div class="form-group">
-                            <label for="issuer">Banco emissor</label>
-                            <select id="issuer" class="inputLogin"></select>
-                        </div>
-                        <div class="form-group">
-                            <label for="installments">Parcelas</label>
-                            <select id="installments" class="inputLogin"></select>
-                        </div>
-                    </div>
-
-                    <div class="terms-checkbox">
-                        <input type="checkbox" id="terms" [(ngModel)]="aceito" name="aceito" required [disabled]="isLoading">
-                        <label for="terms">Eu aceito os <a [routerLink]="['/termos-de-uso']" style="color: #2169a4;">termos de uso</a> e <a [routerLink]="['/politica-de-privacidade']" style="color: #2169a4;">política de privacidade</a></label>
-                    </div>
-
-                    <button type="submit" class="checkout-btn" (click)="validarFormulario()" [disabled]="!aceito || isLoading">
-                        <span *ngIf="!isLoading">🚀 COMEÇAR TRANSFORMAÇÃO - R$ 159,90/mês</span>
-                        <span *ngIf="isLoading">Processando...</span>
-                    </button>
-                </form>
+              </div>
             </div>
+            <form id="form-checkout">
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 mx-auto">
+                  <!-- Formulário Único -->
+                  <p class="textoInput">Nome completo:</p>
+                  <input class="inputLogin" type="text" placeholder="" [(ngModel)]="nome" name="nome">
+                  <p class="textoInput">E-mail:</p>
+                  <input class="inputLogin" type="email" placeholder="email@email.com" [(ngModel)]="cardholderEmail"
+                    name="cardholderEmail" id="cardholderEmail">
+                  <p class="textoInput">Senha:</p>
+                  <input class="inputLogin" type="password" placeholder="Senha" [(ngModel)]="password" name="password">
+                  <p class="textoInput">Confirmar Senha:</p>
+                  <input class="inputLogin" type="password" placeholder="Repita a senha" [(ngModel)]="repeatPassword"
+                    name="repeatPassword">
+                  <p class="textoInput">Número de celular:</p>
+                  <input class="inputLogin" type="text" placeholder="00 00000-0000" [(ngModel)]="numeroTelefone"
+                    name="numeroTelefone">
+                  <p class="textoInput">Endereço:</p>
+                  <input class="inputLogin" type="text" id="billingAddress" name="billingAddress"
+                    placeholder="Rua, número, cidade" [(ngModel)]="billingAddress" required>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 mx-auto">
+                  <!-- Campos de pagamento -->
+                  <p class="textoInput">Nome no cartão:</p>
+                  <input class="inputLogin" type="text" placeholder="Nome no cartão" [(ngModel)]="cardholderName"
+                    name="cardholderName" id="cardholderName">
+                  <p class="textoInput">Número do cartão:</p>
+                  <input class="inputLogin" type="text" placeholder="" [(ngModel)]="cardNumber" name="cardNumber"
+                    id="cardNumber">
+                  <p class="textoInput">Data de Expiração:</p>
+                  <input class="inputLogin" type="text" placeholder="MM/AA" [(ngModel)]="expirationDate"
+                    name="expirationDate" id="expirationDate">
+                  <p class="textoInput">CVV:</p>
+                  <input class="inputLogin" type="text" placeholder="CVV" [(ngModel)]="securityCode" name="securityCode"
+                    id="securityCode">
+                  <p class="textoInput">Banco Emissor:</p>
+                  <select id="issuer" class="inputLogin"></select>
+                  <p class="textoInput">Parcelas:</p>
+                  <select id="installments" class="inputLogin"></select>
+                </div>
+              </div>
+              <div id="posicaoTermos">
+                <input id="inputTermos" [(ngModel)]="aceito" name="aceito" type="checkbox">
+                <p id="textoTermos">Eu aceito os <a id="linkTermos" target="_blank" rel="noopener noreferrer"
+                    href="../../../assets/Termo_de_Uso_e_Politica_de_Privacidade__METALIVE_Cliente_1729101885102222.pdf">termos
+                    de uso e politica de privacidade</a>.</p>
+              </div>
+              <button class="cadastro-btn mx-auto" type="button" id="form-checkout__submit" (click)="validarFormulario()">COMEÇAR</button>
+            </form>
+            <!--
+            <p class="col-12 mx-auto texto3">Continue com as redes sociais.</p>
+          </div>
+          <div class="row">
+            <div class="col-3 mx-auto"></div>
+            <a class="col-1 mx-auto redesSociais" href=""><img src="../../../assets/paginas/login/google.png"
+                alt=""></a>
+            <a class="col-1 mx-auto redesSociais" href=""><img src="../../../assets/paginas/login/iconFacebook.png"
+                alt=""></a>
+            <div class="col-4 mx-auto"></div>
+          </div>-->
+          </div>
+          <!-- <button (click)="onLogout()">Logout</button>tirar-->
+          <!--<img class="col-xl-8 col-lg-8 col-md-8 d-none d-md-block" id="logoGrande" src="../../../assets/paginas/login/logo1.png" alt="">-->
         </div>
+      </div>
+      <div #destinoDetalhePagamento id="destinoDetalhePagamento" class="col-12 detalhesPagamento">
+        <P class="tituloDetalhesPagamento">Plano <u>METALIVE</u>- Básico</P>
+        <p class="textoDados">Custo de serviços:</p>
+        <p class="textoDadosValor">R$ 125,00</p>
+        <div class="linha"></div>
+        <p class="textoDados">Custo de operação:</p>
+        <p class="textoDadosValor">R$ 34,90</p>
+        <div class="linha"></div>
+        <p class="textoDados">Taxa de adesão:</p>
+        <p class="textoDadosValor">R$ 00,00</p>
+        <div class="linha"></div>
+        <p class="textoDados">Total:</p>
+        <p class="textoDadosValor">R$ 159,90</p>
+      </div>
+      <p style="margin-top: 5px;" class="texto3 mx-auto">É um colaborador? Faça seu cadastro <a
+          href="/cadastroColaborador">aqui</a>. É cliente? faça o login <a href="/login">aqui</a>.</p>
     </div>
-</body>
+  </div>
+</div>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src-elem 'self' https://www.gstatic.com;">
